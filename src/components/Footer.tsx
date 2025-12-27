@@ -1,19 +1,16 @@
 import { Facebook, MapPin, Leaf } from "lucide-react";
-
 const Footer = () => {
   const currentYear = new Date().getFullYear();
-
-  return (
-    <footer className="bg-ink text-soft-white py-20 md:py-24">
+  return <footer className="text-soft-white py-20 md:py-24 bg-primary">
       <div className="container mx-auto px-6 md:px-8">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 md:gap-16 mb-16">
           {/* Brand */}
           <div className="md:col-span-1">
             <div className="flex flex-col items-start mb-6">
-              <span className="font-headline text-3xl text-highlight tracking-wide leading-none">
+              <span className="font-headline text-3xl tracking-wide leading-none text-primary-foreground">
                 AMIGOS
               </span>
-              <span className="text-[10px] font-bold uppercase tracking-[0.3em] opacity-60">
+              <span className="text-[10px] font-bold uppercase tracking-[0.3em] opacity-60 text-accent">
                 LANDSCAPING
               </span>
             </div>
@@ -22,22 +19,10 @@ const Footer = () => {
               County since 1995.
             </p>
             <div className="flex gap-3">
-              <a
-                href="https://www.facebook.com/people/Amigos-Landscaping/61580100399488/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-10 h-10 rounded-full bg-soft-white/10 flex items-center justify-center hover:bg-highlight transition-colors"
-                aria-label="Facebook"
-              >
+              <a href="https://www.facebook.com/people/Amigos-Landscaping/61580100399488/" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-soft-white/10 flex items-center justify-center hover:bg-highlight transition-colors" aria-label="Facebook">
                 <Facebook className="w-5 h-5" />
               </a>
-              <a
-                href="https://maps.app.goo.gl/k74iG6pwesT2Pqg18"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-10 h-10 rounded-full bg-soft-white/10 flex items-center justify-center hover:bg-highlight transition-colors"
-                aria-label="Google Business"
-              >
+              <a href="https://maps.app.goo.gl/k74iG6pwesT2Pqg18" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-soft-white/10 flex items-center justify-center hover:bg-highlight transition-colors" aria-label="Google Business">
                 <MapPin className="w-5 h-5" />
               </a>
             </div>
@@ -47,18 +32,11 @@ const Footer = () => {
           <div>
             <h4 className="font-headline text-lg mb-6">Quick Links</h4>
             <ul className="space-y-3">
-              {["Home", "Services", "About Us", "Testimonials", "Service Areas"].map(
-                (link) => (
-                  <li key={link}>
-                    <a
-                      href={`#${link.toLowerCase().replace(" ", "")}`}
-                      className="font-body text-soft-white/70 hover:text-highlight transition-colors"
-                    >
+              {["Home", "Services", "About Us", "Testimonials", "Service Areas"].map(link => <li key={link}>
+                    <a href={`#${link.toLowerCase().replace(" ", "")}`} className="font-body text-soft-white/70 hover:text-highlight transition-colors">
                       {link}
                     </a>
-                  </li>
-                )
-              )}
+                  </li>)}
             </ul>
           </div>
 
@@ -66,23 +44,11 @@ const Footer = () => {
           <div>
             <h4 className="font-headline text-lg mb-6">Services</h4>
             <ul className="space-y-3">
-              {[
-                "Weekly Lawn Care",
-                "Tree Trimming",
-                "Seasonal Cleanups",
-                "Flower Bed Weeding",
-                "Mulching",
-                "Aeration",
-              ].map((service) => (
-                <li key={service}>
-                  <a
-                    href="#services"
-                    className="font-body text-soft-white/70 hover:text-highlight transition-colors"
-                  >
+              {["Weekly Lawn Care", "Tree Trimming", "Seasonal Cleanups", "Flower Bed Weeding", "Mulching", "Aeration"].map(service => <li key={service}>
+                  <a href="#services" className="font-body text-soft-white/70 hover:text-highlight transition-colors">
                     {service}
                   </a>
-                </li>
-              ))}
+                </li>)}
             </ul>
           </div>
 
@@ -104,10 +70,7 @@ const Footer = () => {
                 </a>
               </li>
               <li>
-                <a
-                  href="mailto:contact@amigolandscaping.com"
-                  className="hover:text-highlight transition-colors"
-                >
+                <a href="mailto:contact@amigolandscaping.com" className="hover:text-highlight transition-colors">
                   contact@amigolandscaping.com
                 </a>
               </li>
@@ -121,23 +84,15 @@ const Footer = () => {
             © {currentYear} Amigos Landscaping. All rights reserved.
           </p>
           <div className="flex gap-6">
-            <a
-              href="#"
-              className="font-body text-soft-white/50 text-sm hover:text-soft-white transition-colors"
-            >
+            <a href="#" className="font-body text-soft-white/50 text-sm hover:text-soft-white transition-colors">
               Privacy Policy
             </a>
-            <a
-              href="#"
-              className="font-body text-soft-white/50 text-sm hover:text-soft-white transition-colors"
-            >
+            <a href="#" className="font-body text-soft-white/50 text-sm hover:text-soft-white transition-colors">
               Terms of Service
             </a>
           </div>
         </div>
       </div>
-    </footer>
-  );
+    </footer>;
 };
-
 export default Footer;
