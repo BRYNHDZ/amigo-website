@@ -81,15 +81,15 @@ const Stats = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
           <StatItem
             icon={<Users className="w-8 h-8 text-highlight" />}
-            value={500}
+            value={600}
             suffix="+"
             label="Happy Clients"
             delay={0}
           />
           <StatItem
             icon={<CheckCircle className="w-8 h-8 text-highlight" />}
-            value={10000}
-            suffix="+"
+            value={83}
+            suffix="K"
             label="Visits Completed"
             delay={0.2}
           />
