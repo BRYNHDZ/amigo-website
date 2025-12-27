@@ -1,4 +1,4 @@
-import { Facebook, Instagram, Leaf } from "lucide-react";
+import { Facebook, MapPin, Leaf } from "lucide-react";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -23,18 +23,22 @@ const Footer = () => {
             </p>
             <div className="flex gap-3">
               <a
-                href="#"
+                href="https://www.facebook.com/people/Amigos-Landscaping/61580100399488/"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="w-10 h-10 rounded-full bg-soft-white/10 flex items-center justify-center hover:bg-highlight transition-colors"
                 aria-label="Facebook"
               >
                 <Facebook className="w-5 h-5" />
               </a>
               <a
-                href="#"
+                href="https://maps.app.goo.gl/k74iG6pwesT2Pqg18"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="w-10 h-10 rounded-full bg-soft-white/10 flex items-center justify-center hover:bg-highlight transition-colors"
-                aria-label="Instagram"
+                aria-label="Google Business"
               >
-                <Instagram className="w-5 h-5" />
+                <MapPin className="w-5 h-5" />
               </a>
             </div>
           </div>
@@ -89,22 +93,22 @@ const Footer = () => {
               <li className="flex items-start gap-2">
                 <Leaf className="w-4 h-4 text-highlight mt-1 flex-shrink-0" />
                 <span>
-                  DuPage County, IL
+                  Wheaton, Glen Ellyn, Winfield
                   <br />
                   Illinois, USA
                 </span>
               </li>
               <li>
-                <a href="tel:+16305551234" className="hover:text-highlight transition-colors">
-                  (630) 555-1234
+                <a href="tel:6306640303" className="hover:text-highlight transition-colors">
+                  (630) 664-0303
                 </a>
               </li>
               <li>
                 <a
-                  href="mailto:info@amigolandscaping.com"
+                  href="mailto:contact@amigolandscaping.com"
                   className="hover:text-highlight transition-colors"
                 >
-                  info@amigolandscaping.com
+                  contact@amigolandscaping.com
                 </a>
               </li>
             </ul>

@@ -1,4 +1,6 @@
 import { useEffect } from "react";
+import { motion } from "framer-motion";
+import mascot from "@/assets/mascot.gif";
 
 const JobberForm = () => {
   useEffect(() => {
@@ -38,6 +40,21 @@ const JobberForm = () => {
         <div className="max-w-2xl mx-auto bg-card rounded-3xl p-6 md:p-10 shadow-lg border border-border/30">
           <div id="73c449a9-90ba-493f-8a4e-c0c1113bcac9-2060348"></div>
         </div>
+
+        {/* Mascot */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+          className="flex justify-center mt-12"
+        >
+          <img 
+            src={mascot} 
+            alt="Amigos Landscaping Mascot" 
+            className="w-32 h-32 md:w-40 md:h-40"
+          />
+        </motion.div>
       </div>
     </section>
   );

@@ -32,14 +32,14 @@ const Header = () => {
       {/* Top Green Bar - Thicker */}
       <div className="bg-brand text-soft-white py-4">
         <div className="container mx-auto px-4 flex items-center justify-between">
-          {/* Email Icon */}
-          <a
-            href="mailto:info@amigolandscaping.com"
-            className="flex items-center gap-2 text-white/80 hover:text-white transition-colors"
-          >
-            <Mail className="w-6 h-6" />
-            <span className="hidden sm:inline font-body text-sm">info@amigolandscaping.com</span>
-          </a>
+      {/* Email Icon */}
+      <a
+        href="mailto:contact@amigolandscaping.com"
+        className="flex items-center gap-2 text-white/80 hover:text-white transition-colors"
+      >
+        <Mail className="w-6 h-6" />
+        <span className="hidden sm:inline font-body text-sm">contact@amigolandscaping.com</span>
+      </a>
 
           {/* Client Hub Login */}
           <a
@@ -68,16 +68,6 @@ const Header = () => {
               </span>
             </a>
 
-            {/* CTA Button - Desktop */}
-            <div className="hidden md:flex items-center gap-6">
-              <button
-                onClick={scrollToQuote}
-                className="btn-primary text-sm px-6 py-3"
-              >
-                Free Quote
-              </button>
-            </div>
-
             {/* Lottie Call Button */}
             <a
               href="tel:6306640303"
@@ -97,15 +87,6 @@ const Header = () => {
         </div>
       </div>
 
-      {/* Mobile CTA */}
-      <div className="md:hidden bg-card border-b border-border/50 py-3 px-4">
-        <button
-          onClick={scrollToQuote}
-          className="btn-primary w-full text-sm py-3"
-        >
-          Get Free Quote
-        </button>
-      </div>
     </header>
   );
 };

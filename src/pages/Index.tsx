@@ -41,25 +41,22 @@ const Index = () => {
             description:
               "Professional lawn care and landscaping services in DuPage County, Illinois",
             url: "https://amigolandscaping.com",
-            telephone: "+1-630-555-1234",
+            telephone: "+1-630-664-0303",
             address: {
               "@type": "PostalAddress",
-              addressLocality: "DuPage County",
+              addressLocality: "Wheaton",
               addressRegion: "IL",
               addressCountry: "US",
             },
             geo: {
               "@type": "GeoCoordinates",
-              latitude: 41.8557,
-              longitude: -88.0906,
+              latitude: 41.8662,
+              longitude: -88.1070,
             },
             areaServed: [
-              "Glen Ellyn",
               "Wheaton",
-              "Lombard",
-              "Villa Park",
-              "Elmhurst",
-              "Addison",
+              "Glen Ellyn",
+              "Winfield",
             ],
             aggregateRating: {
               "@type": "AggregateRating",
