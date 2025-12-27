@@ -1,4 +1,5 @@
 import { Mail, User } from "lucide-react";
+import { useState, useEffect } from "react";
 import "@dotlottie/player-component";
 import mascot from "@/assets/mascot.gif";
 
@@ -20,26 +21,29 @@ declare global {
 }
 
 const Header = () => {
-  const scrollToQuote = () => {
-    const quoteSection = document.getElementById("quote-form");
-    if (quoteSection) {
-      quoteSection.scrollIntoView({ behavior: "smooth" });
-    }
-  };
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 10);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50">
-      {/* Top Green Bar - Thicker */}
+      {/* Top Green Bar */}
       <div className="bg-brand text-soft-white py-4">
         <div className="container mx-auto px-4 flex items-center justify-between">
-      {/* Email Icon */}
-      <a
-        href="mailto:contact@amigolandscaping.com"
-        className="flex items-center gap-2 text-white/80 hover:text-white transition-colors"
-      >
-        <Mail className="w-6 h-6" />
-        <span className="hidden sm:inline font-body text-sm">contact@amigolandscaping.com</span>
-      </a>
+          {/* Email Icon */}
+          <a
+            href="mailto:contact@amigolandscaping.com"
+            className="flex items-center gap-2 text-white/80 hover:text-white transition-colors"
+          >
+            <Mail className="w-6 h-6" />
+            <span className="hidden sm:inline font-body text-sm">contact@amigolandscaping.com</span>
+          </a>
 
           {/* Client Hub Login */}
           <a
@@ -54,17 +58,14 @@ const Header = () => {
         </div>
       </div>
 
-      {/* Main Header */}
-      <div className="bg-card/95 backdrop-blur-sm border-b border-border/50">
+      {/* Main Header - solid when scrolled */}
+      <div className={`border-b border-border/50 transition-all duration-300 ${
+        isScrolled ? "bg-card" : "bg-card/95 backdrop-blur-sm"
+      }`}>
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between h-20">
-            {/* Logo with Mascot */}
+            {/* Logo with Mascot on Right */}
             <a href="#home" className="flex items-center gap-3">
-              <img 
-                src={mascot} 
-                alt="Amigos Mascot" 
-                className="w-14 h-14 md:w-16 md:h-16"
-              />
               <div className="flex flex-col items-start">
                 <span className="font-headline text-2xl md:text-3xl text-brand tracking-wide leading-none">
                   AMIGOS
@@ -73,6 +74,11 @@ const Header = () => {
                   LANDSCAPING
                 </span>
               </div>
+              <img 
+                src={mascot} 
+                alt="Amigos Mascot" 
+                className="w-14 h-14 md:w-16 md:h-16"
+              />
             </a>
 
             {/* Lottie Call Button */}
@@ -93,7 +99,6 @@ const Header = () => {
           </div>
         </div>
       </div>
-
     </header>
   );
 };
