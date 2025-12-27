@@ -148,9 +148,9 @@ const ReviewWall = () => {
   const bottomRow = REVIEWS.slice(10, 20);
 
   return (
-    <section id="testimonials" className="py-16 md:py-24 bg-cloud overflow-hidden">
+    <section id="testimonials" className="py-20 md:py-28 bg-cloud overflow-hidden">
       {/* Header */}
-      <div className="container mx-auto px-4 mb-8">
+      <div className="container mx-auto px-6 md:px-8 mb-12">
         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
           {/* Logo & Title */}
           <div className="flex items-center gap-4">
@@ -210,7 +210,7 @@ const ReviewWall = () => {
       </div>
 
       {/* Marquee Rows */}
-      <div className="space-y-4">
+      <div className="space-y-6">
         <MarqueeRow reviews={topRow} direction="left" speed={45} />
         <MarqueeRow reviews={bottomRow} direction="right" speed={40} />
       </div>

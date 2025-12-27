@@ -14,9 +14,9 @@ const ServiceAreas = () => {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="areas" className="py-20 bg-background">
-      <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+    <section id="areas" className="py-24 md:py-32 bg-background">
+      <div className="container mx-auto px-6 md:px-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           {/* Content */}
           <motion.div
             ref={ref}
@@ -25,20 +25,20 @@ const ServiceAreas = () => {
             transition={{ duration: 0.6 }}
           >
             <div className="gold-accent" />
-            <h2 className="section-title mb-4">Service Areas</h2>
-            <p className="font-body text-paragraph text-lg mb-8">
+            <h2 className="section-title mb-6">Service Areas</h2>
+            <p className="font-body text-paragraph text-lg mb-10 leading-relaxed">
               We proudly serve residential and commercial properties throughout
               DuPage County and surrounding areas in Illinois.
             </p>
 
-            <div className="flex flex-col gap-3 mb-8">
+            <div className="flex flex-col gap-4 mb-10">
               {areas.map((area, index) => (
                 <motion.div
                   key={area}
                   initial={{ opacity: 0, x: -10 }}
                   animate={isInView ? { opacity: 1, x: 0 } : {}}
                   transition={{ delay: index * 0.1 }}
-                  className="flex items-center gap-3 p-3 bg-brand/5 rounded-xl border border-brand/10"
+                  className="flex items-center gap-4 p-4 bg-brand/5 rounded-xl border border-brand/10"
                 >
                   <CheckCircle className="w-5 h-5 text-brand flex-shrink-0" />
                   <span className="font-headline text-ink text-lg">{area}</span>
@@ -46,9 +46,9 @@ const ServiceAreas = () => {
               ))}
             </div>
 
-            <div className="flex items-center gap-3 p-4 bg-brand/5 rounded-2xl border border-brand/10">
+            <div className="flex items-center gap-4 p-5 bg-brand/5 rounded-2xl border border-brand/10">
               <MapPin className="w-6 h-6 text-brand flex-shrink-0" />
-              <p className="font-body text-paragraph text-sm">
+              <p className="font-body text-paragraph">
                 <span className="font-bold text-ink">Not listed?</span> Contact us
                 to check if we service your area!
               </p>
