@@ -1,18 +1,69 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
 import { Users, CheckCircle, Star } from "lucide-react";
 
 interface StatItemProps {
   icon: React.ReactNode;
-  displayValue: string;
+  targetValue: number;
+  displaySuffix: string;
   label: string;
   delay: number;
+  duration?: number;
 }
 
-const StatItem = ({ icon, displayValue, label, delay }: StatItemProps) => {
+const useCountUp = (target: number, duration: number, shouldStart: boolean) => {
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    if (!shouldStart) return;
+
+    const startTime = Date.now();
+    const endTime = startTime + duration;
+
+    const updateCount = () => {
+      const now = Date.now();
+      const progress = Math.min((now - startTime) / duration, 1);
+      
+      // Ease out cubic for smooth deceleration
+      const easedProgress = 1 - Math.pow(1 - progress, 3);
+      const currentValue = Math.floor(easedProgress * target);
+      
+      setCount(currentValue);
+
+      if (progress < 1) {
+        requestAnimationFrame(updateCount);
+      } else {
+        setCount(target);
+      }
+    };
+
+    requestAnimationFrame(updateCount);
+  }, [target, duration, shouldStart]);
+
+  return count;
+};
+
+const formatNumber = (num: number): string => {
+  if (num >= 1000) {
+    return num.toLocaleString();
+  }
+  return num.toString();
+};
+
+const StatItem = ({ icon, targetValue, displaySuffix, label, delay, duration = 2000 }: StatItemProps) => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
+  const [shouldCount, setShouldCount] = useState(false);
+
+  useEffect(() => {
+    if (isInView) {
+      const timer = setTimeout(() => setShouldCount(true), delay * 1000);
+      return () => clearTimeout(timer);
+    }
+  }, [isInView, delay]);
+
+  const count = useCountUp(targetValue, duration, shouldCount);
 
   return (
     <motion.div
@@ -26,7 +77,7 @@ const StatItem = ({ icon, displayValue, label, delay }: StatItemProps) => {
         {icon}
       </div>
       <div className="stat-number mb-2">
-        {displayValue}
+        {formatNumber(count)}{displaySuffix}
       </div>
       <div className="font-body text-paragraph">{label}</div>
     </motion.div>
@@ -57,19 +108,22 @@ const Stats = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-16">
           <StatItem
             icon={<Users className="w-8 h-8 text-highlight" />}
-            displayValue="600+"
+            targetValue={600}
+            displaySuffix="+"
             label="Happy Clients"
             delay={0}
           />
           <StatItem
             icon={<CheckCircle className="w-8 h-8 text-highlight" />}
-            displayValue="83,000+"
+            targetValue={83000}
+            displaySuffix="+"
             label="Visits Completed"
             delay={0.2}
           />
           <StatItem
             icon={<Star className="w-8 h-8 text-highlight" />}
-            displayValue="5.0"
+            targetValue={5}
+            displaySuffix=".0"
             label="Star Rating"
             delay={0.4}
           />
