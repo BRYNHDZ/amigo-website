@@ -30,7 +30,7 @@ const JobberForm = () => {
           <div className="gold-accent mx-auto" />
           <h2 className="section-title mb-4">Get Your Free Quote</h2>
           <p className="text-paragraph text-lg max-w-xl mx-auto">
-            Fill out the form below and we'll get back to you within 24 hours with a free estimate.
+            Fill out the form below and we'll get back to you, usually within one business day.
           </p>
         </div>
 

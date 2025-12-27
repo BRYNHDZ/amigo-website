@@ -34,17 +34,17 @@ const Hero = () => {
             transition={{ duration: 0.6 }}
             className="text-center md:text-left"
           >
-            {/* Headline */}
-            <h1 className="font-body font-bold text-4xl md:text-5xl lg:text-6xl text-soft-white leading-tight mb-4">
-              Proudly Serving DuPage Illinois
-            </h1>
-
             {/* Badge */}
-            <div className="inline-block bg-brand px-5 py-2 rounded-full mb-8">
-              <span className="font-body font-bold text-soft-white text-sm md:text-base uppercase tracking-wider">
+            <div className="inline-block bg-brand/80 px-3 py-1 rounded-full mb-4">
+              <span className="font-body font-semibold text-soft-white text-xs uppercase tracking-wider">
                 Landscaping & Lawn Care
               </span>
             </div>
+
+            {/* Headline */}
+            <h1 className="font-body font-bold text-4xl md:text-5xl lg:text-6xl text-soft-white leading-tight mb-8">
+              Proudly Serving DuPage Illinois
+            </h1>
 
             {/* CTA Button - scrolls to form */}
             <button
