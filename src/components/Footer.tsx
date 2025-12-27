@@ -1,0 +1,139 @@
+import { Facebook, Instagram, Leaf } from "lucide-react";
+
+const Footer = () => {
+  const currentYear = new Date().getFullYear();
+
+  return (
+    <footer className="bg-ink text-soft-white py-16">
+      <div className="container mx-auto px-4">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+          {/* Brand */}
+          <div className="md:col-span-1">
+            <div className="flex flex-col items-start mb-6">
+              <span className="font-headline text-3xl text-highlight tracking-wide leading-none">
+                AMIGOS
+              </span>
+              <span className="text-[10px] font-bold uppercase tracking-[0.3em] opacity-60">
+                LANDSCAPING
+              </span>
+            </div>
+            <p className="font-body text-soft-white/70 text-sm leading-relaxed mb-6">
+              Your friendly neighborhood landscaping experts serving DuPage
+              County since 1995.
+            </p>
+            <div className="flex gap-3">
+              <a
+                href="#"
+                className="w-10 h-10 rounded-full bg-soft-white/10 flex items-center justify-center hover:bg-highlight transition-colors"
+                aria-label="Facebook"
+              >
+                <Facebook className="w-5 h-5" />
+              </a>
+              <a
+                href="#"
+                className="w-10 h-10 rounded-full bg-soft-white/10 flex items-center justify-center hover:bg-highlight transition-colors"
+                aria-label="Instagram"
+              >
+                <Instagram className="w-5 h-5" />
+              </a>
+            </div>
+          </div>
+
+          {/* Quick Links */}
+          <div>
+            <h4 className="font-headline text-lg mb-6">Quick Links</h4>
+            <ul className="space-y-3">
+              {["Home", "Services", "About Us", "Testimonials", "Service Areas"].map(
+                (link) => (
+                  <li key={link}>
+                    <a
+                      href={`#${link.toLowerCase().replace(" ", "")}`}
+                      className="font-body text-soft-white/70 hover:text-highlight transition-colors"
+                    >
+                      {link}
+                    </a>
+                  </li>
+                )
+              )}
+            </ul>
+          </div>
+
+          {/* Services */}
+          <div>
+            <h4 className="font-headline text-lg mb-6">Services</h4>
+            <ul className="space-y-3">
+              {[
+                "Weekly Lawn Care",
+                "Tree Trimming",
+                "Seasonal Cleanups",
+                "Flower Bed Weeding",
+                "Mulching",
+                "Aeration",
+              ].map((service) => (
+                <li key={service}>
+                  <a
+                    href="#services"
+                    className="font-body text-soft-white/70 hover:text-highlight transition-colors"
+                  >
+                    {service}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Contact */}
+          <div>
+            <h4 className="font-headline text-lg mb-6">Contact</h4>
+            <ul className="space-y-4 font-body text-soft-white/70">
+              <li className="flex items-start gap-2">
+                <Leaf className="w-4 h-4 text-highlight mt-1 flex-shrink-0" />
+                <span>
+                  DuPage County, IL
+                  <br />
+                  Illinois, USA
+                </span>
+              </li>
+              <li>
+                <a href="tel:+16305551234" className="hover:text-highlight transition-colors">
+                  (630) 555-1234
+                </a>
+              </li>
+              <li>
+                <a
+                  href="mailto:info@amigolandscaping.com"
+                  className="hover:text-highlight transition-colors"
+                >
+                  info@amigolandscaping.com
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        {/* Bottom Bar */}
+        <div className="pt-8 border-t border-soft-white/10 flex flex-col md:flex-row justify-between items-center gap-4">
+          <p className="font-body text-soft-white/50 text-sm">
+            © {currentYear} Amigos Landscaping. All rights reserved.
+          </p>
+          <div className="flex gap-6">
+            <a
+              href="#"
+              className="font-body text-soft-white/50 text-sm hover:text-soft-white transition-colors"
+            >
+              Privacy Policy
+            </a>
+            <a
+              href="#"
+              className="font-body text-soft-white/50 text-sm hover:text-soft-white transition-colors"
+            >
+              Terms of Service
+            </a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  );
+};
+
+export default Footer;
