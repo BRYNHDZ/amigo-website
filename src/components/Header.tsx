@@ -60,7 +60,7 @@ const Header = () => {
 
       {/* Main Header - solid when scrolled */}
       <div className={`border-b border-border/50 transition-all duration-300 ${
-        isScrolled ? "bg-card" : "bg-card/95 backdrop-blur-sm"
+        isScrolled ? "bg-white" : "bg-white"
       }`}>
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between h-20">
