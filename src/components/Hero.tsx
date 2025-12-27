@@ -35,15 +35,16 @@ const Hero = () => {
             className="text-center md:text-left"
           >
             {/* Headline */}
-            <h1 className="font-headline text-4xl md:text-5xl lg:text-6xl text-soft-white leading-tight mb-4">
-              Proudly Serving{" "}
-              <span className="text-highlight">DuPage</span> Illinois
+            <h1 className="font-body font-bold text-4xl md:text-5xl lg:text-6xl text-soft-white leading-tight mb-4">
+              Proudly Serving DuPage Illinois
             </h1>
 
-            {/* Subheadline */}
-            <p className="font-body text-xl md:text-2xl text-soft-white/90 mb-8 uppercase tracking-wide">
-              Landscaping & Lawn Care
-            </p>
+            {/* Badge */}
+            <div className="inline-block bg-brand px-5 py-2 rounded-full mb-8">
+              <span className="font-body font-bold text-soft-white text-sm md:text-base uppercase tracking-wider">
+                Landscaping & Lawn Care
+              </span>
+            </div>
 
             {/* CTA Button - scrolls to form */}
             <button
@@ -58,24 +59,6 @@ const Hero = () => {
 
       </div>
 
-      {/* Scroll Indicator */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2"
-      >
-        <div className="flex flex-col items-center gap-2 text-soft-white/60">
-          <span className="text-xs uppercase tracking-wider">Scroll</span>
-          <motion.div
-            animate={{ y: [0, 8, 0] }}
-            transition={{ repeat: Infinity, duration: 1.5 }}
-            className="w-6 h-10 border-2 border-soft-white/30 rounded-full flex justify-center pt-2"
-          >
-            <div className="w-1.5 h-1.5 bg-highlight rounded-full" />
-          </motion.div>
-        </div>
-      </motion.div>
     </section>
   );
 };
