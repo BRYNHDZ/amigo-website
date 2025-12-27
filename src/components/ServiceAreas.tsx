@@ -63,14 +63,25 @@ const ServiceAreas = () => {
             className="relative"
           >
             <div className="aspect-square rounded-3xl overflow-hidden shadow-lg border border-border bg-cloud flex items-center justify-center">
-              <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d95000!2d-88.15!3d41.87!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x880e53c4a54adf5b%3A0xf3a563cbf22b1a94!2sWheaton%2C%20IL!5e0!3m2!1sen!2sus!4v1703721600000!5m2!1sen!2sus&output=embed&disableDefaultUI=1&gestureHandling=none&zoomControl=0"
-                width="100%"
-                height="100%"
-                style={{ border: 0, pointerEvents: "none" }}
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-                title="Service Area Map - Wheaton, Glen Ellyn, Winfield"
+              <img 
+                src="https://maps.googleapis.com/maps/api/staticmap?center=41.87,-88.1&zoom=11&size=600x600&maptype=roadmap&markers=color:green%7Clabel:W%7C41.8661,-88.1070&markers=color:green%7Clabel:G%7C41.8775,-88.0670&markers=color:green%7Clabel:F%7C41.8703,-88.1534&style=feature:all%7Celement:labels%7Cvisibility:on&key="
+                alt="Service area map showing Wheaton, Glen Ellyn, and Winfield Illinois"
+                className="w-full h-full object-cover"
+                onError={(e) => {
+                  // Fallback to a simple styled div if image fails
+                  const target = e.target as HTMLImageElement;
+                  target.style.display = 'none';
+                  target.parentElement!.innerHTML = `
+                    <div class="w-full h-full bg-gradient-to-br from-brand/10 to-brand/5 flex flex-col items-center justify-center p-8">
+                      <div class="text-brand text-6xl mb-4">📍</div>
+                      <div class="text-center space-y-2">
+                        <p class="font-headline text-xl text-ink">Wheaton</p>
+                        <p class="font-headline text-xl text-ink">Glen Ellyn</p>
+                        <p class="font-headline text-xl text-ink">Winfield</p>
+                      </div>
+                    </div>
+                  `;
+                }}
               />
             </div>
           </motion.div>
