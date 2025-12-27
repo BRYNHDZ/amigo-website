@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { ArrowRight, Leaf } from "lucide-react";
-import heroImage from "@/assets/hero-lawn.jpg";
+import heroImage from "@/assets/hero-lawn.png";
 
 const Hero = () => {
   const scrollToQuote = () => {
