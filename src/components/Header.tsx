@@ -34,14 +34,14 @@ const Header = () => {
   return (
     <header className="fixed top-0 left-0 right-0 z-50">
       {/* Top Green Bar */}
-      <div className="bg-brand text-soft-white py-4">
-        <div className="container mx-auto px-4 flex items-center justify-between">
+      <div className="bg-brand text-soft-white py-3 px-2">
+        <div className="container mx-auto px-6 md:px-8 flex items-center justify-between">
           {/* Email Icon */}
           <a
             href="mailto:contact@amigolandscaping.com"
-            className="flex items-center gap-2 text-white/80 hover:text-white transition-colors"
+            className="flex items-center gap-3 text-white/80 hover:text-white transition-colors"
           >
-            <Mail className="w-6 h-6" />
+            <Mail className="w-5 h-5" />
             <span className="hidden sm:inline font-body text-sm">contact@amigolandscaping.com</span>
           </a>
 
@@ -62,22 +62,22 @@ const Header = () => {
       <div className={`border-b border-border/50 transition-all duration-300 ${
         isScrolled ? "bg-white" : "bg-white"
       }`}>
-        <div className="container mx-auto px-4">
-          <div className="flex items-center justify-between h-20">
+        <div className="container mx-auto px-6 md:px-8">
+          <div className="flex items-center justify-between h-24 md:h-28">
             {/* Logo with Mascot on Right */}
-            <a href="#home" className="flex items-center gap-3">
+            <a href="#home" className="flex items-center gap-4">
               <div className="flex flex-col items-start">
-                <span className="font-headline text-2xl md:text-3xl text-brand tracking-wide leading-none">
+                <span className="font-headline text-3xl md:text-4xl lg:text-5xl text-brand tracking-wide leading-none">
                   AMIGOS
                 </span>
-                <span className="text-[9px] md:text-[10px] text-ink font-bold uppercase tracking-[0.2em] md:tracking-[0.3em] opacity-60">
+                <span className="text-[10px] md:text-xs text-ink font-bold uppercase tracking-[0.2em] md:tracking-[0.3em] opacity-60">
                   LANDSCAPING
                 </span>
               </div>
               <img 
                 src={mascot} 
                 alt="Amigos Mascot" 
-                className="w-14 h-14 md:w-16 md:h-16"
+                className="w-20 h-20 md:w-24 md:h-24"
               />
             </a>
 
