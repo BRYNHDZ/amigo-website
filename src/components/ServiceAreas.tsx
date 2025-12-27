@@ -4,18 +4,9 @@ import { useRef } from "react";
 import { MapPin, CheckCircle } from "lucide-react";
 
 const areas = [
-  "Glen Ellyn",
   "Wheaton",
-  "Lombard",
-  "Villa Park",
-  "Elmhurst",
-  "Addison",
-  "Carol Stream",
-  "Glendale Heights",
-  "Bloomingdale",
-  "West Chicago",
+  "Glen Ellyn",
   "Winfield",
-  "Warrenville",
 ];
 
 const ServiceAreas = () => {
@@ -64,7 +55,7 @@ const ServiceAreas = () => {
             </div>
           </motion.div>
 
-          {/* Map */}
+          {/* Static Map Image */}
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
@@ -72,21 +63,11 @@ const ServiceAreas = () => {
             className="relative"
           >
             <div className="aspect-square rounded-3xl overflow-hidden shadow-lg border border-border">
-              <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d190115.76648064178!2d-88.18619937011718!3d41.855817799999995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x880e4e63153a0fb7%3A0x4ca8c14e814f2a6!2sDuPage%20County%2C%20IL!5e0!3m2!1sen!2sus!4v1703721600000!5m2!1sen!2sus"
-                width="100%"
-                height="100%"
-                style={{ border: 0 }}
-                allowFullScreen
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-                title="DuPage County Service Area Map"
+              <img
+                src="https://maps.googleapis.com/maps/api/staticmap?center=Wheaton,IL&zoom=11&size=600x600&maptype=roadmap&markers=color:green%7CWheaton,IL&markers=color:green%7CGlen+Ellyn,IL&markers=color:green%7CWinfield,IL&style=feature:all%7Csaturation:-20&key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8"
+                alt="Service area map showing Wheaton, Glen Ellyn, and Winfield"
+                className="w-full h-full object-cover"
               />
-            </div>
-
-            {/* Floating Badge */}
-            <div className="absolute -bottom-4 -left-4 bg-brand text-soft-white px-6 py-3 rounded-2xl shadow-lg">
-              <span className="font-headline text-lg">DuPage County</span>
             </div>
           </motion.div>
         </div>

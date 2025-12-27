@@ -1,7 +1,6 @@
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import heroImage from "@/assets/hero-lawn.png";
-import mascot from "@/assets/mascot.gif";
 
 const Hero = () => {
   const scrollToQuote = () => {
@@ -57,19 +56,6 @@ const Hero = () => {
           </motion.div>
         </div>
 
-        {/* Mascot */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-          className="absolute bottom-12 right-8 md:right-16 lg:right-24 hidden md:block"
-        >
-          <img 
-            src={mascot} 
-            alt="Amigos Landscaping Mascot" 
-            className="w-32 h-32 lg:w-40 lg:h-40"
-          />
-        </motion.div>
       </div>
 
       {/* Scroll Indicator */}
