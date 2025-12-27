@@ -1,41 +1,18 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
-import { useRef, useEffect, useState } from "react";
+import { useRef } from "react";
 import { Users, CheckCircle, Star } from "lucide-react";
 
 interface StatItemProps {
   icon: React.ReactNode;
-  value: number;
-  suffix?: string;
+  displayValue: string;
   label: string;
   delay: number;
 }
 
-const StatItem = ({ icon, value, suffix = "", label, delay }: StatItemProps) => {
+const StatItem = ({ icon, displayValue, label, delay }: StatItemProps) => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
-  const [count, setCount] = useState(0);
-
-  useEffect(() => {
-    if (isInView) {
-      const duration = 2000;
-      const steps = 60;
-      const increment = value / steps;
-      let current = 0;
-
-      const timer = setInterval(() => {
-        current += increment;
-        if (current >= value) {
-          setCount(value);
-          clearInterval(timer);
-        } else {
-          setCount(Math.floor(current));
-        }
-      }, duration / steps);
-
-      return () => clearInterval(timer);
-    }
-  }, [isInView, value]);
 
   return (
     <motion.div
@@ -49,8 +26,7 @@ const StatItem = ({ icon, value, suffix = "", label, delay }: StatItemProps) => 
         {icon}
       </div>
       <div className="stat-number mb-2">
-        {count}
-        {suffix}
+        {displayValue}
       </div>
       <div className="font-body text-paragraph">{label}</div>
     </motion.div>
@@ -81,22 +57,19 @@ const Stats = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
           <StatItem
             icon={<Users className="w-8 h-8 text-highlight" />}
-            value={600}
-            suffix="+"
+            displayValue="600+"
             label="Happy Clients"
             delay={0}
           />
           <StatItem
             icon={<CheckCircle className="w-8 h-8 text-highlight" />}
-            value={83}
-            suffix="K"
+            displayValue="83,000+"
             label="Visits Completed"
             delay={0.2}
           />
           <StatItem
             icon={<Star className="w-8 h-8 text-highlight" />}
-            value={5}
-            suffix=".0"
+            displayValue="5.0"
             label="Star Rating"
             delay={0.4}
           />
