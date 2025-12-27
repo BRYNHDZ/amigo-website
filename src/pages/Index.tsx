@@ -5,7 +5,7 @@ import Stats from "@/components/Stats";
 import Services from "@/components/Services";
 import Testimonials from "@/components/Testimonials";
 import ServiceAreas from "@/components/ServiceAreas";
-import CTA from "@/components/CTA";
+import JobberForm from "@/components/JobberForm";
 import Footer from "@/components/Footer";
 
 const Index = () => {
@@ -81,7 +81,7 @@ const Index = () => {
           <Services />
           <Testimonials />
           <ServiceAreas />
-          <CTA />
+          <JobberForm />
         </main>
         <Footer />
       </div>

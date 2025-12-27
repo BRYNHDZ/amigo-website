@@ -3,10 +3,17 @@ import { ArrowRight, Leaf } from "lucide-react";
 import heroImage from "@/assets/hero-lawn.jpg";
 
 const Hero = () => {
+  const scrollToQuote = () => {
+    const quoteSection = document.getElementById("quote-form");
+    if (quoteSection) {
+      quoteSection.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
     <section
       id="home"
-      className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden"
+      className="relative min-h-screen flex items-center justify-center pt-32 md:pt-24 overflow-hidden"
     >
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
@@ -46,23 +53,15 @@ const Hero = () => {
               like it's our own—because that's what friends do.
             </p>
 
-            {/* CTA Buttons */}
+            {/* CTA Button - scrolls to form */}
             <div className="flex flex-col sm:flex-row gap-4">
-              <a
-                href="https://clienthub.getjobber.com/hubs/73c449a9-90ba-493f-8a4e-c0c1113bcac9/public/requests/2060348/new"
-                target="_blank"
-                rel="noopener noreferrer"
+              <button
+                onClick={scrollToQuote}
                 className="btn-primary"
               >
-                <span>Get Free Quote</span>
+                <span>Free Quote</span>
                 <ArrowRight className="w-5 h-5" />
-              </a>
-              <a
-                href="#services"
-                className="btn-secondary bg-soft-white/10 backdrop-blur-sm border-soft-white/30 text-soft-white hover:bg-soft-white/20"
-              >
-                View Services
-              </a>
+              </button>
             </div>
           </motion.div>
 
