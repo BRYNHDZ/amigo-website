@@ -31,17 +31,17 @@ const ServiceAreas = () => {
               DuPage County and surrounding areas in Illinois.
             </p>
 
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 mb-8">
+            <div className="flex flex-col gap-3 mb-8">
               {areas.map((area, index) => (
                 <motion.div
                   key={area}
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={isInView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ delay: index * 0.05 }}
-                  className="flex items-center gap-2"
+                  initial={{ opacity: 0, x: -10 }}
+                  animate={isInView ? { opacity: 1, x: 0 } : {}}
+                  transition={{ delay: index * 0.1 }}
+                  className="flex items-center gap-3 p-3 bg-brand/5 rounded-xl border border-brand/10"
                 >
-                  <CheckCircle className="w-4 h-4 text-brand flex-shrink-0" />
-                  <span className="font-body text-ink text-sm">{area}</span>
+                  <CheckCircle className="w-5 h-5 text-brand flex-shrink-0" />
+                  <span className="font-headline text-ink text-lg">{area}</span>
                 </motion.div>
               ))}
             </div>
@@ -62,11 +62,15 @@ const ServiceAreas = () => {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="relative"
           >
-            <div className="aspect-square rounded-3xl overflow-hidden shadow-lg border border-border">
-              <img
-                src="https://maps.googleapis.com/maps/api/staticmap?center=Wheaton,IL&zoom=11&size=600x600&maptype=roadmap&markers=color:green%7CWheaton,IL&markers=color:green%7CGlen+Ellyn,IL&markers=color:green%7CWinfield,IL&style=feature:all%7Csaturation:-20&key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8"
-                alt="Service area map showing Wheaton, Glen Ellyn, and Winfield"
-                className="w-full h-full object-cover"
+            <div className="aspect-square rounded-3xl overflow-hidden shadow-lg border border-border bg-cloud flex items-center justify-center">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d95000!2d-88.15!3d41.87!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x880e53c4a54adf5b%3A0xf3a563cbf22b1a94!2sWheaton%2C%20IL!5e0!3m2!1sen!2sus!4v1703721600000!5m2!1sen!2sus&output=embed&disableDefaultUI=1&gestureHandling=none&zoomControl=0"
+                width="100%"
+                height="100%"
+                style={{ border: 0, pointerEvents: "none" }}
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                title="Service Area Map - Wheaton, Glen Ellyn, Winfield"
               />
             </div>
           </motion.div>

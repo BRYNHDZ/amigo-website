@@ -2,7 +2,6 @@ import { Helmet } from "react-helmet-async";
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import Stats from "@/components/Stats";
-import Services from "@/components/Services";
 import ReviewWall from "@/components/ReviewWall";
 import ServiceAreas from "@/components/ServiceAreas";
 import JobberForm from "@/components/JobberForm";
@@ -75,7 +74,6 @@ const Index = () => {
         <main>
           <Hero />
           <Stats />
-          <Services />
           <ReviewWall />
           <ServiceAreas />
           <JobberForm />

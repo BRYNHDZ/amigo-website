@@ -1,6 +1,6 @@
 import { Mail, User } from "lucide-react";
-import { useEffect } from "react";
 import "@dotlottie/player-component";
+import mascot from "@/assets/mascot.gif";
 
 declare global {
   namespace JSX {
@@ -58,14 +58,21 @@ const Header = () => {
       <div className="bg-card/95 backdrop-blur-sm border-b border-border/50">
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between h-20">
-            {/* Logo */}
-            <a href="#home" className="flex flex-col items-start">
-              <span className="font-headline text-3xl md:text-4xl text-brand tracking-wide leading-none">
-                AMIGOS
-              </span>
-              <span className="text-[10px] text-ink font-bold uppercase tracking-[0.3em] opacity-60">
-                LANDSCAPING
-              </span>
+            {/* Logo with Mascot */}
+            <a href="#home" className="flex items-center gap-3">
+              <img 
+                src={mascot} 
+                alt="Amigos Mascot" 
+                className="w-14 h-14 md:w-16 md:h-16"
+              />
+              <div className="flex flex-col items-start">
+                <span className="font-headline text-2xl md:text-3xl text-brand tracking-wide leading-none">
+                  AMIGOS
+                </span>
+                <span className="text-[9px] md:text-[10px] text-ink font-bold uppercase tracking-[0.2em] md:tracking-[0.3em] opacity-60">
+                  LANDSCAPING
+                </span>
+              </div>
             </a>
 
             {/* Lottie Call Button */}
