@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Patrick+Hand&family=Fredoka:wght@400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&family=Nunito:wght@400;600;700;800&family=Patrick+Hand&family=Fredoka:wght@400;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -111,6 +111,29 @@
   .font-accent {
     font-family: 'Patrick Hand', cursive;
   }
+
+  .font-serious {
+    font-family: 'Inter', sans-serif;
+    letter-spacing: -0.02em;
+  }
+
+  /* Brand Guide Document Section */
+  .doc-section {
+    @apply bg-white p-8 md:p-12 rounded-3xl mb-8 border border-border shadow-sm;
+  }
+
+  /* Direct color utilities for brand guide */
+  .bg-cloud { background-color: hsl(var(--color-cloud)); }
+  .bg-brand { background-color: hsl(var(--color-brand)); }
+  .bg-ink { background-color: hsl(var(--color-ink)); }
+  .bg-highlight { background-color: hsl(var(--color-highlight)); }
+  .text-ink { color: hsl(var(--color-ink)); }
+  .text-brand { color: hsl(var(--color-brand)); }
+  .text-highlight { color: hsl(var(--color-highlight)); }
+  .text-paragraph { color: hsl(var(--color-paragraph)); }
+  .text-structure { color: hsl(var(--color-structure)); }
+  .text-soft-white { color: hsl(var(--color-soft-white)); }
+  .border-mist { border-color: hsl(var(--color-mist)); }
 }
 
 @layer components {
