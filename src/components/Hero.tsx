@@ -34,15 +34,13 @@ const Hero = () => {
             transition={{ duration: 0.6 }}
             className="text-center md:text-left"
           >
-            {/* Badge */}
-            <div className="inline-block bg-brand/80 px-3 py-1 rounded-full mb-4">
-              <span className="font-body font-semibold text-soft-white text-xs uppercase tracking-wider">
-                Landscaping & Lawn Care
-              </span>
-            </div>
+            {/* Tagline */}
+            <span className="text-highlight font-body font-bold text-sm uppercase tracking-wider mb-4 block">
+              Landscaping & Lawn Care
+            </span>
 
             {/* Headline */}
-            <h1 className="font-body font-bold text-4xl md:text-5xl lg:text-6xl text-soft-white leading-tight mb-8">
+            <h1 className="font-body font-extrabold text-4xl md:text-5xl lg:text-6xl text-soft-white leading-tight mb-8" style={{ fontFamily: "'Inter', sans-serif" }}>
               Proudly Serving DuPage Illinois
             </h1>
 

@@ -24,18 +24,18 @@ const JobberForm = () => {
   }, []);
 
   return (
-    <section id="quote-form" className="py-16 md:py-24 bg-cloud">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-12">
+    <section id="quote-form" className="py-20 md:py-28 bg-cloud">
+      <div className="container mx-auto px-6 md:px-8">
+        <div className="text-center mb-14">
           <div className="gold-accent mx-auto" />
-          <h2 className="section-title mb-4">Get Your Free Quote</h2>
-          <p className="text-paragraph text-lg max-w-xl mx-auto">
+          <h2 className="section-title mb-6">Get Your Free Quote</h2>
+          <p className="text-paragraph text-lg max-w-xl mx-auto leading-relaxed">
             Fill out the form below and we'll get back to you, usually within one business day.
           </p>
         </div>
 
         {/* Jobber Embed Container */}
-        <div className="max-w-2xl mx-auto bg-card rounded-3xl p-6 md:p-10 shadow-lg border border-border/30">
+        <div className="max-w-2xl mx-auto bg-card rounded-3xl p-8 md:p-12 shadow-lg border border-border/30">
           <div id="73c449a9-90ba-493f-8a4e-c0c1113bcac9-2060348"></div>
         </div>
       </div>

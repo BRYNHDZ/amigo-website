@@ -38,23 +38,23 @@ const Stats = () => {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="about" className="py-20 bg-card">
-      <div className="container mx-auto px-4">
+    <section id="about" className="py-24 md:py-32 bg-card">
+      <div className="container mx-auto px-6 md:px-8">
         <motion.div
           ref={ref}
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          className="text-center mb-16"
+          className="text-center mb-20"
         >
           <div className="gold-accent mx-auto" />
-          <h2 className="section-title mb-4">Celebrating 30 Years in Business</h2>
-          <p className="font-body text-paragraph text-lg max-w-2xl mx-auto">
+          <h2 className="section-title mb-6">Celebrating 30 Years in Business</h2>
+          <p className="font-body text-paragraph text-lg max-w-2xl mx-auto leading-relaxed">
             Amigos Landscaping has been around since 1995. We are always here to help.
             Our experienced crew will help make your property look absolutely amazing.
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-16">
           <StatItem
             icon={<Users className="w-8 h-8 text-highlight" />}
             displayValue="600+"
