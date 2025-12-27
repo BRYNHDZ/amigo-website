@@ -1,5 +1,23 @@
-import { Phone, Mail, User } from "lucide-react";
-import { motion } from "framer-motion";
+import { Mail, User } from "lucide-react";
+import { useEffect } from "react";
+import "@dotlottie/player-component";
+
+declare global {
+  namespace JSX {
+    interface IntrinsicElements {
+      "dotlottie-player": React.DetailedHTMLProps<
+        React.HTMLAttributes<HTMLElement> & {
+          src?: string;
+          background?: string;
+          speed?: string;
+          loop?: boolean;
+          autoplay?: boolean;
+        },
+        HTMLElement
+      >;
+    }
+  }
+}
 
 const Header = () => {
   const scrollToQuote = () => {
@@ -11,15 +29,16 @@ const Header = () => {
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50">
-      {/* Top Green Bar */}
-      <div className="bg-brand text-soft-white py-2">
+      {/* Top Green Bar - Thicker */}
+      <div className="bg-brand text-soft-white py-4">
         <div className="container mx-auto px-4 flex items-center justify-between">
           {/* Email Icon */}
           <a
             href="mailto:info@amigolandscaping.com"
             className="flex items-center gap-2 text-white/80 hover:text-white transition-colors"
           >
-            <Mail className="w-5 h-5" />
+            <Mail className="w-6 h-6" />
+            <span className="hidden sm:inline font-body text-sm">info@amigolandscaping.com</span>
           </a>
 
           {/* Client Hub Login */}
@@ -29,7 +48,7 @@ const Header = () => {
             rel="noopener noreferrer"
             className="flex items-center gap-2 text-white font-body font-bold text-sm uppercase tracking-wider hover:text-highlight transition-colors"
           >
-            <User className="w-4 h-4" />
+            <User className="w-5 h-5" />
             <span>Client Hub Login</span>
           </a>
         </div>
@@ -59,27 +78,20 @@ const Header = () => {
               </button>
             </div>
 
-            {/* Pulsing Call Button */}
+            {/* Lottie Call Button */}
             <a
-              href="tel:+16305551234"
-              className="relative flex items-center justify-center"
+              href="tel:6306640303"
+              className="relative flex items-center justify-center md:mr-0 mr-3"
               aria-label="Call us"
             >
-              {/* Pulse rings */}
-              <motion.div
-                className="absolute w-14 h-14 rounded-full bg-highlight/30"
-                animate={{ scale: [1, 1.5], opacity: [0.6, 0] }}
-                transition={{ duration: 1.5, repeat: Infinity }}
+              <dotlottie-player
+                src="https://lottie.host/47b41010-a920-4a22-9880-45b655b1a7e2/J9egzaExoY.lottie"
+                background="transparent"
+                speed="1"
+                loop
+                autoplay
+                style={{ width: "90px", height: "90px" }}
               />
-              <motion.div
-                className="absolute w-14 h-14 rounded-full bg-highlight/30"
-                animate={{ scale: [1, 1.5], opacity: [0.6, 0] }}
-                transition={{ duration: 1.5, repeat: Infinity, delay: 0.5 }}
-              />
-              {/* Button */}
-              <div className="relative w-14 h-14 rounded-full bg-highlight flex items-center justify-center shadow-lg">
-                <Phone className="w-6 h-6 text-white" />
-              </div>
             </a>
           </div>
         </div>

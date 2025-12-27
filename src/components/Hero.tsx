@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
-import { ArrowRight, Leaf } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import heroImage from "@/assets/hero-lawn.png";
+import mascot from "@/assets/mascot.gif";
 
 const Hero = () => {
   const scrollToQuote = () => {
@@ -15,14 +16,14 @@ const Hero = () => {
       id="home"
       className="relative min-h-screen flex items-center justify-center pt-32 md:pt-24 overflow-hidden"
     >
-      {/* Background Image */}
+      {/* Background Image - no yellow glow */}
       <div className="absolute inset-0 z-0">
         <img
           src={heroImage}
           alt="Beautiful landscaped lawn in DuPage Illinois"
           className="w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-ink/80 via-ink/60 to-transparent" />
+        <div className="absolute inset-0 bg-ink/40" />
       </div>
 
       {/* Content */}
@@ -32,66 +33,43 @@ const Hero = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
+            className="text-center md:text-left"
           >
-            {/* Badge */}
-            <div className="inline-flex items-center gap-2 bg-highlight/20 backdrop-blur-sm px-4 py-2 rounded-full mb-6">
-              <Leaf className="w-4 h-4 text-highlight" />
-              <span className="font-body font-bold text-soft-white text-sm uppercase tracking-wider">
-                Landscaping & Lawn Care
-              </span>
-            </div>
-
             {/* Headline */}
-            <h1 className="font-headline text-4xl md:text-5xl lg:text-6xl text-soft-white leading-tight mb-6">
+            <h1 className="font-headline text-4xl md:text-5xl lg:text-6xl text-soft-white leading-tight mb-4">
               Proudly Serving{" "}
               <span className="text-highlight">DuPage</span> Illinois
             </h1>
 
             {/* Subheadline */}
-            <p className="font-body text-lg md:text-xl text-soft-white/80 mb-8 max-w-lg">
-              Your friendly neighborhood landscaping experts. We treat every lawn
-              like it's our own—because that's what friends do.
+            <p className="font-body text-xl md:text-2xl text-soft-white/90 mb-8 uppercase tracking-wide">
+              Landscaping & Lawn Care
             </p>
 
             {/* CTA Button - scrolls to form */}
-            <div className="flex flex-col sm:flex-row gap-4">
-              <button
-                onClick={scrollToQuote}
-                className="btn-primary"
-              >
-                <span>Free Quote</span>
-                <ArrowRight className="w-5 h-5" />
-              </button>
-            </div>
-          </motion.div>
-
-          {/* Trust Badges */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            className="flex flex-wrap gap-6 mt-12"
-          >
-            <div className="flex items-center gap-2 text-soft-white/80">
-              <div className="w-10 h-10 rounded-full bg-highlight/20 flex items-center justify-center">
-                <span className="font-headline text-highlight text-lg">30</span>
-              </div>
-              <span className="font-body text-sm">Years Experience</span>
-            </div>
-            <div className="flex items-center gap-2 text-soft-white/80">
-              <div className="w-10 h-10 rounded-full bg-highlight/20 flex items-center justify-center">
-                <span className="font-headline text-highlight text-lg">5.0</span>
-              </div>
-              <span className="font-body text-sm">Google Rating</span>
-            </div>
-            <div className="flex items-center gap-2 text-soft-white/80">
-              <div className="w-10 h-10 rounded-full bg-highlight/20 flex items-center justify-center">
-                <span className="font-headline text-highlight text-lg">500+</span>
-              </div>
-              <span className="font-body text-sm">Happy Clients</span>
-            </div>
+            <button
+              onClick={scrollToQuote}
+              className="btn-primary"
+            >
+              <span>Free Quote</span>
+              <ArrowRight className="w-5 h-5" />
+            </button>
           </motion.div>
         </div>
+
+        {/* Mascot */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+          className="absolute bottom-12 right-8 md:right-16 lg:right-24 hidden md:block"
+        >
+          <img 
+            src={mascot} 
+            alt="Amigos Landscaping Mascot" 
+            className="w-32 h-32 lg:w-40 lg:h-40"
+          />
+        </motion.div>
       </div>
 
       {/* Scroll Indicator */}
