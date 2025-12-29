@@ -1,7 +1,8 @@
 import { Helmet } from "react-helmet-async";
+import { Link } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { CheckCircle, Search, ClipboardList, FileText, CreditCard, ExternalLink } from "lucide-react";
+import { CheckCircle, Search, ClipboardList, FileText, CreditCard, ArrowLeft } from "lucide-react";
 
 const steps = [
   {
@@ -45,6 +46,15 @@ const RequestConfirmation = () => {
 
       <main className="min-h-screen bg-cloud pt-40 md:pt-48 pb-20 md:pb-28">
         <div className="container mx-auto px-6 md:px-8">
+          {/* Back Home Link */}
+          <Link 
+            to="/" 
+            className="inline-flex items-center gap-2 font-body font-semibold text-brand hover:text-highlight transition-colors mb-8"
+          >
+            <ArrowLeft className="w-5 h-5" />
+            Back Home
+          </Link>
+
           {/* Success Message */}
           <div className="text-center mb-16 md:mb-20">
             <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-brand/10 mb-8">
