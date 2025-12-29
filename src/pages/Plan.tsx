@@ -250,7 +250,7 @@ const Plan = () => {
         <>
           <p className="text-paragraph mb-6 text-base md:text-lg leading-relaxed font-bold">When the leaves fall, what level of service do you need?</p>
           <div className="space-y-3">
-            <OptionCard selected={selections.leaves === "Eco-Management"} onClick={() => selectOption("leaves", "Eco-Management", 10)} icon={RefreshCw} title="Eco-Management (Tier 1)" description="We mulch leaves into the soil and garden beds weekly for natural fertilizer." />
+            <OptionCard selected={selections.leaves === "Eco-Management"} onClick={() => selectOption("leaves", "Eco-Management", 10)} icon={RefreshCw} title="Eco-Management" description="We mulch leaves into the soil and garden beds weekly for natural fertilizer." />
             <OptionCard selected={selections.leaves === "Standard (Eco-Plus)"} onClick={() => selectOption("leaves", "Standard (Eco-Plus)", 15)} icon={CheckCheck} title="Standard: The Eco-Plus Tier" description="Weekly mulch/shredding plus one deep 'final cleanup' and haul-away." />
             <OptionCard selected={selections.leaves === "Pristine Management"} onClick={() => selectOption("leaves", "Pristine Management", 20)} icon={Crown} title="The Elite Tier" description="The property stays 100% leaf-free every week (Lawn, beds, and walkways)." />
           </div>
