@@ -87,37 +87,6 @@ const RequestConfirmation = () => {
             </div>
           </div>
 
-          {/* Client Hub Section */}
-          <div className="max-w-4xl mx-auto">
-            <div className="brand-card-dark text-center">
-              <h2 className="font-headline text-2xl md:text-3xl text-soft-white mb-4">
-                Welcome to Your Client Hub
-              </h2>
-              <p className="font-body text-soft-white/80 text-lg mb-8 max-w-2xl mx-auto">
-                Your account has already been created — no password setup required.
-                You'll receive a secure login link by email. Use the same email you signed up with to access your account.
-              </p>
-
-              <ul className="grid sm:grid-cols-2 gap-4 text-left mb-10 max-w-xl mx-auto">
-                {clientHubFeatures.map((feature) => (
-                  <li key={feature} className="flex items-center gap-3">
-                    <CheckCircle className="w-5 h-5 text-highlight flex-shrink-0" />
-                    <span className="font-body text-soft-white/90">{feature}</span>
-                  </li>
-                ))}
-              </ul>
-
-              <a
-                href="https://clienthub.getjobber.com/client_hubs/73c449a9-90ba-493f-8a4e-c0c1113bcac9/login/new"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-primary inline-flex items-center gap-2"
-              >
-                Access Your Account
-                <ExternalLink className="w-5 h-5" />
-              </a>
-            </div>
-          </div>
         </div>
       </main>
 
