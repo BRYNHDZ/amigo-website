@@ -169,7 +169,7 @@ const Plan = () => {
     const profile = calculateProfile();
 
     const formPayload = new URLSearchParams({
-      "form-name": "property-plan-2026",
+      "form-name": "plan",
       city: selections.propertyCity || "",
       status: selections.status || "",
       wants_mowing: selections.wants_mowing || "",
@@ -280,8 +280,8 @@ const Plan = () => {
 
       <main className="min-h-screen bg-cloud pt-40 md:pt-48 pb-12 px-4 md:px-8">
         {/* Hidden Netlify Form for detection */}
-        <form name="property-plan-2026" data-netlify="true" hidden>
-          <input type="hidden" name="form-name" value="property-plan-2026" />
+        <form name="plan" method="POST" data-netlify="true" hidden>
+          <input type="hidden" name="form-name" value="plan" />
           <input type="text" name="city" />
           <input type="text" name="status" />
           <input type="text" name="wants_mowing" />
@@ -337,7 +337,8 @@ const Plan = () => {
           </div>
 
           {/* Form Content */}
-          <form onSubmit={handleSubmit} className="p-8 md:p-12">
+          <form name="plan" method="POST" data-netlify="true" onSubmit={handleSubmit} className="p-8 md:p-12">
+            <input type="hidden" name="form-name" value="plan" />
             <AnimatePresence mode="wait">
               {/* Step 1: Welcome */}
               {currentStep === 1 && (

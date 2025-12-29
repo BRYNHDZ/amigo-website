@@ -30,6 +30,29 @@
   </head>
 
   <body>
+    <!-- Netlify Forms (build-time detection): keep this hidden form in the static HTML -->
+    <form name="plan" method="POST" data-netlify="true" hidden>
+      <input type="hidden" name="form-name" value="plan" />
+      <input type="text" name="city" />
+      <input type="text" name="status" />
+      <input type="text" name="wants_mowing" />
+      <input type="text" name="clipping_pref" />
+      <input type="text" name="lawn_health" />
+      <input type="text" name="bed_maintenance" />
+      <input type="text" name="spring_refresh" />
+      <input type="text" name="trimming_plan" />
+      <input type="text" name="fall_leaf_plan" />
+      <input type="text" name="snow" />
+      <input type="text" name="care_profile_label" />
+      <input type="text" name="care_profile_desc" />
+      <input type="text" name="fertilizer_sync" />
+      <input type="text" name="perennial_pruning" />
+      <input type="text" name="name" />
+      <input type="text" name="address" />
+      <input type="tel" name="phone" />
+      <input type="email" name="email" />
+    </form>
+
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
