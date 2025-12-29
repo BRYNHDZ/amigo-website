@@ -325,7 +325,7 @@ const Plan = () => {
         </div>
 
         {/* Main Form Container */}
-        <div className="w-full max-w-2xl mx-auto bg-card rounded-[2.5rem] shadow-2xl overflow-hidden border border-border/50 mb-12 md:h-[580px] min-h-[70vh] md:min-h-0 flex flex-col">
+        <div className="w-full max-w-2xl mx-auto bg-card rounded-[2.5rem] shadow-2xl overflow-hidden border border-border/50 mb-12 md:h-[900px] min-h-[85vh] md:min-h-0 flex flex-col">
           {/* Progress Bar - Header Zone */}
           <div className="bg-brand p-4 text-center relative overflow-hidden flex-shrink-0">
             <div className={`w-full bg-ink/40 h-1.5 rounded-full overflow-hidden transition-opacity duration-500 ${currentStep === 1 ? 'opacity-0' : 'opacity-100'}`}>
