@@ -54,7 +54,7 @@ const RequestConfirmation = () => {
               You're all set! We'll handle it from here.
             </h1>
             <p className="font-body text-paragraph text-lg md:text-xl max-w-2xl mx-auto mb-4">
-              We've received your service request and our team is reviewing the details.
+              We've received your information. Our team is reviewing everything now.
             </p>
             <p className="font-body text-ink text-lg">
               Typical response time: <span className="font-bold text-brand">1 business day</span>
