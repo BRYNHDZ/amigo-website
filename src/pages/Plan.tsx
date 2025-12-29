@@ -325,9 +325,9 @@ const Plan = () => {
         </div>
 
         {/* Main Form Container */}
-        <div className="w-full max-w-2xl mx-auto bg-card rounded-[2.5rem] shadow-2xl overflow-hidden border border-border/50 mb-12">
-          {/* Progress Bar */}
-          <div className="bg-brand p-4 text-center relative overflow-hidden">
+        <div className="w-full max-w-2xl mx-auto bg-card rounded-[2.5rem] shadow-2xl overflow-hidden border border-border/50 mb-12 md:h-[580px] min-h-[70vh] md:min-h-0 flex flex-col">
+          {/* Progress Bar - Header Zone */}
+          <div className="bg-brand p-4 text-center relative overflow-hidden flex-shrink-0">
             <div className={`w-full bg-ink/40 h-1.5 rounded-full overflow-hidden transition-opacity duration-500 ${currentStep === 1 ? 'opacity-0' : 'opacity-100'}`}>
               <div
                 className="bg-highlight h-full transition-all duration-600 ease-out"
@@ -336,9 +336,11 @@ const Plan = () => {
             </div>
           </div>
 
-          {/* Form Content */}
-          <form name="plan" method="POST" data-netlify="true" onSubmit={handleSubmit} className="p-8 md:p-12">
+          {/* Form Content - Flex container for content + footer */}
+          <form name="plan" method="POST" data-netlify="true" onSubmit={handleSubmit} className="p-8 md:p-12 flex-1 flex flex-col min-h-0">
             <input type="hidden" name="form-name" value="plan" />
+            {/* Content Zone - Scrollable if needed */}
+            <div className="flex-1 overflow-y-auto min-h-0">
             <AnimatePresence mode="wait">
               {/* Step 1: Welcome */}
               {currentStep === 1 && (
@@ -729,10 +731,11 @@ const Plan = () => {
                 </motion.div>
               )}
             </AnimatePresence>
+            </div>
 
-            {/* Navigation Buttons */}
+            {/* Footer Zone - Navigation Buttons - Anchored at bottom */}
             {currentStep > 1 && currentStep < 12 && (
-              <div className="mt-8 md:mt-12 flex justify-between items-center">
+              <div className="pt-6 md:pt-8 flex justify-between items-center flex-shrink-0 border-t border-border/30 mt-auto">
                 <button
                   type="button"
                   onClick={prevStep}
