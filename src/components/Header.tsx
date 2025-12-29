@@ -1,5 +1,6 @@
 import { Mail, User } from "lucide-react";
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import "@dotlottie/player-component";
 import mascot from "@/assets/mascot.gif";
 
@@ -65,7 +66,7 @@ const Header = () => {
         <div className="container mx-auto px-6 md:px-8">
           <div className="flex items-center justify-between h-24 md:h-28">
             {/* Logo with Mascot on Right */}
-            <a href="#home" className="flex items-center gap-4">
+            <Link to="/" className="flex items-center gap-4">
               <div className="flex flex-col items-start">
                 <span className="font-headline text-3xl md:text-4xl lg:text-5xl text-brand tracking-wide leading-none">
                   AMIGOS
@@ -79,7 +80,7 @@ const Header = () => {
                 alt="Amigos Mascot" 
                 className="w-20 h-20 md:w-24 md:h-24"
               />
-            </a>
+            </Link>
 
             {/* Lottie Call Button */}
             <a
