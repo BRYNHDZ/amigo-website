@@ -162,8 +162,24 @@ const Plan = () => {
     }
   }, [currentStep]);
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    
+    // Check honeypot field - if filled, it's a bot
+    const formElement = e.currentTarget;
+    const honeypot = formElement.querySelector<HTMLInputElement>('input[name="bot-field"]');
+    if (honeypot && honeypot.value) {
+      // Silently reject bot submission
+      navigate("/request-confirmation");
+      return;
+    }
+
+    // Validate that user actually completed the form steps
+    if (!selections.propertyCity || !selections.status || !formData.name || !formData.email) {
+      alert("Please complete all required fields.");
+      return;
+    }
+
     setIsSubmitting(true);
 
     const profile = calculateProfile();
@@ -280,8 +296,9 @@ const Plan = () => {
 
       <main className="min-h-screen bg-cloud pt-40 md:pt-48 pb-12 px-4 md:px-8">
         {/* Hidden Netlify Form for detection */}
-        <form name="plan" method="POST" data-netlify="true" hidden>
+        <form name="plan" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" hidden>
           <input type="hidden" name="form-name" value="plan" />
+          <input type="text" name="bot-field" />
           <input type="text" name="city" />
           <input type="text" name="status" />
           <input type="text" name="wants_mowing" />
@@ -337,8 +354,12 @@ const Plan = () => {
           </div>
 
           {/* Form Content - Flex container for content + footer */}
-          <form name="plan" method="POST" data-netlify="true" onSubmit={handleSubmit} className="px-6 py-6 md:px-10 md:py-8 flex-1 flex flex-col">
+          <form name="plan" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" onSubmit={handleSubmit} className="px-6 py-6 md:px-10 md:py-8 flex-1 flex flex-col">
             <input type="hidden" name="form-name" value="plan" />
+            {/* Honeypot field - hidden from real users, bots fill it */}
+            <p className="hidden">
+              <label>Don't fill this out: <input name="bot-field" /></label>
+            </p>
             {/* Content Zone */}
             <div className="flex-1">
             <AnimatePresence mode="wait">
