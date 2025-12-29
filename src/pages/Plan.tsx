@@ -227,18 +227,18 @@ const Plan = () => {
     <button
       type="button"
       onClick={onClick}
-      className={`w-full cursor-pointer transition-all duration-200 border-2 rounded-3xl bg-card p-5 md:p-7 flex items-start gap-4 md:gap-5 text-left ${
+      className={`w-full cursor-pointer transition-all duration-200 border-2 rounded-2xl bg-card p-4 md:p-5 flex items-start gap-3 md:gap-4 text-left ${
         selected
-          ? "border-brand bg-[#F9FBE7] shadow-lg"
+          ? "border-brand bg-[#F9FBE7] shadow-md"
           : "border-border hover:border-highlight hover:-translate-y-0.5"
       }`}
     >
-      <div className={`mt-1 flex-shrink-0 ${iconColor}`}>
-        <Icon className="w-7 h-7" />
+      <div className={`mt-0.5 flex-shrink-0 ${iconColor}`}>
+        <Icon className="w-5 h-5 md:w-6 md:h-6" />
       </div>
-      <div className="flex flex-col gap-1">
-        <div className="font-extrabold text-lg md:text-xl text-ink">{title}</div>
-        {description && <p className="text-base text-paragraph">{description}</p>}
+      <div className="flex flex-col gap-0.5">
+        <div className="font-extrabold text-base md:text-lg text-ink">{title}</div>
+        {description && <p className="text-sm text-paragraph leading-snug">{description}</p>}
       </div>
     </button>
   );
@@ -248,20 +248,20 @@ const Plan = () => {
     if (selections.wants_mowing === "Yes") {
       return (
         <>
-          <p className="text-paragraph mb-6 text-base md:text-lg leading-relaxed font-bold">When the leaves fall, what level of service do you need?</p>
-          <div className="space-y-3">
-            <OptionCard selected={selections.leaves === "Eco-Management"} onClick={() => selectOption("leaves", "Eco-Management", 10)} icon={RefreshCw} title="Eco-Management" description="We mulch leaves into the soil and garden beds weekly for natural fertilizer." />
-            <OptionCard selected={selections.leaves === "Standard (Eco-Plus)"} onClick={() => selectOption("leaves", "Standard (Eco-Plus)", 15)} icon={CheckCheck} title="Standard: The Eco-Plus Tier" description="Weekly mulch/shredding plus one deep 'final cleanup' and haul-away." />
-            <OptionCard selected={selections.leaves === "Pristine Management"} onClick={() => selectOption("leaves", "Pristine Management", 20)} icon={Crown} title="The Elite Tier" description="The property stays 100% leaf-free every week (Lawn, beds, and walkways)." />
+          <p className="text-paragraph mb-4 text-sm md:text-base leading-snug font-bold">When the leaves fall, what level of service do you need?</p>
+          <div className="space-y-2.5">
+            <OptionCard selected={selections.leaves === "Eco-Management"} onClick={() => selectOption("leaves", "Eco-Management", 10)} icon={RefreshCw} title="Eco-Management" description="Mulch leaves into soil weekly for natural fertilizer." />
+            <OptionCard selected={selections.leaves === "Standard (Eco-Plus)"} onClick={() => selectOption("leaves", "Standard (Eco-Plus)", 15)} icon={CheckCheck} title="Standard: Eco-Plus Tier" description="Weekly mulching plus one deep final cleanup." />
+            <OptionCard selected={selections.leaves === "Pristine Management"} onClick={() => selectOption("leaves", "Pristine Management", 20)} icon={Crown} title="The Elite Tier" description="Property stays 100% leaf-free every week." />
           </div>
         </>
       );
     } else {
       return (
         <>
-          <p className="text-paragraph mb-6 text-base md:text-lg leading-relaxed font-bold">Since you handle your own weekly maintenance, would you like Amigos to handle a professional final cleanup?</p>
-          <div className="space-y-3">
-            <OptionCard selected={selections.leaves === "Deep Final Cleanup Only"} onClick={() => selectOption("leaves", "Deep Final Cleanup Only", 10)} icon={Wind} title="One-Time Deep Final Cleanup" description="One thorough property clearing before winter hits." />
+          <p className="text-paragraph mb-4 text-sm md:text-base leading-snug font-bold">Would you like Amigos to handle a professional final cleanup?</p>
+          <div className="space-y-2.5">
+            <OptionCard selected={selections.leaves === "Deep Final Cleanup Only"} onClick={() => selectOption("leaves", "Deep Final Cleanup Only", 10)} icon={Wind} title="One-Time Deep Final Cleanup" description="One thorough property clearing before winter." />
             <OptionCard selected={selections.leaves === "Homeowner Managed"} onClick={() => selectOption("leaves", "Homeowner Managed", 0)} icon={User} iconColor="text-structure" title="I'll handle this" description="I rake and bag my own leaves." />
           </div>
         </>
@@ -325,9 +325,9 @@ const Plan = () => {
         </div>
 
         {/* Main Form Container */}
-        <div className="w-full max-w-2xl mx-auto bg-card rounded-[2.5rem] shadow-2xl overflow-hidden border border-border/50 mb-12 md:h-[900px] min-h-[85vh] md:min-h-0 flex flex-col">
+        <div className="w-full max-w-2xl mx-auto bg-card rounded-[2rem] shadow-2xl overflow-hidden border border-border/50 mb-12 flex flex-col">
           {/* Progress Bar - Header Zone */}
-          <div className="bg-brand p-4 text-center relative overflow-hidden flex-shrink-0">
+          <div className="bg-brand px-6 py-3 text-center relative overflow-hidden flex-shrink-0">
             <div className={`w-full bg-ink/40 h-1.5 rounded-full overflow-hidden transition-opacity duration-500 ${currentStep === 1 ? 'opacity-0' : 'opacity-100'}`}>
               <div
                 className="bg-highlight h-full transition-all duration-600 ease-out"
@@ -337,10 +337,10 @@ const Plan = () => {
           </div>
 
           {/* Form Content - Flex container for content + footer */}
-          <form name="plan" method="POST" data-netlify="true" onSubmit={handleSubmit} className="p-8 md:p-12 flex-1 flex flex-col min-h-0">
+          <form name="plan" method="POST" data-netlify="true" onSubmit={handleSubmit} className="px-6 py-6 md:px-10 md:py-8 flex-1 flex flex-col">
             <input type="hidden" name="form-name" value="plan" />
-            {/* Content Zone - Scrollable if needed */}
-            <div className="flex-1 overflow-y-auto min-h-0">
+            {/* Content Zone */}
+            <div className="flex-1">
             <AnimatePresence mode="wait">
               {/* Step 1: Welcome */}
               {currentStep === 1 && (
@@ -350,22 +350,22 @@ const Plan = () => {
                   animate={{ opacity: 1, scale: 1, y: 0 }}
                   exit={{ opacity: 0, scale: 0.98, y: -10 }}
                   transition={{ duration: 0.3, ease: [0.175, 0.885, 0.32, 1.275] }}
-                  className="text-center space-y-8"
+                  className="text-center space-y-6"
                 >
                   <div className="relative inline-block">
-                    <div className="w-20 h-20 bg-[#F9FBE7] rounded-3xl rotate-6 absolute inset-0" />
-                    <div className="w-20 h-20 bg-card border-2 border-brand rounded-3xl flex items-center justify-center relative z-10 -rotate-3">
-                      <Map className="w-10 h-10 text-brand" />
+                    <div className="w-16 h-16 bg-[#F9FBE7] rounded-2xl rotate-6 absolute inset-0" />
+                    <div className="w-16 h-16 bg-card border-2 border-brand rounded-2xl flex items-center justify-center relative z-10 -rotate-3">
+                      <Map className="w-8 h-8 text-brand" />
                     </div>
                   </div>
-                  <div className="space-y-4">
-                    <h2 className="font-headline text-3xl text-ink">Ready to see how we can help?</h2>
-                    <p className="text-paragraph text-lg max-w-xs mx-auto leading-relaxed">Build your roadmap in under 60 seconds and see our suggestions for your property.</p>
+                  <div className="space-y-3">
+                    <h2 className="font-headline text-2xl md:text-3xl text-ink">Ready to see how we can help?</h2>
+                    <p className="text-paragraph text-base md:text-lg max-w-xs mx-auto leading-relaxed">Build your roadmap in under 60 seconds and see our suggestions for your property.</p>
                   </div>
                   <button
                     type="button"
                     onClick={nextStep}
-                    className="btn-primary w-full py-5 rounded-2xl shadow-xl text-xl"
+                    className="btn-primary w-full py-4 rounded-2xl shadow-xl text-lg md:text-xl"
                   >
                     Start My Plan
                   </button>
@@ -381,13 +381,13 @@ const Plan = () => {
                   exit={{ opacity: 0, scale: 0.98, y: -10 }}
                   transition={{ duration: 0.3 }}
                 >
-                  <div className="flex items-center gap-3 mb-4">
-                    <MapPin className="w-7 h-7 text-highlight flex-shrink-0" />
-                    <h2 className="font-headline text-2xl md:text-3xl text-ink">Home Location</h2>
+                  <div className="flex items-center gap-2 mb-2">
+                    <MapPin className="w-6 h-6 text-highlight flex-shrink-0" />
+                    <h2 className="font-headline text-xl md:text-2xl text-ink">Home Location</h2>
                   </div>
-                  <p className="text-paragraph mb-8 text-base md:text-lg">We serve these core local areas.</p>
+                  <p className="text-paragraph mb-4 text-sm md:text-base">We serve these core local areas.</p>
 
-                  <div className="space-y-4">
+                  <div className="space-y-2.5">
                     <OptionCard selected={selections.propertyCity === "Wheaton"} onClick={() => selectOption("propertyCity", "Wheaton")} icon={MapPin} title="Wheaton" />
                     <OptionCard selected={selections.propertyCity === "Glen Ellyn"} onClick={() => selectOption("propertyCity", "Glen Ellyn")} icon={MapPin} title="Glen Ellyn" />
                     <OptionCard selected={selections.propertyCity === "Winfield"} onClick={() => selectOption("propertyCity", "Winfield")} icon={MapPin} title="Winfield" />
@@ -405,13 +405,13 @@ const Plan = () => {
                   exit={{ opacity: 0, scale: 0.98, y: -10 }}
                   transition={{ duration: 0.3 }}
                 >
-                  <div className="flex items-center gap-3 mb-4">
-                    <MessageCircle className="w-7 h-7 text-highlight flex-shrink-0" />
-                    <h2 className="font-headline text-2xl md:text-3xl text-ink">Relationship</h2>
+                  <div className="flex items-center gap-2 mb-2">
+                    <MessageCircle className="w-6 h-6 text-highlight flex-shrink-0" />
+                    <h2 className="font-headline text-xl md:text-2xl text-ink">Relationship</h2>
                   </div>
-                  <p className="text-paragraph mb-8 text-base md:text-lg">Have we helped you manage your property before?</p>
+                  <p className="text-paragraph mb-4 text-sm md:text-base">Have we helped you manage your property before?</p>
 
-                  <div className="space-y-4">
+                  <div className="space-y-2.5">
                     <OptionCard selected={selections.status === "Already a customer"} onClick={() => selectOption("status", "Already a customer")} icon={Heart} title="I'm already a customer" />
                     <OptionCard selected={selections.status === "First time hiring a pro"} onClick={() => selectOption("status", "First time hiring a pro")} icon={UserPlus} title="First time hiring a pro" />
                     <OptionCard selected={selections.status === "Looking to switch"} onClick={() => selectOption("status", "Looking to switch")} icon={RefreshCw} title="Looking to switch teams" />
@@ -428,13 +428,13 @@ const Plan = () => {
                   exit={{ opacity: 0, scale: 0.98, y: -10 }}
                   transition={{ duration: 0.3 }}
                 >
-                  <div className="flex items-center gap-3 mb-4">
-                    <Scissors className="w-7 h-7 text-highlight flex-shrink-0" />
-                    <h2 className="font-headline text-2xl md:text-3xl text-ink">I. Mowing Support</h2>
+                  <div className="flex items-center gap-2 mb-2">
+                    <Scissors className="w-6 h-6 text-highlight flex-shrink-0" />
+                    <h2 className="font-headline text-xl md:text-2xl text-ink">I. Mowing Support</h2>
                   </div>
-                  <p className="text-paragraph mb-8 text-base md:text-lg">Who will be handling the weekly mowing?</p>
+                  <p className="text-paragraph mb-4 text-sm md:text-base">Who will be handling the weekly mowing?</p>
 
-                  <div className="space-y-4">
+                  <div className="space-y-2.5">
                     <OptionCard selected={selections.wants_mowing === "Yes"} onClick={() => selectOption("wants_mowing", "Yes")} icon={CheckCircle} title="Amigos handles it" description="Includes professional weekly mowing and string trimming." />
                     <OptionCard selected={selections.wants_mowing === "No"} onClick={() => selectOption("wants_mowing", "No")} icon={User} iconColor="text-structure" title="I'll handle this" description="I handle my own mowing; I'm looking for other support." />
                   </div>
@@ -450,13 +450,13 @@ const Plan = () => {
                   exit={{ opacity: 0, scale: 0.98, y: -10 }}
                   transition={{ duration: 0.3 }}
                 >
-                  <div className="flex items-center gap-3 mb-4">
-                    <Scissors className="w-7 h-7 text-highlight flex-shrink-0" />
-                    <h2 className="font-headline text-2xl md:text-3xl text-ink">Mowing Style</h2>
+                  <div className="flex items-center gap-2 mb-2">
+                    <Scissors className="w-6 h-6 text-highlight flex-shrink-0" />
+                    <h2 className="font-headline text-xl md:text-2xl text-ink">Mowing Style</h2>
                   </div>
-                  <p className="text-paragraph mb-8 text-base md:text-lg">How should we manage the grass clippings?</p>
+                  <p className="text-paragraph mb-4 text-sm md:text-base">How should we manage the grass clippings?</p>
 
-                  <div className="space-y-4">
+                  <div className="space-y-2.5">
                     <OptionCard selected={selections.clippings === "The Nutrient Standard"} onClick={() => selectOption("clippings", "The Nutrient Standard", 5)} icon={Leaf} title="The Nutrient Standard (Mulching)" description="We shred clippings back into the lawn to feed the soil naturally." />
                     <OptionCard selected={selections.clippings === "The Pristine Standard"} onClick={() => selectOption("clippings", "The Pristine Standard", 2)} icon={Package} title="The Pristine Standard (Bagging)" description="We bag and haul away all clippings for a 100% clear surface." />
                   </div>
@@ -472,29 +472,29 @@ const Plan = () => {
                   exit={{ opacity: 0, scale: 0.98, y: -10 }}
                   transition={{ duration: 0.3 }}
                 >
-                  <div className="flex items-center gap-3 mb-4">
-                    <Heart className="w-7 h-7 text-highlight flex-shrink-0" />
-                    <h2 className="font-headline text-2xl md:text-3xl text-ink">II. Lawn Health</h2>
+                  <div className="flex items-center gap-2 mb-2">
+                    <Heart className="w-6 h-6 text-highlight flex-shrink-0" />
+                    <h2 className="font-headline text-xl md:text-2xl text-ink">II. Lawn Health</h2>
                   </div>
-                  <p className="text-paragraph mb-8 text-base md:text-lg font-bold leading-relaxed">Who is handling the aeration and seasonal thickness of your grass?</p>
+                  <p className="text-paragraph mb-4 text-sm md:text-base font-bold leading-snug">Who is handling the aeration and seasonal thickness of your grass?</p>
 
-                  <div className="space-y-4">
+                  <div className="space-y-2.5">
                     <OptionCard selected={selections.lawnHealth === "Homeowner Managed"} onClick={() => selectOption("lawnHealth", "Homeowner Managed", 0)} icon={User} iconColor="text-structure" title="I'll handle this" />
                     <OptionCard selected={selections.lawnHealth === "The Essential Refresh"} onClick={() => selectOption("lawnHealth", "The Essential Refresh", 10)} icon={Sprout} title="The Essential Refresh (Spring Aeration/Seed)" />
                     <OptionCard selected={selections.lawnHealth === "The Elite Standard"} onClick={() => selectOption("lawnHealth", "The Elite Standard", 20)} icon={Award} title="The Elite Standard (Spring & Fall Aeration)" />
                   </div>
 
-                  <div className="mt-6 p-5 bg-cloud rounded-2xl border-2 border-dashed border-structure/30">
-                    <label className="flex items-center gap-4 cursor-pointer group">
+                  <div className="mt-4 p-4 bg-cloud rounded-xl border-2 border-dashed border-structure/30">
+                    <label className="flex items-center gap-3 cursor-pointer group">
                       <input
                         type="checkbox"
                         checked={fertilizerSync}
                         onChange={(e) => setFertilizerSync(e.target.checked)}
-                        className="w-6 h-6 accent-brand cursor-pointer"
+                        className="w-5 h-5 accent-brand cursor-pointer flex-shrink-0"
                       />
-                      <span className="text-base text-ink font-bold">
+                      <span className="text-sm text-ink font-bold">
                         Fertilizer Sync?
-                        <span className="block font-normal text-sm text-paragraph mt-1">Coordinate with your licensed chemical partner to sync treatments with our service timeline.</span>
+                        <span className="block font-normal text-xs text-paragraph mt-0.5">Coordinate with your licensed chemical partner to sync treatments.</span>
                       </span>
                     </label>
                   </div>
@@ -510,16 +510,16 @@ const Plan = () => {
                   exit={{ opacity: 0, scale: 0.98, y: -10 }}
                   transition={{ duration: 0.3 }}
                 >
-                  <div className="flex items-center gap-3 mb-4">
-                    <Flower2 className="w-7 h-7 text-highlight flex-shrink-0" />
-                    <h2 className="font-headline text-2xl md:text-3xl text-ink">III. Garden Beds</h2>
+                  <div className="flex items-center gap-2 mb-2">
+                    <Flower2 className="w-6 h-6 text-highlight flex-shrink-0" />
+                    <h2 className="font-headline text-xl md:text-2xl text-ink">III. Garden Beds</h2>
                   </div>
-                  <p className="text-paragraph mb-8 text-base md:text-lg font-bold">Who handles keeping the garden beds clear of weeds?</p>
+                  <p className="text-paragraph mb-4 text-sm md:text-base font-bold">Who handles keeping the garden beds clear of weeds?</p>
 
-                  <div className="space-y-4">
+                  <div className="space-y-2.5">
                     <OptionCard selected={selections.beds === "Homeowner Managed"} onClick={() => selectOption("beds", "Homeowner Managed", 0)} icon={User} iconColor="text-structure" title="I'll handle this" />
-                    <OptionCard selected={selections.beds === "The Clean Look Plan"} onClick={() => selectOption("beds", "The Clean Look Plan", 10)} icon={Zap} title='The "Clean Look" Plan' description="A visual-first approach. We use string trimmers weekly to keep weeds at bay and ensure clean transitions." />
-                    <OptionCard selected={selections.beds === "The Estate Detail Plan"} onClick={() => selectOption("beds", "The Estate Detail Plan", 20)} icon={Sparkles} title='The "Estate Detail" Plan' description="Our most thorough care. We hand-pull weeds from the root and check every week for a pristine bed surface." />
+                    <OptionCard selected={selections.beds === "The Clean Look Plan"} onClick={() => selectOption("beds", "The Clean Look Plan", 10)} icon={Zap} title='The "Clean Look" Plan' description="We use string trimmers weekly to keep weeds at bay." />
+                    <OptionCard selected={selections.beds === "The Estate Detail Plan"} onClick={() => selectOption("beds", "The Estate Detail Plan", 20)} icon={Sparkles} title='The "Estate Detail" Plan' description="Hand-pull weeds from the root for a pristine bed surface." />
                   </div>
                 </motion.div>
               )}
@@ -533,17 +533,17 @@ const Plan = () => {
                   exit={{ opacity: 0, scale: 0.98, y: -10 }}
                   transition={{ duration: 0.3 }}
                 >
-                  <div className="flex items-center gap-3 mb-4">
-                    <Calendar className="w-7 h-7 text-highlight flex-shrink-0" />
-                    <h2 className="font-headline text-2xl md:text-3xl text-ink">IV. Spring Reset</h2>
+                  <div className="flex items-center gap-2 mb-2">
+                    <Calendar className="w-6 h-6 text-highlight flex-shrink-0" />
+                    <h2 className="font-headline text-xl md:text-2xl text-ink">IV. Spring Reset</h2>
                   </div>
-                  <p className="text-paragraph mb-8 text-base md:text-lg font-bold text-center">Should Amigos perform a professional "Spring Refresh" in April?</p>
+                  <p className="text-paragraph mb-3 text-sm md:text-base font-bold text-center">Should Amigos perform a professional "Spring Refresh" in April?</p>
 
-                  <div className="p-6 bg-[#F9FBE7] border-2 border-brand/10 rounded-2xl mb-8 text-base text-brand font-bold text-center leading-relaxed">
-                    Includes: Seasonal Debris Cleanup + Deep Spade Edging + Mulch Installation + Weed Preventer
+                  <div className="p-4 bg-[#F9FBE7] border-2 border-brand/10 rounded-xl mb-4 text-sm text-brand font-bold text-center leading-snug">
+                    Includes: Debris Cleanup + Spade Edging + Mulch + Weed Preventer
                   </div>
 
-                  <div className="space-y-4">
+                  <div className="space-y-2.5">
                     <OptionCard selected={selections.refresh === "Perform Full Refresh"} onClick={() => selectOption("refresh", "Perform Full Refresh", 10)} icon={CheckCircle} title="Amigos handles this" />
                     <OptionCard selected={selections.refresh === "Homeowner Managed"} onClick={() => selectOption("refresh", "Homeowner Managed", 0)} icon={User} iconColor="text-structure" title="No, I'll handle this." />
                   </div>
@@ -559,29 +559,29 @@ const Plan = () => {
                   exit={{ opacity: 0, scale: 0.98, y: -10 }}
                   transition={{ duration: 0.3 }}
                 >
-                  <div className="flex items-center gap-3 mb-4">
-                    <Brush className="w-7 h-7 text-highlight flex-shrink-0" />
-                    <h2 className="font-headline text-2xl md:text-3xl text-ink">V. Trimming & Pruning</h2>
+                  <div className="flex items-center gap-2 mb-2">
+                    <Brush className="w-6 h-6 text-highlight flex-shrink-0" />
+                    <h2 className="font-headline text-xl md:text-2xl text-ink">V. Trimming & Pruning</h2>
                   </div>
-                  <p className="text-paragraph mb-8 text-base md:text-lg font-bold leading-relaxed">How should we handle the professional shaping of your ornamentals?</p>
+                  <p className="text-paragraph mb-4 text-sm md:text-base font-bold leading-snug">How should we handle the professional shaping of your ornamentals?</p>
 
-                  <div className="space-y-4">
+                  <div className="space-y-2.5">
                     <OptionCard selected={selections.bushes === "Homeowner Managed"} onClick={() => selectOption("bushes", "Homeowner Managed", 0)} icon={User} iconColor="text-structure" title="I'll handle this" />
-                    <OptionCard selected={selections.bushes === "Annual Shaping"} onClick={() => selectOption("bushes", "Annual Shaping", 10)} icon={Scissors} title="Annual Shaping (1 visit/yr)" description="One professional visit per season to keep bushes tight and neat." />
-                    <OptionCard selected={selections.bushes === "Premium Managed Shaping"} onClick={() => selectOption("bushes", "Premium Managed Shaping", 20)} icon={Sparkles} title="Premium Managed Support" description="We monitor your bushes and shape them whenever they look shaggy." />
+                    <OptionCard selected={selections.bushes === "Annual Shaping"} onClick={() => selectOption("bushes", "Annual Shaping", 10)} icon={Scissors} title="Annual Shaping (1 visit/yr)" description="One professional visit to keep bushes tight and neat." />
+                    <OptionCard selected={selections.bushes === "Premium Managed Shaping"} onClick={() => selectOption("bushes", "Premium Managed Shaping", 20)} icon={Sparkles} title="Premium Managed Support" description="We shape them whenever they look shaggy." />
                   </div>
 
-                  <div className="mt-6 p-5 bg-cloud rounded-2xl border-2 border-dashed border-structure/30">
-                    <label className="flex items-center gap-4 cursor-pointer group">
+                  <div className="mt-4 p-4 bg-cloud rounded-xl border-2 border-dashed border-structure/30">
+                    <label className="flex items-center gap-3 cursor-pointer group">
                       <input
                         type="checkbox"
                         checked={perennialPruning}
                         onChange={(e) => setPerennialPruning(e.target.checked)}
-                        className="w-6 h-6 accent-brand cursor-pointer"
+                        className="w-5 h-5 accent-brand cursor-pointer flex-shrink-0"
                       />
-                      <span className="text-base text-ink font-bold">
+                      <span className="text-sm text-ink font-bold">
                         Flower Pruning?
-                        <span className="block font-normal text-sm text-paragraph mt-1">Yes, I'd like Amigos to handle the technical pruning of my perennial flowers at the correct times.</span>
+                        <span className="block font-normal text-xs text-paragraph mt-0.5">Handle technical pruning of perennial flowers at the correct times.</span>
                       </span>
                     </label>
                   </div>
@@ -597,9 +597,9 @@ const Plan = () => {
                   exit={{ opacity: 0, scale: 0.98, y: -10 }}
                   transition={{ duration: 0.3 }}
                 >
-                  <div className="flex items-center gap-3 mb-4">
-                    <Wind className="w-7 h-7 text-highlight flex-shrink-0" />
-                    <h2 className="font-headline text-2xl md:text-3xl text-ink">VI. Fall Leaves</h2>
+                  <div className="flex items-center gap-2 mb-2">
+                    <Wind className="w-6 h-6 text-highlight flex-shrink-0" />
+                    <h2 className="font-headline text-xl md:text-2xl text-ink">VI. Fall Leaves</h2>
                   </div>
                   {renderFallLeafOptions()}
                 </motion.div>
@@ -614,13 +614,13 @@ const Plan = () => {
                   exit={{ opacity: 0, scale: 0.98, y: -10 }}
                   transition={{ duration: 0.3 }}
                 >
-                  <div className="flex items-center gap-3 mb-4">
-                    <Snowflake className="w-7 h-7 text-highlight flex-shrink-0" />
-                    <h2 className="font-headline text-2xl md:text-3xl text-ink">VII. Winter Protection</h2>
+                  <div className="flex items-center gap-2 mb-2">
+                    <Snowflake className="w-6 h-6 text-highlight flex-shrink-0" />
+                    <h2 className="font-headline text-xl md:text-2xl text-ink">VII. Winter Protection</h2>
                   </div>
-                  <p className="text-paragraph mb-8 text-base md:text-lg font-bold text-center leading-relaxed">Should Amigos handle your residential snow removal this winter?</p>
+                  <p className="text-paragraph mb-4 text-sm md:text-base font-bold text-center leading-snug">Should Amigos handle your residential snow removal this winter?</p>
 
-                  <div className="space-y-4">
+                  <div className="space-y-2.5">
                     <OptionCard selected={selections.snow === "Professional Snow Contract"} onClick={() => selectOption("snow", "Professional Snow Contract", 10)} icon={Truck} title="Yes, include snow removal" />
                     <OptionCard selected={selections.snow === "Homeowner Managed"} onClick={() => selectOption("snow", "Homeowner Managed", 0)} icon={User} iconColor="text-structure" title="No, I'll handle this" />
                   </div>
@@ -735,18 +735,18 @@ const Plan = () => {
 
             {/* Footer Zone - Navigation Buttons - Anchored at bottom */}
             {currentStep > 1 && currentStep < 12 && (
-              <div className="pt-6 md:pt-8 flex justify-between items-center flex-shrink-0 border-t border-border/30 mt-auto">
+              <div className="pt-5 md:pt-6 flex justify-between items-center flex-shrink-0 border-t border-border/30 mt-6">
                 <button
                   type="button"
                   onClick={prevStep}
-                  className="text-structure font-bold hover:text-ink px-6 py-2 transition text-xl"
+                  className="text-structure font-bold hover:text-ink px-4 py-2 transition text-base md:text-lg"
                 >
                   Back
                 </button>
                 <button
                   type="button"
                   onClick={nextStep}
-                  className={`btn-primary px-12 md:px-16 py-4 md:py-5 rounded-2xl shadow-xl text-lg md:text-xl ${shakeNext ? 'animate-shake' : ''}`}
+                  className={`btn-primary px-8 md:px-12 py-3 md:py-4 rounded-xl shadow-lg text-base md:text-lg ${shakeNext ? 'animate-shake' : ''}`}
                 >
                   {currentStep === 11 ? "Review My Profile" : "Next Step"}
                 </button>
