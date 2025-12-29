@@ -2,6 +2,8 @@ import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
 import { MapPin, CheckCircle } from "lucide-react";
+import serviceAreaMap from "@/assets/service-area-map.png";
+
 const areas = ["Wheaton", "Glen Ellyn", "Winfield"];
 const ServiceAreas = () => {
   const ref = useRef(null);
@@ -61,22 +63,12 @@ const ServiceAreas = () => {
           duration: 0.6,
           delay: 0.2
         }} className="relative">
-            <div className="aspect-square rounded-3xl overflow-hidden shadow-lg border border-border bg-cloud flex items-center justify-center">
-              <img src="https://maps.googleapis.com/maps/api/staticmap?center=41.87,-88.1&zoom=11&size=600x600&maptype=roadmap&markers=color:green%7Clabel:W%7C41.8661,-88.1070&markers=color:green%7Clabel:G%7C41.8775,-88.0670&markers=color:green%7Clabel:F%7C41.8703,-88.1534&style=feature:all%7Celement:labels%7Cvisibility:on&key=" alt="Service area map showing Wheaton, Glen Ellyn, and Winfield Illinois" className="w-full h-full object-cover" onError={e => {
-              // Fallback to a simple styled div if image fails
-              const target = e.target as HTMLImageElement;
-              target.style.display = 'none';
-              target.parentElement!.innerHTML = `
-                    <div class="w-full h-full bg-gradient-to-br from-brand/10 to-brand/5 flex flex-col items-center justify-center p-8">
-                      <div class="text-brand text-6xl mb-4">📍</div>
-                      <div class="text-center space-y-2">
-                        <p class="font-headline text-xl text-ink">Wheaton</p>
-                        <p class="font-headline text-xl text-ink">Glen Ellyn</p>
-                        <p class="font-headline text-xl text-ink">Winfield</p>
-                      </div>
-                    </div>
-                  `;
-            }} />
+            <div className="aspect-square rounded-3xl overflow-hidden shadow-lg border border-border">
+              <img 
+                src={serviceAreaMap} 
+                alt="Service area map showing Wheaton, Glen Ellyn, and Winfield Illinois" 
+                className="w-full h-full object-cover" 
+              />
             </div>
           </motion.div>
         </div>
