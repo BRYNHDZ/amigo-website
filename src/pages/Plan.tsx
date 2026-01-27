@@ -61,6 +61,7 @@ const Plan = () => {
 
   const [fertilizerSync, setFertilizerSync] = useState(false);
   const [perennialPruning, setPerennialPruning] = useState(false);
+  const [wantsSalt, setWantsSalt] = useState(false);
 
   const [formData, setFormData] = useState({
     name: "",
@@ -200,6 +201,7 @@ const Plan = () => {
       care_profile_desc: profile.text,
       fertilizer_sync: fertilizerSync ? "Yes" : "No",
       perennial_pruning: perennialPruning ? "Yes" : "No",
+      salt_treatment: wantsSalt ? "Yes" : "No",
       name: formData.name,
       address: formData.address,
       phone: formData.phone,
@@ -313,6 +315,7 @@ const Plan = () => {
           <input type="text" name="care_profile_desc" />
           <input type="text" name="fertilizer_sync" />
           <input type="text" name="perennial_pruning" />
+          <input type="text" name="salt_treatment" />
           <input type="text" name="name" />
           <input type="text" name="address" />
           <input type="tel" name="phone" />
@@ -639,12 +642,30 @@ const Plan = () => {
                     <Snowflake className="w-6 h-6 text-highlight flex-shrink-0" />
                     <h2 className="font-headline text-xl md:text-2xl text-ink">VII. Winter Protection</h2>
                   </div>
-                  <p className="text-paragraph mb-4 text-sm md:text-base font-bold text-center leading-snug">Should Amigos handle your residential snow removal this winter?</p>
+                  <p className="text-paragraph mb-4 text-sm md:text-base font-bold leading-snug">What level of snow removal service would you like?</p>
 
                   <div className="space-y-2.5">
-                    <OptionCard selected={selections.snow === "Professional Snow Contract"} onClick={() => selectOption("snow", "Professional Snow Contract", 10)} icon={Truck} title="Yes, include snow removal" />
-                    <OptionCard selected={selections.snow === "Homeowner Managed"} onClick={() => selectOption("snow", "Homeowner Managed", 0)} icon={User} iconColor="text-structure" title="No, I'll handle this" />
+                    <OptionCard selected={selections.snow === "Standard Snow Removal"} onClick={() => selectOption("snow", "Standard Snow Removal", 10)} icon={Truck} title="Standard Snow Removal" description="Service begins after 2 inches of accumulation." />
+                    <OptionCard selected={selections.snow === "Premium Snow Removal"} onClick={() => selectOption("snow", "Premium Snow Removal", 15)} icon={Crown} title="Premium Snow Removal" description="Priority service begins after just 1 inch of accumulation." />
+                    <OptionCard selected={selections.snow === "Homeowner Managed"} onClick={() => selectOption("snow", "Homeowner Managed", 0)} icon={User} iconColor="text-structure" title="No thanks, I'll handle this" />
                   </div>
+
+                  {(selections.snow === "Standard Snow Removal" || selections.snow === "Premium Snow Removal") && (
+                    <div className="mt-4 p-4 bg-cloud rounded-xl border-2 border-dashed border-structure/30">
+                      <label className="flex items-center gap-3 cursor-pointer group">
+                        <input
+                          type="checkbox"
+                          checked={wantsSalt}
+                          onChange={(e) => setWantsSalt(e.target.checked)}
+                          className="w-5 h-5 accent-brand cursor-pointer flex-shrink-0"
+                        />
+                        <span className="text-sm text-ink font-bold">
+                          Add Salt Treatment?
+                          <span className="block font-normal text-xs text-paragraph mt-0.5">Apply ice-melting salt to walkways and driveways after clearing.</span>
+                        </span>
+                      </label>
+                    </div>
+                  )}
                 </motion.div>
               )}
 
