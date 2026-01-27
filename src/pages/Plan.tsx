@@ -175,6 +175,32 @@ const Plan = () => {
       return;
     }
 
+    // Client-side rate limiting
+    const RATE_LIMIT_KEY = "plan_submissions";
+    const RATE_LIMIT_WINDOW = 60 * 60 * 1000; // 1 hour in milliseconds
+    const MAX_SUBMISSIONS = 3; // Max 3 submissions per hour
+    
+    try {
+      const storedData = localStorage.getItem(RATE_LIMIT_KEY);
+      const submissions: number[] = storedData ? JSON.parse(storedData) : [];
+      const now = Date.now();
+      
+      // Filter to only submissions within the rate limit window
+      const recentSubmissions = submissions.filter((timestamp: number) => now - timestamp < RATE_LIMIT_WINDOW);
+      
+      if (recentSubmissions.length >= MAX_SUBMISSIONS) {
+        alert("You've submitted too many requests recently. Please try again in an hour.");
+        return;
+      }
+      
+      // Add current submission timestamp
+      recentSubmissions.push(now);
+      localStorage.setItem(RATE_LIMIT_KEY, JSON.stringify(recentSubmissions));
+    } catch (err) {
+      // If localStorage fails, continue with submission (don't block legitimate users)
+      console.warn("Rate limiting check failed:", err);
+    }
+
     // Validate that user actually completed the form steps
     if (!selections.propertyCity || !selections.status || !formData.name || !formData.email) {
       alert("Please complete all required fields.");
