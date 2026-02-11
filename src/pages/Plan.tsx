@@ -294,6 +294,7 @@ const Plan = () => {
            <div className="space-y-2.5">
              <OptionCard selected={selections.leaves === "Eco-Management"} onClick={() => selectOption("leaves", "Eco-Management", 10)} icon={RefreshCw} title="Eco-Management" description="Weekly mulching plus one deep final cleanup." />
              <OptionCard selected={selections.leaves === "Pristine Management"} onClick={() => selectOption("leaves", "Pristine Management", 20)} icon={Crown} title="The Elite Tier" description="Property stays 100% leaf-free every week." />
+             <OptionCard selected={selections.leaves === "Homeowner Managed"} onClick={() => selectOption("leaves", "Homeowner Managed", 0)} icon={User} iconColor="text-structure" title="No thanks, I'll handle this" />
           </div>
         </>
       );
