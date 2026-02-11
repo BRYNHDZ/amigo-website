@@ -59,7 +59,6 @@ const Plan = () => {
     snow: 0
   });
 
-  const [fertilizerSync, setFertilizerSync] = useState(false);
   const [perennialPruning, setPerennialPruning] = useState(false);
   const [wantsSalt, setWantsSalt] = useState(false);
 
@@ -225,7 +224,6 @@ const Plan = () => {
       snow: selections.snow || "",
       care_profile_label: profile.label,
       care_profile_desc: profile.text,
-      fertilizer_sync: fertilizerSync ? "Yes" : "No",
       perennial_pruning: perennialPruning ? "Yes" : "No",
       salt_treatment: wantsSalt ? "Yes" : "No",
       name: formData.name,
@@ -339,7 +337,7 @@ const Plan = () => {
           <input type="text" name="snow" />
           <input type="text" name="care_profile_label" />
           <input type="text" name="care_profile_desc" />
-          <input type="text" name="fertilizer_sync" />
+          
           <input type="text" name="perennial_pruning" />
           <input type="text" name="salt_treatment" />
           <input type="text" name="name" />
@@ -534,20 +532,6 @@ const Plan = () => {
                     <OptionCard selected={selections.lawnHealth === "The Elite Standard"} onClick={() => selectOption("lawnHealth", "The Elite Standard", 20)} icon={Award} title="The Elite Standard (Spring & Fall Aeration)" />
                   </div>
 
-                  <div className="mt-4 p-4 bg-cloud rounded-xl border-2 border-dashed border-structure/30">
-                    <label className="flex items-center gap-3 cursor-pointer group">
-                      <input
-                        type="checkbox"
-                        checked={fertilizerSync}
-                        onChange={(e) => setFertilizerSync(e.target.checked)}
-                        className="w-5 h-5 accent-brand cursor-pointer flex-shrink-0"
-                      />
-                      <span className="text-sm text-ink font-bold">
-                        Fertilizer Sync?
-                        <span className="block font-normal text-xs text-paragraph mt-0.5">Coordinate with your licensed chemical partner to sync treatments.</span>
-                      </span>
-                    </label>
-                  </div>
                 </motion.div>
               )}
 
@@ -673,10 +657,11 @@ const Plan = () => {
                   <div className="space-y-2.5">
                     <OptionCard selected={selections.snow === "Standard Snow Removal"} onClick={() => selectOption("snow", "Standard Snow Removal", 10)} icon={Truck} title="Standard Snow Removal" description="Service begins after 2 inches of accumulation." />
                     <OptionCard selected={selections.snow === "Premium Snow Removal"} onClick={() => selectOption("snow", "Premium Snow Removal", 15)} icon={Crown} title="Premium Snow Removal" description="Priority service begins after just 1 inch of accumulation." />
+                    <OptionCard selected={selections.snow === "Zero Tolerance Snow Removal"} onClick={() => selectOption("snow", "Zero Tolerance Snow Removal", 20)} icon={ShieldCheck} title="Zero Tolerance" description="Any snowfall triggers immediate service — your property stays clear at all times." />
                     <OptionCard selected={selections.snow === "Homeowner Managed"} onClick={() => selectOption("snow", "Homeowner Managed", 0)} icon={User} iconColor="text-structure" title="No thanks, I'll handle this" />
                   </div>
 
-                  {(selections.snow === "Standard Snow Removal" || selections.snow === "Premium Snow Removal") && (
+                  {(selections.snow === "Standard Snow Removal" || selections.snow === "Premium Snow Removal" || selections.snow === "Zero Tolerance Snow Removal") && (
                     <div className="mt-4 p-4 bg-cloud rounded-xl border-2 border-dashed border-structure/30">
                       <label className="flex items-center gap-3 cursor-pointer group">
                         <input
@@ -776,7 +761,6 @@ const Plan = () => {
                       <li><span className="text-highlight mr-2">★</span>Bush Care: {selections.bushes}</li>
                       <li><span className="text-highlight mr-2">★</span>Fall Leaves: {selections.leaves}</li>
                       <li><span className="text-highlight mr-2">★</span>Winter Snow: {selections.snow}</li>
-                      {fertilizerSync && <li><span className="text-highlight mr-2">★</span>Chemical Coordination sync requested</li>}
                       {perennialPruning && <li><span className="text-highlight mr-2">★</span>Perennial Pruning sync requested</li>}
                     </ul>
                   </div>
