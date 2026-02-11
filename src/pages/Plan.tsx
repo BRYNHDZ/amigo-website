@@ -290,11 +290,10 @@ const Plan = () => {
     if (selections.wants_mowing === "Yes") {
       return (
         <>
-          <p className="text-paragraph mb-4 text-sm md:text-base leading-snug font-bold">When the leaves fall, what level of service do you need?</p>
-          <div className="space-y-2.5">
-            <OptionCard selected={selections.leaves === "Eco-Management"} onClick={() => selectOption("leaves", "Eco-Management", 10)} icon={RefreshCw} title="Eco-Management" description="Mulch leaves into soil weekly for natural fertilizer." />
-            <OptionCard selected={selections.leaves === "Standard (Eco-Plus)"} onClick={() => selectOption("leaves", "Standard (Eco-Plus)", 15)} icon={CheckCheck} title="Standard: Eco-Plus Tier" description="Weekly mulching plus one deep final cleanup." />
-            <OptionCard selected={selections.leaves === "Pristine Management"} onClick={() => selectOption("leaves", "Pristine Management", 20)} icon={Crown} title="The Elite Tier" description="Property stays 100% leaf-free every week." />
+           <p className="text-paragraph mb-4 text-sm md:text-base leading-snug font-bold">When the leaves fall, what level of service do you need?</p>
+           <div className="space-y-2.5">
+             <OptionCard selected={selections.leaves === "Eco-Management"} onClick={() => selectOption("leaves", "Eco-Management", 10)} icon={RefreshCw} title="Eco-Management" description="Weekly mulching plus one deep final cleanup." />
+             <OptionCard selected={selections.leaves === "Pristine Management"} onClick={() => selectOption("leaves", "Pristine Management", 20)} icon={Crown} title="The Elite Tier" description="Property stays 100% leaf-free every week." />
           </div>
         </>
       );
