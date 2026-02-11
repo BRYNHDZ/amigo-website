@@ -376,7 +376,7 @@ const Plan = () => {
         </div>
 
         {/* Main Form Container */}
-        <div className="w-full max-w-2xl mx-auto bg-card rounded-[2rem] shadow-2xl overflow-hidden border border-border/50 mb-12 flex flex-col max-h-[calc(100dvh-theme(spacing.48))]">
+        <div className="w-full max-w-2xl mx-auto bg-card rounded-[2rem] shadow-2xl overflow-hidden border border-border/50 mb-12 flex flex-col">
           {/* Progress Bar - Header Zone */}
           <div className="bg-brand px-6 py-3 text-center relative overflow-hidden flex-shrink-0">
             <div className={`w-full bg-ink/40 h-1.5 rounded-full overflow-hidden transition-opacity duration-500 ${currentStep === 1 ? 'opacity-0' : 'opacity-100'}`}>
@@ -395,7 +395,7 @@ const Plan = () => {
               <label>Don't fill this out: <input name="bot-field" /></label>
             </p>
             {/* Content Zone */}
-            <div className="flex-1 overflow-y-auto">
+            <div className="flex-1">
             <AnimatePresence mode="wait">
               {/* Step 1: Welcome */}
               {currentStep === 1 && (
