@@ -6,7 +6,7 @@ import Footer from "@/components/Footer";
 import { Map, MapPin, Compass, MessageCircle, Heart, UserPlus, RefreshCw, Scissors, Leaf, Package, Sprout, Award, User, Flower2, Zap, Sparkles, Calendar, CheckCircle, Brush, Wind, Crown, CheckCheck, ShieldCheck, Users2, ThumbsUp, Edit2, Send, Loader2, CalendarCheck, Target, Snowflake, Truck, UserCheck } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
-type SelectionKey = "propertyCity" | "status" | "wants_mowing" | "clippings" | "lawnHealth" | "beds" | "refresh" | "bushes" | "leaves" | "snow";
+type SelectionKey = "propertyCity" | "status" | "wants_mowing" | "clippings" | "lawnHealth" | "beds" | "refresh" | "mulch" | "bushes" | "leaves" | "snow";
 
 interface Selections {
   propertyCity: string | null;
@@ -16,6 +16,7 @@ interface Selections {
   lawnHealth: string | null;
   beds: string | null;
   refresh: string | null;
+  mulch: string | null;
   bushes: string | null;
   leaves: string | null;
   snow: string | null;
@@ -26,6 +27,7 @@ interface ScorePoints {
   lawnHealth: number;
   beds: number;
   refresh: number;
+  mulch: number;
   bushes: number;
   leaves: number;
   snow: number;
@@ -34,7 +36,7 @@ interface ScorePoints {
 const Plan = () => {
   const navigate = useNavigate();
   const [currentStep, setCurrentStep] = useState(1);
-  const totalSteps = 12;
+  const totalSteps = 13;
 
   const [selections, setSelections] = useState<Selections>({
     propertyCity: null,
@@ -44,6 +46,7 @@ const Plan = () => {
     lawnHealth: null,
     beds: null,
     refresh: null,
+    mulch: null,
     bushes: null,
     leaves: null,
     snow: null
@@ -54,6 +57,7 @@ const Plan = () => {
     lawnHealth: 0,
     beds: 0,
     refresh: 0,
+    mulch: 0,
     bushes: 0,
     leaves: 0,
     snow: 0
@@ -117,9 +121,10 @@ const Plan = () => {
     6: "lawnHealth",
     7: "beds",
     8: "refresh",
-    9: "bushes",
-    10: "leaves",
-    11: "snow"
+    9: "mulch",
+    10: "bushes",
+    11: "leaves",
+    12: "snow"
   };
 
   const nextStep = () => {
@@ -157,7 +162,7 @@ const Plan = () => {
   };
 
   useEffect(() => {
-    if (currentStep === 12) {
+    if (currentStep === 13) {
       window.scrollTo(0, 0);
     }
   }, [currentStep]);
@@ -218,7 +223,8 @@ const Plan = () => {
       clipping_pref: selections.wants_mowing === "Yes" ? (selections.clippings || "") : "N/A",
       lawn_health: selections.lawnHealth || "",
       bed_maintenance: selections.beds || "",
-      spring_refresh: selections.refresh || "",
+      spring_cleanup: selections.refresh || "",
+      mulch_service: selections.mulch || "",
       trimming_plan: selections.bushes || "",
       fall_leaf_plan: selections.leaves || "",
       snow: selections.snow || "",
@@ -331,7 +337,8 @@ const Plan = () => {
           <input type="text" name="clipping_pref" />
           <input type="text" name="lawn_health" />
           <input type="text" name="bed_maintenance" />
-          <input type="text" name="spring_refresh" />
+          <input type="text" name="spring_cleanup" />
+          <input type="text" name="mulch_service" />
           <input type="text" name="trimming_plan" />
           <input type="text" name="fall_leaf_plan" />
           <input type="text" name="snow" />
@@ -558,7 +565,7 @@ const Plan = () => {
                 </motion.div>
               )}
 
-              {/* Step 8: Spring Refresh */}
+              {/* Step 8: Spring Cleanup */}
               {currentStep === 8 && (
                 <motion.div
                   key="step8"
@@ -569,22 +576,22 @@ const Plan = () => {
                 >
                   <div className="flex items-center gap-2 mb-2">
                     <Calendar className="w-6 h-6 text-highlight flex-shrink-0" />
-                    <h2 className="font-headline text-xl md:text-2xl text-ink">IV. Spring Reset</h2>
+                    <h2 className="font-headline text-xl md:text-2xl text-ink">IV. Spring Cleanup</h2>
                   </div>
-                  <p className="text-paragraph mb-3 text-sm md:text-base font-bold text-center">Should Amigos perform a professional "Spring Refresh" in April?</p>
+                  <p className="text-paragraph mb-3 text-sm md:text-base font-bold text-center">Should Amigos perform a professional Spring Cleanup in April?</p>
 
                   <div className="p-4 bg-[#F9FBE7] border-2 border-brand/10 rounded-xl mb-4 text-sm text-brand font-bold text-center leading-snug">
-                    Includes: Debris Cleanup + Spade Edging + Mulch + Weed Preventer
+                    Includes: Debris Cleanup + Spade Edging + Weed Preventer
                   </div>
 
                   <div className="space-y-2.5">
-                    <OptionCard selected={selections.refresh === "Perform Full Refresh"} onClick={() => selectOption("refresh", "Perform Full Refresh", 10)} icon={CheckCircle} title="Amigos handles this" />
+                    <OptionCard selected={selections.refresh === "Perform Spring Cleanup"} onClick={() => selectOption("refresh", "Perform Spring Cleanup", 10)} icon={CheckCircle} title="Amigos handles this" />
                     <OptionCard selected={selections.refresh === "Homeowner Managed"} onClick={() => selectOption("refresh", "Homeowner Managed", 0)} icon={User} iconColor="text-structure" title="No, I'll handle this." />
                   </div>
                 </motion.div>
               )}
 
-              {/* Step 9: Trimming & Pruning */}
+              {/* Step 9: Mulch */}
               {currentStep === 9 && (
                 <motion.div
                   key="step9"
@@ -594,8 +601,30 @@ const Plan = () => {
                   transition={{ duration: 0.3 }}
                 >
                   <div className="flex items-center gap-2 mb-2">
+                    <Package className="w-6 h-6 text-highlight flex-shrink-0" />
+                    <h2 className="font-headline text-xl md:text-2xl text-ink">V. Mulch Service</h2>
+                  </div>
+                  <p className="text-paragraph mb-4 text-sm md:text-base font-bold leading-snug">Would you like Amigos to handle your mulch installation?</p>
+
+                  <div className="space-y-2.5">
+                    <OptionCard selected={selections.mulch === "Amigos Handles Mulch"} onClick={() => selectOption("mulch", "Amigos Handles Mulch", 10)} icon={CheckCircle} title="Amigos handles this" description="We deliver and install fresh mulch across your beds." />
+                    <OptionCard selected={selections.mulch === "Homeowner Managed"} onClick={() => selectOption("mulch", "Homeowner Managed", 0)} icon={User} iconColor="text-structure" title="I'll handle this" />
+                  </div>
+                </motion.div>
+              )}
+
+              {/* Step 10: Trimming & Pruning */}
+              {currentStep === 10 && (
+                <motion.div
+                  key="step10"
+                  initial={{ opacity: 0, scale: 0.98, y: 10 }}
+                  animate={{ opacity: 1, scale: 1, y: 0 }}
+                  exit={{ opacity: 0, scale: 0.98, y: -10 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <div className="flex items-center gap-2 mb-2">
                     <Brush className="w-6 h-6 text-highlight flex-shrink-0" />
-                    <h2 className="font-headline text-xl md:text-2xl text-ink">V. Trimming & Pruning</h2>
+                    <h2 className="font-headline text-xl md:text-2xl text-ink">VI. Trimming & Pruning</h2>
                   </div>
                   <p className="text-paragraph mb-4 text-sm md:text-base font-bold leading-snug">How should we handle the professional shaping of your ornamentals?</p>
 
@@ -622,24 +651,7 @@ const Plan = () => {
                 </motion.div>
               )}
 
-              {/* Step 10: Fall Leaves */}
-              {currentStep === 10 && (
-                <motion.div
-                  key="step10"
-                  initial={{ opacity: 0, scale: 0.98, y: 10 }}
-                  animate={{ opacity: 1, scale: 1, y: 0 }}
-                  exit={{ opacity: 0, scale: 0.98, y: -10 }}
-                  transition={{ duration: 0.3 }}
-                >
-                  <div className="flex items-center gap-2 mb-2">
-                    <Wind className="w-6 h-6 text-highlight flex-shrink-0" />
-                    <h2 className="font-headline text-xl md:text-2xl text-ink">VI. Fall Leaves</h2>
-                  </div>
-                  {renderFallLeafOptions()}
-                </motion.div>
-              )}
-
-              {/* Step 11: Snow Removal */}
+              {/* Step 11: Fall Leaves */}
               {currentStep === 11 && (
                 <motion.div
                   key="step11"
@@ -649,8 +661,25 @@ const Plan = () => {
                   transition={{ duration: 0.3 }}
                 >
                   <div className="flex items-center gap-2 mb-2">
+                    <Wind className="w-6 h-6 text-highlight flex-shrink-0" />
+                    <h2 className="font-headline text-xl md:text-2xl text-ink">VII. Fall Leaves</h2>
+                  </div>
+                  {renderFallLeafOptions()}
+                </motion.div>
+              )}
+
+              {/* Step 12: Snow Removal */}
+              {currentStep === 12 && (
+                <motion.div
+                  key="step12"
+                  initial={{ opacity: 0, scale: 0.98, y: 10 }}
+                  animate={{ opacity: 1, scale: 1, y: 0 }}
+                  exit={{ opacity: 0, scale: 0.98, y: -10 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <div className="flex items-center gap-2 mb-2">
                     <Snowflake className="w-6 h-6 text-highlight flex-shrink-0" />
-                    <h2 className="font-headline text-xl md:text-2xl text-ink">VII. Winter Protection</h2>
+                    <h2 className="font-headline text-xl md:text-2xl text-ink">VIII. Winter Protection</h2>
                   </div>
                   <p className="text-paragraph mb-4 text-sm md:text-base font-bold leading-snug">What level of snow removal service would you like?</p>
 
@@ -680,10 +709,10 @@ const Plan = () => {
                 </motion.div>
               )}
 
-              {/* Step 12: Summary & Contact */}
-              {currentStep === 12 && (
+              {/* Step 13: Summary & Contact */}
+              {currentStep === 13 && (
                 <motion.div
-                  key="step12"
+                  key="step13"
                   initial={{ opacity: 0, scale: 0.98, y: 10 }}
                   animate={{ opacity: 1, scale: 1, y: 0 }}
                   exit={{ opacity: 0, scale: 0.98, y: -10 }}
@@ -757,7 +786,8 @@ const Plan = () => {
                       <li><span className="text-highlight mr-2">★</span>Mowing: {selections.wants_mowing === "Yes" ? selections.clippings : "I'll handle this"}</li>
                       <li><span className="text-highlight mr-2">★</span>Lawn Health: {selections.lawnHealth}</li>
                       <li><span className="text-highlight mr-2">★</span>Garden Beds: {selections.beds}</li>
-                      <li><span className="text-highlight mr-2">★</span>Spring Refresh: {selections.refresh}</li>
+                      <li><span className="text-highlight mr-2">★</span>Spring Cleanup: {selections.refresh}</li>
+                      <li><span className="text-highlight mr-2">★</span>Mulch: {selections.mulch}</li>
                       <li><span className="text-highlight mr-2">★</span>Bush Care: {selections.bushes}</li>
                       <li><span className="text-highlight mr-2">★</span>Fall Leaves: {selections.leaves}</li>
                       <li><span className="text-highlight mr-2">★</span>Winter Snow: {selections.snow}</li>
