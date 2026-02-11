@@ -376,7 +376,7 @@ const Plan = () => {
         </div>
 
         {/* Main Form Container */}
-        <div className="w-full max-w-2xl mx-auto bg-card rounded-[2rem] shadow-2xl overflow-hidden border border-border/50 mb-12 flex flex-col">
+        <div className="w-full max-w-2xl mx-auto bg-card rounded-[2rem] shadow-2xl overflow-hidden border border-border/50 mb-12 flex flex-col max-h-[calc(100dvh-theme(spacing.48))]">
           {/* Progress Bar - Header Zone */}
           <div className="bg-brand px-6 py-3 text-center relative overflow-hidden flex-shrink-0">
             <div className={`w-full bg-ink/40 h-1.5 rounded-full overflow-hidden transition-opacity duration-500 ${currentStep === 1 ? 'opacity-0' : 'opacity-100'}`}>
@@ -395,7 +395,7 @@ const Plan = () => {
               <label>Don't fill this out: <input name="bot-field" /></label>
             </p>
             {/* Content Zone */}
-            <div className="flex-1">
+            <div className="flex-1 overflow-y-auto">
             <AnimatePresence mode="wait">
               {/* Step 1: Welcome */}
               {currentStep === 1 && (
@@ -821,7 +821,7 @@ const Plan = () => {
             </div>
 
             {/* Footer Zone - Navigation Buttons - Anchored at bottom */}
-            {currentStep > 1 && currentStep < 12 && (
+            {currentStep > 1 && currentStep < 13 && (
               <div className="pt-5 md:pt-6 flex justify-between items-center flex-shrink-0 border-t border-border/30 mt-6">
                 <button
                   type="button"
@@ -835,7 +835,7 @@ const Plan = () => {
                   onClick={nextStep}
                   className={`btn-primary px-8 md:px-12 py-3 md:py-4 rounded-xl shadow-lg text-base md:text-lg ${shakeNext ? 'animate-shake' : ''}`}
                 >
-                  {currentStep === 11 ? "Review My Profile" : "Next Step"}
+                  {currentStep === 12 ? "Review My Profile" : "Next Step"}
                 </button>
               </div>
             )}
