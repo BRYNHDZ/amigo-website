@@ -578,15 +578,16 @@ const Plan = () => {
                     <Calendar className="w-6 h-6 text-highlight flex-shrink-0" />
                     <h2 className="font-headline text-xl md:text-2xl text-ink">IV. Spring Cleanup</h2>
                   </div>
-                  <p className="text-paragraph mb-3 text-sm md:text-base font-bold text-center">Should Amigos perform a professional Spring Cleanup in April?</p>
+                  <p className="text-paragraph mb-3 text-sm md:text-base font-bold text-center">Seasonal cleanup performed in early spring to reset the property after winter.</p>
 
                   <div className="p-4 bg-[#F9FBE7] border-2 border-brand/10 rounded-xl mb-4 text-sm text-brand font-bold text-center leading-snug">
-                    Includes: Debris Cleanup + Spade Edging + Weed Preventer
+                    Includes: Removal of leaves, sticks & debris from lawn and flower beds, clearing of dead plant material, and collection & staging of debris.
                   </div>
 
                   <div className="space-y-2.5">
-                    <OptionCard selected={selections.refresh === "Perform Spring Cleanup"} onClick={() => selectOption("refresh", "Perform Spring Cleanup", 10)} icon={CheckCircle} title="Amigos handles this" />
-                    <OptionCard selected={selections.refresh === "Homeowner Managed"} onClick={() => selectOption("refresh", "Homeowner Managed", 0)} icon={User} iconColor="text-structure" title="No, I'll handle this." />
+                    <OptionCard selected={selections.refresh === "Haul & Dispose"} onClick={() => selectOption("refresh", "Haul & Dispose", 10)} icon={Truck} title="Haul & Dispose" description="We collect all debris and haul it off your property." />
+                    <OptionCard selected={selections.refresh === "Mulch & Shred"} onClick={() => selectOption("refresh", "Mulch & Shred", 10)} icon={RefreshCw} title="Mulch & Shred" description="We shred and mulch debris on-site — natural recycling." />
+                    <OptionCard selected={selections.refresh === "Homeowner Managed"} onClick={() => selectOption("refresh", "Homeowner Managed", 0)} icon={User} iconColor="text-structure" title="I'll handle this" />
                   </div>
                 </motion.div>
               )}
@@ -602,12 +603,16 @@ const Plan = () => {
                 >
                   <div className="flex items-center gap-2 mb-2">
                     <Package className="w-6 h-6 text-highlight flex-shrink-0" />
-                    <h2 className="font-headline text-xl md:text-2xl text-ink">V. Mulch Service</h2>
+                    <h2 className="font-headline text-xl md:text-2xl text-ink">V. Mulch & Bed Prep</h2>
                   </div>
-                  <p className="text-paragraph mb-4 text-sm md:text-base font-bold leading-snug">Would you like Amigos to handle your mulch installation?</p>
+                  <p className="text-paragraph mb-4 text-sm md:text-base font-bold leading-snug">Would you like Amigos to handle mulch installation and bed preparation?</p>
+
+                  <div className="p-4 bg-[#F9FBE7] border-2 border-brand/10 rounded-xl mb-4 text-sm text-brand font-bold text-center leading-snug">
+                    Includes: Spade Edging + Mulch Installation + Weed Preventer
+                  </div>
 
                   <div className="space-y-2.5">
-                    <OptionCard selected={selections.mulch === "Amigos Handles Mulch"} onClick={() => selectOption("mulch", "Amigos Handles Mulch", 10)} icon={CheckCircle} title="Amigos handles this" description="We deliver and install fresh mulch across your beds." />
+                    <OptionCard selected={selections.mulch === "Amigos Handles Mulch"} onClick={() => selectOption("mulch", "Amigos Handles Mulch", 10)} icon={CheckCircle} title="Amigos handles this" />
                     <OptionCard selected={selections.mulch === "Homeowner Managed"} onClick={() => selectOption("mulch", "Homeowner Managed", 0)} icon={User} iconColor="text-structure" title="I'll handle this" />
                   </div>
                 </motion.div>
