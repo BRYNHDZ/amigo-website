@@ -421,7 +421,8 @@ const Plan = () => {
                   </div>
                   <div className="space-y-3">
                     <h2 className="font-headline text-2xl md:text-3xl text-ink">Ready to see how we can help?</h2>
-                    <p className="text-paragraph text-base md:text-lg max-w-xs mx-auto leading-relaxed">Build your roadmap in under 60 seconds and see our suggestions for your property.</p>
+                    <p className="text-paragraph text-base md:text-lg max-w-xs mx-auto leading-relaxed">Select the services you know you need handled — build your roadmap in under 60 seconds.</p>
+                    <p className="text-paragraph/70 text-sm max-w-xs mx-auto leading-relaxed">Anything else you'd like down the road can always be requested as a separate one-off job.</p>
                   </div>
                   <button
                     type="button"
