@@ -94,25 +94,25 @@ const Plan = () => {
     const total = Object.values(scorePoints).reduce((a, b) => a + b, 0);
     if (total >= 80) {
       return {
-        label: "Total Peace of Mind",
+        label: "Fully Handled",
         icon: ShieldCheck,
         text: "You want full-service, white-glove property management — every detail handled so you never have to think about it. We are a great fit!"
       };
     } else if (total >= 45) {
       return {
-        label: "The Premium Partner",
+        label: "Enhanced",
         icon: Crown,
         text: "You want a high level of professional care with premium services across most categories. You value quality and consistency. We are a great fit!"
       };
     } else if (total >= 15) {
       return {
-        label: "The Smart Homeowner",
+        label: "Essential",
         icon: Users2,
         text: "You handle some tasks yourself but rely on professionals for the heavy lifting and seasonal work. A balanced approach that keeps your property looking great. We are a great fit!"
       };
     } else {
       return {
-        label: "The DIY Pro",
+        label: "Minimal",
         icon: UserCheck,
         text: "You take pride in managing most of your property yourself and just need targeted professional support for specific services. We are a great fit!"
       };
