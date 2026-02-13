@@ -92,23 +92,29 @@ const Plan = () => {
 
   const calculateProfile = () => {
     const total = Object.values(scorePoints).reduce((a, b) => a + b, 0);
-    if (total >= 60) {
+    if (total >= 80) {
       return {
         label: "Total Peace of Mind",
         icon: ShieldCheck,
-        text: "It sounds like you have a high-value property but zero time to worry about it. You're looking for total professional oversight so you can just enjoy the results. We are a great fit!"
+        text: "You want full-service, white-glove property management — every detail handled so you never have to think about it. We are a great fit!"
       };
-    } else if (total >= 10) {
+    } else if (total >= 45) {
       return {
-        label: "The Heavy Lifting Plan",
+        label: "The Premium Partner",
+        icon: Crown,
+        text: "You want a high level of professional care with premium services across most categories. You value quality and consistency. We are a great fit!"
+      };
+    } else if (total >= 15) {
+      return {
+        label: "The Smart Homeowner",
         icon: Users2,
-        text: "It sounds like you love your yard but need a team to manage the technical tasks and exhausting seasonal chores while you stay involved in the beauty. We are a great fit!"
+        text: "You handle some tasks yourself but rely on professionals for the heavy lifting and seasonal work. A balanced approach that keeps your property looking great. We are a great fit!"
       };
     } else {
       return {
-        label: "The Self-Reliance Profile",
+        label: "The DIY Pro",
         icon: UserCheck,
-        text: "It sounds like you're an owner who takes real pride in handling the day-to-day property care yourself. You just need a reliable team for the technical stuff and seasonal heavy-lifting. We are a great fit!"
+        text: "You take pride in managing most of your property yourself and just need targeted professional support for specific services. We are a great fit!"
       };
     }
   };
@@ -535,8 +541,8 @@ const Plan = () => {
 
                   <div className="space-y-2.5">
                     <OptionCard selected={selections.lawnHealth === "Homeowner Managed"} onClick={() => selectOption("lawnHealth", "Homeowner Managed", 0)} icon={User} iconColor="text-structure" title="I'll handle this" />
-                    <OptionCard selected={selections.lawnHealth === "The Essential Refresh"} onClick={() => selectOption("lawnHealth", "The Essential Refresh", 10)} icon={Sprout} title="The Essential Refresh (Spring Aeration/Seed)" />
-                    <OptionCard selected={selections.lawnHealth === "The Elite Standard"} onClick={() => selectOption("lawnHealth", "The Elite Standard", 20)} icon={Award} title="The Elite Standard (Spring & Fall Aeration)" />
+                    <OptionCard selected={selections.lawnHealth === "Essential Health"} onClick={() => selectOption("lawnHealth", "Essential Health", 10)} icon={Sprout} title="Essential Health (Spring Aeration + Seed)" />
+                    <OptionCard selected={selections.lawnHealth === "The Elite Standard"} onClick={() => selectOption("lawnHealth", "The Elite Standard", 20)} icon={Award} title="The Elite Standard (Spring & Fall Aeration + Overseeding)" />
                   </div>
 
                 </motion.div>
