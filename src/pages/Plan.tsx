@@ -362,7 +362,7 @@ const Plan = () => {
         {/* Landing Headline */}
         <div className="w-full max-w-4xl mx-auto text-center space-y-4 mb-8">
           <h1 className="font-headline text-4xl md:text-5xl text-ink">Plan Your 2026 Property Roadmap</h1>
-          <p className="font-accent text-2xl md:text-3xl text-brand">"We don't just mow; we manage."</p>
+          
         </div>
 
         {/* Context Cards */}
