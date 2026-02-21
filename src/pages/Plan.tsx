@@ -304,8 +304,8 @@ const Plan = () => {
         <>
            <p className="text-paragraph mb-4 text-sm md:text-base leading-snug font-bold">When the leaves fall, what level of service do you need?</p>
            <div className="space-y-2.5">
-             <OptionCard selected={selections.leaves === "Eco-Management"} onClick={() => selectOption("leaves", "Eco-Management", 10)} icon={RefreshCw} title="Eco-Management" description="Weekly mulching plus one deep final cleanup." />
-             <OptionCard selected={selections.leaves === "Pristine Management"} onClick={() => selectOption("leaves", "Pristine Management", 20)} icon={Crown} title="The Elite Tier" description="Property stays 100% leaf-free every week." />
+             <OptionCard selected={selections.leaves === "Eco-Management"} onClick={() => selectOption("leaves", "Eco-Management", 10)} icon={RefreshCw} title="Eco-Management" description="Ongoing mulching plus one deep final cleanup." />
+             <OptionCard selected={selections.leaves === "Pristine Management"} onClick={() => selectOption("leaves", "Pristine Management", 20)} icon={Crown} title="The Elite Tier" description="Property stays 100% leaf-free all season." />
              <OptionCard selected={selections.leaves === "Homeowner Managed"} onClick={() => selectOption("leaves", "Homeowner Managed", 0)} icon={User} iconColor="text-structure" title="I'll handle this" />
           </div>
         </>
@@ -494,10 +494,10 @@ const Plan = () => {
                     <Scissors className="w-6 h-6 text-highlight flex-shrink-0" />
                     <h2 className="font-headline text-xl md:text-2xl text-ink">I. Mowing Support</h2>
                   </div>
-                  <p className="text-paragraph mb-4 text-sm md:text-base">Who will be handling the weekly mowing?</p>
+                  <p className="text-paragraph mb-4 text-sm md:text-base"><p className="text-paragraph mb-4 text-sm md:text-base">Who will be handling the mowing?</p></p>
 
                   <div className="space-y-2.5">
-                    <OptionCard selected={selections.wants_mowing === "Yes"} onClick={() => selectOption("wants_mowing", "Yes")} icon={CheckCircle} title="Amigos handles it" description="Includes professional weekly mowing and string trimming." />
+                    <OptionCard selected={selections.wants_mowing === "Yes"} onClick={() => selectOption("wants_mowing", "Yes")} icon={CheckCircle} title="Amigos handles it" description="Includes professional mowing and string trimming." />
                     <OptionCard selected={selections.wants_mowing === "No"} onClick={() => selectOption("wants_mowing", "No")} icon={User} iconColor="text-structure" title="I'll handle this" description="I handle my own mowing; I'm looking for other support." />
                   </div>
                 </motion.div>
@@ -566,7 +566,7 @@ const Plan = () => {
 
                   <div className="space-y-2.5">
                     <OptionCard selected={selections.beds === "Homeowner Managed"} onClick={() => selectOption("beds", "Homeowner Managed", 0)} icon={User} iconColor="text-structure" title="I'll handle this" />
-                    <OptionCard selected={selections.beds === "The Clean Look Plan"} onClick={() => selectOption("beds", "The Clean Look Plan", 10)} icon={Zap} title='The "Clean Look" Plan' description="We use string trimmers weekly to keep weeds at bay." />
+                    <OptionCard selected={selections.beds === "The Clean Look Plan"} onClick={() => selectOption("beds", "The Clean Look Plan", 10)} icon={Zap} title='The "Clean Look" Plan' description="We use string trimmers regularly to keep weeds at bay." />
                     <OptionCard selected={selections.beds === "The Estate Detail Plan"} onClick={() => selectOption("beds", "The Estate Detail Plan", 20)} icon={Sparkles} title='The "Estate Detail" Plan' description="Hand-pull weeds from the root for a pristine bed surface." />
                   </div>
                 </motion.div>
