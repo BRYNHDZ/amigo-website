@@ -23,16 +23,16 @@ const JobberForm = () => {
       document.head.appendChild(link);
     }
 
-    // Load Jobber script (once)
-    let script = document.getElementById(SCRIPT_ID) as HTMLScriptElement | null;
-    if (!script) {
-      script = document.createElement("script");
-      script.id = SCRIPT_ID;
-      script.src = "https://d3ey4dbjkt2f6s.cloudfront.net/assets/static_link/work_request_embed_snippet.js";
-      script.setAttribute("clienthub_id", "73c449a9-90ba-493f-8a4e-c0c1113bcac9-2060348");
-      script.setAttribute("form_url", "https://clienthub.getjobber.com/client_hubs/73c449a9-90ba-493f-8a4e-c0c1113bcac9/public/work_request/embedded_work_request_form?form_id=2060348");
-      document.body.appendChild(script);
-    }
+    // Remove old script so it re-runs and injects into the container
+    const oldScript = document.getElementById(SCRIPT_ID);
+    if (oldScript) oldScript.remove();
+
+    const script = document.createElement("script");
+    script.id = SCRIPT_ID;
+    script.src = "https://d3ey4dbjkt2f6s.cloudfront.net/assets/static_link/work_request_embed_snippet.js";
+    script.setAttribute("clienthub_id", "73c449a9-90ba-493f-8a4e-c0c1113bcac9-2060348");
+    script.setAttribute("form_url", "https://clienthub.getjobber.com/client_hubs/73c449a9-90ba-493f-8a4e-c0c1113bcac9/public/work_request/embedded_work_request_form?form_id=2060348");
+    document.body.appendChild(script);
     return () => {
       // Clear injected form markup so it can't accumulate/duplicate
       const c = document.getElementById(CONTAINER_ID);
