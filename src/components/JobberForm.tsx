@@ -42,13 +42,14 @@ const JobberForm = () => {
       <div className="container mx-auto px-6 md:px-8">
         <div className="text-center mb-14">
           <div className="gold-accent mx-auto" />
-          <h2 className="section-title mb-6">Request a One-Time Job</h2>
-          <p className="text-paragraph text-lg max-w-xl mx-auto leading-relaxed">Need something specific handled? Send us the details and we'll get back to you usually within one business day.</p>
+          <h2 className="section-title mb-6">Request a Quote</h2>
+          <p className="text-paragraph text-lg max-w-xl mx-auto leading-relaxed">Tell us what you need and we'll get back to you — usually within one business day.</p>
           <p className="text-paragraph text-base mt-4 max-w-xl mx-auto">
-            Want us to take care of your property year-round?{" "}
+            Looking for a full property plan? Our{" "}
             <Link to="/plan" className="text-primary underline underline-offset-2 hover:text-primary/80 transition-colors font-medium">
-              Build your Property Plan
-            </Link>
+              Property Planner
+            </Link>{" "}
+            walks you through every service so we can build a year-round roadmap tailored to your property.
           </p>
         </div>
 
