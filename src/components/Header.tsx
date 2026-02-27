@@ -1,6 +1,6 @@
 import { Mail, User } from "lucide-react";
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import "@dotlottie/player-component";
 import mascot from "@/assets/mascot.gif";
 
@@ -23,6 +23,7 @@ declare global {
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
+  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -31,6 +32,11 @@ const Header = () => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  const navItems = [
+    { label: "Home", to: "/" },
+    { label: "Property Planner", to: "/plan" },
+  ];
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50">
@@ -59,13 +65,13 @@ const Header = () => {
         </div>
       </div>
 
-      {/* Main Header - solid when scrolled */}
+      {/* Main Header */}
       <div className={`border-b border-border/50 transition-all duration-300 ${
         isScrolled ? "bg-white" : "bg-white"
       }`}>
         <div className="container mx-auto px-6 md:px-8">
           <div className="flex items-center justify-between h-24 md:h-28">
-            {/* Logo with Mascot on Right */}
+            {/* Logo with Mascot */}
             <Link to="/" className="flex items-center gap-4">
               <div className="flex flex-col items-start">
                 <span className="font-headline text-3xl md:text-4xl lg:text-5xl text-brand tracking-wide leading-none">
@@ -82,21 +88,40 @@ const Header = () => {
               />
             </Link>
 
-            {/* Lottie Call Button */}
-            <a
-              href="tel:6306640303"
-              className="relative flex items-center justify-center md:mr-0 mr-3"
-              aria-label="Call us"
-            >
-              <dotlottie-player
-                src="https://lottie.host/47b41010-a920-4a22-9880-45b655b1a7e2/J9egzaExoY.lottie"
-                background="transparent"
-                speed="1"
-                loop
-                autoplay
-                style={{ width: "90px", height: "90px" }}
-              />
-            </a>
+            {/* Nav Links + Call Button */}
+            <div className="flex items-center gap-2 md:gap-6">
+              <nav className="flex items-center gap-1 md:gap-4">
+                {navItems.map((item) => (
+                  <Link
+                    key={item.to}
+                    to={item.to}
+                    className={`nav-link text-xs md:text-sm uppercase tracking-wider px-3 py-2 rounded-xl transition-all duration-200 ${
+                      location.pathname === item.to
+                        ? "bg-brand/10 !text-brand"
+                        : ""
+                    }`}
+                  >
+                    {item.label}
+                  </Link>
+                ))}
+              </nav>
+
+              {/* Lottie Call Button */}
+              <a
+                href="tel:6306640303"
+                className="relative flex items-center justify-center"
+                aria-label="Call us"
+              >
+                <dotlottie-player
+                  src="https://lottie.host/47b41010-a920-4a22-9880-45b655b1a7e2/J9egzaExoY.lottie"
+                  background="transparent"
+                  speed="1"
+                  loop
+                  autoplay
+                  style={{ width: "90px", height: "90px" }}
+                />
+              </a>
+            </div>
           </div>
         </div>
       </div>
