@@ -1,4 +1,7 @@
 import { useEffect } from "react";
+import { Link } from "react-router-dom";
+import { ArrowRight } from "lucide-react";
+
 const JobberForm = () => {
   useEffect(() => {
     const CSS_ID = "jobber-embed-css";
@@ -40,13 +43,26 @@ const JobberForm = () => {
       <div className="container mx-auto px-6 md:px-8">
         <div className="text-center mb-14">
           <div className="gold-accent mx-auto" />
-          <h2 className="section-title mb-6">Get Your Free Quote</h2>
-          <p className="text-paragraph text-lg max-w-xl mx-auto leading-relaxed">Fill out the form below and we'll get back to you, usually within one business day!</p>
+          <h2 className="section-title mb-6">Request a One-Time Job</h2>
+          <p className="text-paragraph text-lg max-w-xl mx-auto leading-relaxed">Need something specific handled? Send us the details and we'll get back to you within one business day.</p>
         </div>
 
         {/* Jobber Embed Container */}
         <div className="max-w-2xl mx-auto bg-card rounded-3xl p-8 md:p-12 shadow-lg border border-border/30">
           <div id="73c449a9-90ba-493f-8a4e-c0c1113bcac9-2060348"></div>
+        </div>
+
+        {/* Year-Round CTA */}
+        <div className="text-center mt-16 pt-12 border-t border-border/30 max-w-2xl mx-auto">
+          <h3 className="font-headline text-2xl md:text-3xl text-ink mb-4">Want us to take care of your property year-round?</h3>
+          <p className="text-paragraph text-lg max-w-xl mx-auto leading-relaxed mb-8">Build a custom property plan in under 60 seconds and see exactly what we'll handle for you.</p>
+          <Link
+            to="/plan"
+            className="btn-primary inline-flex"
+          >
+            <span>Build My Property Plan</span>
+            <ArrowRight className="w-5 h-5" />
+          </Link>
         </div>
       </div>
     </section>;
