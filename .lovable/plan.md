@@ -1,39 +1,26 @@
 
 
-## Add Subtle Hyperlink CTA Above the Jobber Form
+## Reframe the Quote Form Section with Clear Distinction
 
-### What Changes
+### The Problem
+"Request a One-Time Job" is misleading — the Jobber form covers all services, not just one-time work. The Property Planner link blends in without explaining *why* someone would choose it over the simpler form. Users need to instantly understand: **quick request vs. detailed year-round roadmap**.
 
-**`src/components/JobberForm.tsx`**
+### The Solution
 
-1. Update the subtext under "Request a One-Time Job" to say *"...we'll get back to you **usually** within one business day."* (softer promise)
+**Rename and rewrite the Jobber form section copy in `src/components/JobberForm.tsx`:**
 
-2. Add a small, inline hyperlink sentence right below that subtext — something like:
+**New heading:** "Request a Quote"
 
-   > *Want us to take care of your property year-round?* [Build your Property Plan](/plan)
+**New subtext:** "Tell us what you need and we'll get back to you — usually within one business day."
 
-   This will be styled as regular paragraph text with the link portion using the brand green color and an underline — it reads naturally, feels clickable, but doesn't compete with the form below it.
+**New hyperlink line:** "Looking for a full property plan? Our Property Planner walks you through every service so we can build a year-round roadmap tailored to your property."
 
-3. Remove the large Year-Round CTA block at the bottom (the big heading, paragraph, and "Build My Property Plan" button from lines 55-66), along with the now-unnecessary `ArrowRight` import.
+The word "Property Planner" stays as the clickable link. This clearly tells the user: the form above is for quick, straightforward requests. The planner is for people who want the in-depth, guided experience covering mowing, beds, mulch, snow, leaves — the whole picture.
 
-### Result
+### What This Achieves
+- **Quote form** = "I know what I need, just take my info" (fast, simple)
+- **Property Planner** = "I want help figuring out everything my property needs" (guided, detailed)
+- No competing CTAs — just a natural sentence that explains the difference
 
-The section flows like:
-
-```text
-"Request a One-Time Job"
-"Need something specific handled? Send us the details
-and we'll get back to you usually within one business day."
-
-"Want us to take care of your property year-round? Build your Property Plan"
-                                                   ^^^^^^^^^^^^^^^^^^^^^^^^
-                                                   (subtle green hyperlink)
-
-[ Jobber Form ]
-```
-
-Clean, no competing CTAs, and the planner link is discoverable without being pushy.
-
-### Files to change
-- **`src/components/JobberForm.tsx`** — Update subtext wording, add inline link sentence, remove the large bottom CTA block and unused `ArrowRight` import.
-
+### Files to Change
+- **`src/components/JobberForm.tsx`** — Update the section heading from "Request a One-Time Job" to "Request a Quote", revise the subtext to remove the one-time implication, and rewrite the hyperlink sentence to clearly explain when/why to use the Property Planner instead.
