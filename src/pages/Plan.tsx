@@ -592,8 +592,8 @@ const Plan = () => {
                   </div>
 
                   <div className="space-y-2.5">
-                    <OptionCard selected={selections.refresh === "Haul & Dispose"} onClick={() => selectOption("refresh", "Haul & Dispose", 10)} icon={Truck} title="Haul & Dispose" description="We collect all debris and haul it off your property." />
-                    <OptionCard selected={selections.refresh === "Mulch & Shred"} onClick={() => selectOption("refresh", "Mulch & Shred", 10)} icon={RefreshCw} title="Mulch & Shred" description="We shred and mulch debris on-site — natural recycling." />
+                    <OptionCard selected={selections.refresh === "Pristine"} onClick={() => selectOption("refresh", "Pristine", 10)} icon={Truck} title="Pristine" description="We collect and dispose of all debris off your property — lawn and beds left spotless." />
+                    <OptionCard selected={selections.refresh === "Nutrient"} onClick={() => selectOption("refresh", "Nutrient", 10)} icon={RefreshCw} title="Nutrient" description="We shred everything and leave it in the lawn and flower beds — natural recycling that feeds the soil." />
                     <OptionCard selected={selections.refresh === "Homeowner Managed"} onClick={() => selectOption("refresh", "Homeowner Managed", 0)} icon={User} iconColor="text-structure" title="I'll handle this" />
                   </div>
                 </motion.div>
