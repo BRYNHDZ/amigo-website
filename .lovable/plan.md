@@ -1,23 +1,26 @@
 
 
-## Fix Mobile Header Layout - Mascot Overlapping Nav Links
+## Reframe the Quote Form Section with Clear Distinction
 
 ### The Problem
-On mobile viewport, the mascot GIF (80x80px) is crowding the navigation area, causing overlap with the "Home" and "Property Planner" links. The current layout tries to fit the logo, mascot, nav links, and a 90px call button in limited horizontal space.
+"Request a One-Time Job" is misleading — the Jobber form covers all services, not just one-time work. The Property Planner link blends in without explaining *why* someone would choose it over the simpler form. Users need to instantly understand: **quick request vs. detailed year-round roadmap**.
 
 ### The Solution
 
-**`src/components/Header.tsx`** - Three targeted fixes:
+**Rename and rewrite the Jobber form section copy in `src/components/JobberForm.tsx`:**
 
-1. **Hide mascot on mobile** - Show only on tablet/desktop (`hidden sm:block` or similar). This gives the nav links room to breathe on small screens while keeping the mascot for larger viewports.
+**New heading:** "Request a Quote"
 
-2. **Add horizontal spacing to nav links** - Increase gap between nav items on mobile (`gap-2` → `gap-4` or use `space-x-`) so they're not squished against the mascot or call button.
+**New subtext:** "Tell us what you need and we'll get back to you — usually within one business day."
 
-3. **Consider nav link text size** - The Property Planner text might be too long for mobile; could truncate to "Planner" below a certain breakpoint, or accept the spacing fix alone.
+**New hyperlink line:** "Looking for a full property plan? Our Property Planner walks you through every service so we can build a year-round roadmap tailored to your property."
 
-### Result
-Clean mobile header with clear separation between logo, navigation, and call button. Mascot remains visible on desktop/tablet for brand recognition.
+The word "Property Planner" stays as the clickable link. This clearly tells the user: the form above is for quick, straightforward requests. The planner is for people who want the in-depth, guided experience covering mowing, beds, mulch, snow, leaves — the whole picture.
 
-### Files to change
-- **`src/components/Header.tsx`** — Add responsive classes to hide mascot on mobile and improve nav link spacing.
+### What This Achieves
+- **Quote form** = "I know what I need, just take my info" (fast, simple)
+- **Property Planner** = "I want help figuring out everything my property needs" (guided, detailed)
+- No competing CTAs — just a natural sentence that explains the difference
 
+### Files to Change
+- **`src/components/JobberForm.tsx`** — Update the section heading from "Request a One-Time Job" to "Request a Quote", revise the subtext to remove the one-time implication, and rewrite the hyperlink sentence to clearly explain when/why to use the Property Planner instead.

@@ -84,7 +84,7 @@ const Header = () => {
               <img 
                 src={mascot} 
                 alt="Amigos Mascot" 
-                className="w-20 h-20 md:w-24 md:h-24"
+                className="hidden sm:block w-20 h-20 md:w-24 md:h-24"
               />
             </Link>
 
