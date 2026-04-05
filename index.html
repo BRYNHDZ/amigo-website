@@ -10,6 +10,10 @@
     <meta name="theme-color" content="#30471F" />
     <link rel="canonical" href="https://amigolandscaping.com" />
 
+    <!-- Preload the hero image so it starts downloading before React mounts.
+         Vite rewrites /src/assets paths to hashed URLs at build time. -->
+    <link rel="preload" as="image" href="/src/assets/hero-lawn.jpg" fetchpriority="high" />
+
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -50,10 +54,26 @@
       
       <input type="text" name="perennial_pruning" />
       <input type="text" name="salt_treatment" />
+      <input type="text" name="hands_off_preference" />
+      <input type="text" name="plan_version" />
       <input type="text" name="name" />
       <input type="text" name="address" />
       <input type="tel" name="phone" />
       <input type="email" name="email" />
+    </form>
+
+    <!-- Netlify Forms: Recommend a Company submission -->
+    <form name="recommend-company" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" hidden>
+      <input type="hidden" name="form-name" value="recommend-company" />
+      <input type="text" name="bot-field" />
+      <input type="text" name="submitter_type" />
+      <input type="text" name="company_name" />
+      <input type="text" name="company_category" />
+      <input type="text" name="company_website" />
+      <input type="tel" name="company_phone" />
+      <input type="text" name="why_recommend" />
+      <input type="text" name="submitter_name" />
+      <input type="email" name="submitter_email" />
     </form>
 
     <div id="root"></div>

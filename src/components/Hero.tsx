@@ -3,10 +3,10 @@ import { ArrowRight } from "lucide-react";
 import heroImage from "@/assets/hero-lawn.jpg";
 
 const Hero = () => {
-  const scrollToQuote = () => {
-    const quoteSection = document.getElementById("quote-form");
-    if (quoteSection) {
-      quoteSection.scrollIntoView({ behavior: "smooth" });
+  const scrollToPlan = () => {
+    const planSection = document.getElementById("plan");
+    if (planSection) {
+      planSection.scrollIntoView({ behavior: "smooth" });
     }
   };
 
@@ -15,12 +15,17 @@ const Hero = () => {
       id="home"
       className="relative h-[60vh] md:h-[70vh] flex items-center justify-center pt-32 md:pt-24 overflow-hidden"
     >
-      {/* Background Image - no yellow glow */}
-      <div className="absolute inset-0 z-0">
+      {/* Background Image — bg-brand fallback prevents a white flash while the image decodes */}
+      <div className="absolute inset-0 z-0 bg-brand">
         <img
           src={heroImage}
           alt="Beautiful landscaped lawn in DuPage Illinois"
           className="w-full h-full object-cover"
+          // Priority hints: tells the browser this is the most important image on the page
+          // @ts-expect-error fetchpriority is a valid HTML attribute not yet in React's types
+          fetchpriority="high"
+          loading="eager"
+          decoding="async"
         />
         <div className="absolute inset-0 bg-ink/40" />
       </div>
@@ -44,12 +49,12 @@ const Hero = () => {
               Proudly Serving DuPage Illinois
             </h1>
 
-            {/* CTA Button - scrolls to form */}
+            {/* CTA Button — scrolls to Plan quiz */}
             <button
-              onClick={scrollToQuote}
+              onClick={scrollToPlan}
               className="btn-primary"
             >
-              <span>Free Quote</span>
+              <span>Build My Plan</span>
               <ArrowRight className="w-5 h-5" />
             </button>
           </motion.div>

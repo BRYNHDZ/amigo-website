@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 import Header from "@/components/Header";
@@ -18,6 +19,9 @@ import {
   PaintBucket,
   Bug,
   Hammer,
+  Handshake,
+  Send,
+  Loader2,
 } from "lucide-react";
 
 interface Recommendation {
@@ -84,6 +88,87 @@ const comingSoonCategories = [
 ];
 
 const Recommendations = () => {
+  const [formData, setFormData] = useState({
+    submitter_type: "",
+    company_name: "",
+    company_category: "",
+    company_website: "",
+    company_phone: "",
+    why_recommend: "",
+    submitter_name: "",
+    submitter_email: "",
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  const handleRecommendSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setError(null);
+
+    // Honeypot
+    const formElement = e.currentTarget;
+    const honeypot = formElement.querySelector<HTMLInputElement>(
+      'input[name="bot-field"]',
+    );
+    if (honeypot && honeypot.value) {
+      setSubmitted(true);
+      return;
+    }
+
+    // Client-side rate limiting
+    const RATE_LIMIT_KEY = "recommend_submissions";
+    const RATE_LIMIT_WINDOW = 60 * 60 * 1000;
+    const MAX_SUBMISSIONS = 3;
+    try {
+      const stored = localStorage.getItem(RATE_LIMIT_KEY);
+      const submissions: number[] = stored ? JSON.parse(stored) : [];
+      const now = Date.now();
+      const recent = submissions.filter(
+        (t: number) => now - t < RATE_LIMIT_WINDOW,
+      );
+      if (recent.length >= MAX_SUBMISSIONS) {
+        setError(
+          "You've submitted several recommendations recently. Please try again in an hour.",
+        );
+        return;
+      }
+      recent.push(now);
+      localStorage.setItem(RATE_LIMIT_KEY, JSON.stringify(recent));
+    } catch (err) {
+      // fail open
+    }
+
+    if (
+      !formData.submitter_type ||
+      !formData.company_name ||
+      !formData.submitter_email
+    ) {
+      setError("Please fill in at least the required fields.");
+      return;
+    }
+
+    setIsSubmitting(true);
+    const payload = new URLSearchParams({
+      "form-name": "recommend-company",
+      ...formData,
+    });
+
+    try {
+      await fetch("/", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: payload.toString(),
+      });
+      setSubmitted(true);
+    } catch (err) {
+      setError(
+        "Something went wrong sending your recommendation. Please try again or email us directly.",
+      );
+      setIsSubmitting(false);
+    }
+  };
+
   return (
     <>
       <Helmet>
@@ -215,6 +300,264 @@ const Recommendations = () => {
                   {cat.label}
                 </div>
               ))}
+            </div>
+          </div>
+
+          {/* Recommend a Company — submission form */}
+          <div className="max-w-3xl mx-auto mb-20 md:mb-24">
+            <div className="text-center mb-8 md:mb-10">
+              <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-highlight/15 mb-5">
+                <Handshake className="w-8 h-8 text-highlight" />
+              </div>
+              <div className="gold-accent mx-auto" />
+              <h2 className="section-title mb-3">Recommend a Company</h2>
+              <p className="font-body text-paragraph text-base md:text-lg leading-relaxed max-w-2xl mx-auto">
+                Know a local company that does great work? We want to hear
+                about it. We only add businesses we'd trust on our own homes,
+                but every recommendation starts with a conversation. Owners
+                are welcome to reach out directly — and so are customers.
+              </p>
+            </div>
+
+            <div className="brand-card">
+              {submitted ? (
+                <div className="text-center py-6">
+                  <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-brand/10 mb-5">
+                    <CheckCircle2 className="w-8 h-8 text-brand" />
+                  </div>
+                  <h3 className="font-headline text-2xl text-ink mb-3">
+                    Thanks — we got it.
+                  </h3>
+                  <p className="font-body text-paragraph leading-relaxed max-w-md mx-auto">
+                    We'll review your recommendation and reach out if it's a
+                    fit. Every company we list goes through a vetting step so
+                    we can stand behind it.
+                  </p>
+                </div>
+              ) : (
+                <form
+                  name="recommend-company"
+                  method="POST"
+                  data-netlify="true"
+                  data-netlify-honeypot="bot-field"
+                  onSubmit={handleRecommendSubmit}
+                  className="space-y-5"
+                >
+                  <input
+                    type="hidden"
+                    name="form-name"
+                    value="recommend-company"
+                  />
+                  <p className="hidden">
+                    <label>
+                      Don't fill this out: <input name="bot-field" />
+                    </label>
+                  </p>
+
+                  {/* Submitter type */}
+                  <div>
+                    <label className="block font-body text-sm font-bold text-ink mb-2">
+                      Who are you? <span className="text-structure">*</span>
+                    </label>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                      {[
+                        {
+                          value: "customer",
+                          label: "A happy customer",
+                          desc: "I've hired this company.",
+                        },
+                        {
+                          value: "owner",
+                          label: "The company owner",
+                          desc: "I run this business.",
+                        },
+                      ].map((opt) => (
+                        <button
+                          type="button"
+                          key={opt.value}
+                          onClick={() =>
+                            setFormData((p) => ({
+                              ...p,
+                              submitter_type: opt.value,
+                            }))
+                          }
+                          className={`text-left p-4 rounded-xl border-2 transition-all ${
+                            formData.submitter_type === opt.value
+                              ? "border-brand bg-[#F9FBE7] shadow-sm"
+                              : "border-border hover:border-highlight"
+                          }`}
+                        >
+                          <div className="font-body font-bold text-ink text-sm md:text-base">
+                            {opt.label}
+                          </div>
+                          <div className="font-body text-xs text-paragraph mt-0.5">
+                            {opt.desc}
+                          </div>
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Company details */}
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                      <label className="block font-body text-sm font-bold text-ink mb-2">
+                        Company name <span className="text-structure">*</span>
+                      </label>
+                      <input
+                        type="text"
+                        name="company_name"
+                        required
+                        value={formData.company_name}
+                        onChange={(e) =>
+                          setFormData((p) => ({
+                            ...p,
+                            company_name: e.target.value,
+                          }))
+                        }
+                        className="w-full p-3.5 border-2 border-border rounded-xl outline-none text-base transition-colors focus:border-brand"
+                        placeholder="e.g., DuPage Plumbing Co."
+                      />
+                    </div>
+                    <div>
+                      <label className="block font-body text-sm font-bold text-ink mb-2">
+                        Category
+                      </label>
+                      <input
+                        type="text"
+                        name="company_category"
+                        value={formData.company_category}
+                        onChange={(e) =>
+                          setFormData((p) => ({
+                            ...p,
+                            company_category: e.target.value,
+                          }))
+                        }
+                        className="w-full p-3.5 border-2 border-border rounded-xl outline-none text-base transition-colors focus:border-brand"
+                        placeholder="e.g., Electrical, HVAC, Painting"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                      <label className="block font-body text-sm font-bold text-ink mb-2">
+                        Company website
+                      </label>
+                      <input
+                        type="text"
+                        name="company_website"
+                        value={formData.company_website}
+                        onChange={(e) =>
+                          setFormData((p) => ({
+                            ...p,
+                            company_website: e.target.value,
+                          }))
+                        }
+                        className="w-full p-3.5 border-2 border-border rounded-xl outline-none text-base transition-colors focus:border-brand"
+                        placeholder="https://..."
+                      />
+                    </div>
+                    <div>
+                      <label className="block font-body text-sm font-bold text-ink mb-2">
+                        Company phone
+                      </label>
+                      <input
+                        type="tel"
+                        name="company_phone"
+                        value={formData.company_phone}
+                        onChange={(e) =>
+                          setFormData((p) => ({
+                            ...p,
+                            company_phone: e.target.value,
+                          }))
+                        }
+                        className="w-full p-3.5 border-2 border-border rounded-xl outline-none text-base transition-colors focus:border-brand"
+                        placeholder="(630) 555-0000"
+                      />
+                    </div>
+                  </div>
+
+                  <div>
+                    <label className="block font-body text-sm font-bold text-ink mb-2">
+                      Why should we recommend them?
+                    </label>
+                    <textarea
+                      name="why_recommend"
+                      rows={4}
+                      value={formData.why_recommend}
+                      onChange={(e) =>
+                        setFormData((p) => ({
+                          ...p,
+                          why_recommend: e.target.value,
+                        }))
+                      }
+                      className="w-full p-3.5 border-2 border-border rounded-xl outline-none text-base transition-colors focus:border-brand resize-none"
+                      placeholder="What's your experience? What do they do especially well?"
+                    />
+                  </div>
+
+                  {/* Submitter contact */}
+                  <div className="pt-5 border-t border-border/50">
+                    <p className="font-body text-sm font-bold text-ink mb-3">
+                      Your contact info (so we can follow up)
+                    </p>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <input
+                        type="text"
+                        name="submitter_name"
+                        value={formData.submitter_name}
+                        onChange={(e) =>
+                          setFormData((p) => ({
+                            ...p,
+                            submitter_name: e.target.value,
+                          }))
+                        }
+                        className="w-full p-3.5 border-2 border-border rounded-xl outline-none text-base transition-colors focus:border-brand"
+                        placeholder="Your name"
+                      />
+                      <input
+                        type="email"
+                        name="submitter_email"
+                        required
+                        value={formData.submitter_email}
+                        onChange={(e) =>
+                          setFormData((p) => ({
+                            ...p,
+                            submitter_email: e.target.value,
+                          }))
+                        }
+                        className="w-full p-3.5 border-2 border-border rounded-xl outline-none text-base transition-colors focus:border-brand"
+                        placeholder="Your email *"
+                      />
+                    </div>
+                  </div>
+
+                  {error && (
+                    <div className="p-4 bg-red-50 border border-red-200 rounded-xl text-sm text-red-800 font-body">
+                      {error}
+                    </div>
+                  )}
+
+                  <button
+                    type="submit"
+                    disabled={isSubmitting}
+                    className="btn-primary w-full py-4 rounded-xl flex items-center justify-center gap-2 disabled:opacity-70"
+                  >
+                    {isSubmitting ? (
+                      <>
+                        <Loader2 className="w-5 h-5 animate-spin" />
+                        Sending...
+                      </>
+                    ) : (
+                      <>
+                        <Send className="w-5 h-5" />
+                        Submit Recommendation
+                      </>
+                    )}
+                  </button>
+                </form>
+              )}
             </div>
           </div>
 

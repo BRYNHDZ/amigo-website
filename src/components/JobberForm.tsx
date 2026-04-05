@@ -1,5 +1,4 @@
 import { useEffect } from "react";
-import { Link } from "react-router-dom";
 
 const JobberForm = () => {
   useEffect(() => {
@@ -38,18 +37,15 @@ const JobberForm = () => {
       if (c) c.innerHTML = "";
     };
   }, []);
-  return <section id="quote-form" className="py-20 md:py-28 bg-cloud">
+  return <section id="quote-form" className="py-12 md:py-16 bg-white">
       <div className="container mx-auto px-6 md:px-8">
-        <div className="text-center mb-14">
-          <div className="gold-accent mx-auto" />
-          <h2 className="section-title mb-6">Request a Quote</h2>
-          <p className="text-paragraph text-lg max-w-xl mx-auto leading-relaxed">Tell us what you need and we'll get back to you — usually within one business day.</p>
-          <p className="text-paragraph text-base mt-4 max-w-xl mx-auto">
-            Looking for a full property plan? Our{" "}
-            <Link to="/plan" className="text-primary underline underline-offset-2 hover:text-primary/80 transition-colors font-medium">
-              Property Planner
-            </Link>{" "}
-            walks you through every service so we can build a year-round roadmap tailored to your property.
+        <div className="text-center mb-10 md:mb-12">
+          <span className="inline-block font-body text-xs font-extrabold uppercase tracking-[0.2em] text-highlight mb-2">
+            Just need something specific?
+          </span>
+          <h2 className="section-title mb-4">Request a One-Time Quote</h2>
+          <p className="text-paragraph text-base md:text-lg max-w-xl mx-auto leading-relaxed">
+            Mowing help, a one-time cleanup, or a specific job you need done — tell us what you need and we'll get back to you, usually within one business day.
           </p>
         </div>
 

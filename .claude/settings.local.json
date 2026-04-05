@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__claude_ai_Notion__notion-fetch",
+      "mcp__claude_ai_Notion__notion-query-database-view",
+      "Bash(npm run:*)",
+      "Bash(bash /tmp/final_check.sh)",
+      "Bash(ls -lh dist/assets/mascot-professor*)"
+    ]
+  }
+}
