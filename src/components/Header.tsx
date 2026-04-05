@@ -36,6 +36,7 @@ const Header = () => {
   const navItems = [
     { label: "Home", to: "/" },
     { label: "Property Planner", to: "/plan" },
+    { label: "Recommendations", to: "/recommendations" },
   ];
 
   return (

@@ -10,6 +10,7 @@ import NotFound from "./pages/NotFound";
 import RequestConfirmation from "./pages/RequestConfirmation";
 import BrandGuide from "./pages/BrandGuide";
 import Plan from "./pages/Plan";
+import Recommendations from "./pages/Recommendations";
 
 const ScrollToTop = () => {
   const { pathname } = useLocation();
@@ -32,6 +33,7 @@ const App = () => (
             <Route path="/request-confirmation" element={<RequestConfirmation />} />
             <Route path="/brand-guide" element={<BrandGuide />} />
             <Route path="/plan" element={<Plan />} />
+            <Route path="/recommendations" element={<Recommendations />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
