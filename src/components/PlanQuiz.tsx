@@ -358,7 +358,7 @@ const PlanQuiz = () => {
         Leaves pile up fast in DuPage. Pick how we handle them.
       </p>
       <div className="p-4 bg-[#F9FBE7] border-2 border-brand/10 rounded-xl mb-4 text-sm text-brand font-bold text-center leading-snug">
-        Leaf care is included in every plan so your lawn and beds stay healthy through fall.
+        Leaf care is included in every plan to keep your lawn and hardscapes clear through fall.
       </div>
       <div className="space-y-3.5 pt-2">
         <OptionCard
@@ -366,8 +366,8 @@ const PlanQuiz = () => {
           onClick={() => selectOption("leaves", "Eco-Management", 10)}
           icon={RefreshCw}
           title="Standard Leaf Care"
-          description="Our Standard Leaf Care tier — each week we shred and finely mulch fallen leaves back into the lawn, where they act as a natural fertilizer that feeds the soil. The season ends with one deep final cleanup."
-          note="For most properties, mulching keeps the lawn looking clean between visits and gives the soil a free nutrient boost."
+          description="Using specialized mulching blades, leaves are finely shredded into the turf during weekly maintenance to control buildup and naturally feed the soil. The season ends with a deep cleanup visit to clear excess leaf cover from the lawn, hardscapes, and garden beds — leaving behind a minimal, healthy organic baseline."
+          note="Weekly care covers the lawn and walkways/driveways. The final cleanup is the only visit that includes flower beds."
           badge="Most popular"
         />
         <OptionCard
@@ -375,7 +375,7 @@ const PlanQuiz = () => {
           onClick={() => selectOption("leaves", "Pristine Management", 20)}
           icon={Crown}
           title="Pristine Leaf Care"
-          description="Our Pristine Leaf Care tier — leaves are fully removed every visit. Your property stays 100% leaf-free all season, nothing on the lawn or beds, ever."
+          description="Leaves are fully removed every visit — lawn, walkways, and driveways stay 100% leaf-free all season. Flower beds are cleared during the final cleanup visit."
         />
       </div>
     </>

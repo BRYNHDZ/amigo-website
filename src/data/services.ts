@@ -504,10 +504,10 @@ export const services: Service[] = [
     category: "cleanups",
     tagline: "Ongoing fall leaf handling — weekly, not all-at-once.",
     hero:
-      "Leaf Care is how we handle the fall leaf drop across your property on a recurring basis. Instead of one huge cleanup at the end of the season, we manage leaves each week during your regular mowing visits, so the lawn stays usable the whole fall.",
+      "Leaf Care is how we handle the fall leaf drop on your lawn and hardscapes on a recurring basis. Instead of one huge cleanup at the end of the season, we manage leaves each week during your regular mowing visits, so the lawn stays usable the whole fall. Flower beds are only addressed during the final cleanup visit (unless you're on the Estate tier).",
     whatsIncluded: [
-      "Weekly leaf management during the regular mowing route",
-      "A comprehensive final cleanup at the end of the season",
+      "Weekly leaf management on the lawn and walkways/driveways",
+      "A deep final cleanup at the end of the season that includes flower beds",
     ],
     howItWorks: [
       {
@@ -516,7 +516,7 @@ export const services: Service[] = [
       },
       {
         heading: "Three tiers — pick based on how leaf-free you want things",
-        body: "Standard mulches leaves into the turf each week, where they act as a natural fertilizer, then ends with a deep final cleanup. Pristine hauls leaves away every visit and does a comprehensive final cleanup including beds. Estate is the full 'immaculate all season' option — every surface cleared every visit, beds included.",
+        body: "Standard mulches leaves into the turf each week using specialized mulching blades, where they naturally feed the soil, then ends with a deep final cleanup that covers the lawn, hardscapes, and beds. Pristine hauls leaves away from the lawn and hardscapes every visit, with beds cleared during the final cleanup. Estate keeps every surface — lawn, hardscapes, and flower beds — completely clear every single visit.",
       },
       {
         heading: "Ongoing, not one-time",
@@ -528,20 +528,20 @@ export const services: Service[] = [
         name: "Standard",
         headline: "Mulched Weekly + Final Cleanup",
         description:
-          "Leaves are finely mulched into the turf each week, acting as a natural fertilizer. The season ends with one deep cleanup visit to clear excess leaves from the lawn, hardscapes, and beds.",
+          "Using specialized mulching blades, leaves are finely shredded into the turf during weekly maintenance to control buildup and naturally feed the soil. Weekly care covers the lawn and walkways/driveways. The season ends with a deep cleanup visit to clear excess leaf cover from the lawn, hardscapes, and garden beds — leaving behind a minimal, healthy organic baseline.",
         isPopular: true,
       },
       {
         name: "Pristine",
         headline: "Hauled Away Weekly",
         description:
-          "Leaves are actively collected and hauled away from the lawn and hardscapes during every weekly visit. Season ends with a comprehensive full-property final cleanup that also clears landscape beds.",
+          "Leaves are actively collected and hauled away from the lawn and hardscapes during every weekly visit. Flower beds are cleared during the final cleanup visit at the end of the season.",
       },
       {
         name: "Estate",
         headline: "Immaculate All Season",
         description:
-          "The most comprehensive tier. Leaves are completely cleared from the lawn, hardscapes, and every flower bed during every weekly visit. Property stays immaculate the entire fall.",
+          "The most comprehensive tier. Leaves are completely cleared from the lawn, hardscapes, and every flower bed during every weekly visit — not just at the end. Property stays immaculate the entire fall.",
       },
     ],
     scheduling: {
