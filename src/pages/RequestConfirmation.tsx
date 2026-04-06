@@ -8,23 +8,23 @@ import { CheckCircle, Search, ClipboardList, FileText, CreditCard, ArrowLeft } f
 const steps = [
   {
     icon: Search,
-    title: "Quick Review",
-    description: "We look over your request to make sure we're a good fit.",
-  },
-  {
-    icon: ClipboardList,
-    title: "Assessment",
-    description: "If everything looks good, we'll check your property so we know what it needs. If it's not a match, we'll point you in the right direction.",
+    title: "We Review Your Request",
+    description: "We look over your selections and check your property — most of the time we can do this remotely, no appointment needed.",
   },
   {
     icon: FileText,
-    title: "Proposal",
-    description: "We'll send a simple proposal for you to approve.",
+    title: "You Get a Proposal",
+    description: "We'll put together a property plan based on what you selected and send it over for you to review.",
+  },
+  {
+    icon: ClipboardList,
+    title: "You Approve, We Schedule",
+    description: "Once you approve, we'll get you on the schedule and set up billing. Simple as that.",
   },
   {
     icon: CreditCard,
-    title: "Billing Setup",
-    description: "When you approve, we'll add you to our schedule, and you can see your visit details anytime in your Client Hub.",
+    title: "Manage Everything Online",
+    description: "You'll have access to your Client Hub where you can view visits, check invoices, and update your info anytime.",
   },
 ];
 
@@ -68,11 +68,8 @@ const RequestConfirmation = () => {
             <h1 className="font-headline text-3xl md:text-4xl lg:text-5xl text-ink mb-6">
               You're all set! We'll handle it from here.
             </h1>
-            <p className="font-body text-paragraph text-lg md:text-xl max-w-2xl mx-auto mb-4">
-              We've received your information. Our team is reviewing everything now.
-            </p>
-            <p className="font-body text-ink text-lg">
-              Typical response time: <span className="font-bold text-brand">1 business day</span>
+            <p className="font-body text-paragraph text-lg md:text-xl max-w-2xl mx-auto">
+              We've received your selections and we're on it. We'll review your property and follow up with a proposal — most requests don't require a site visit.
             </p>
           </div>
 

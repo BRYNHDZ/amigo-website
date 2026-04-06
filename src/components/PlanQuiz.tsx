@@ -383,39 +383,6 @@ const PlanQuiz = () => {
 
   return (
     <div className="w-full px-4">
-        {/* Hidden duplicate form for Netlify build-time detection (name matches plan form in index.html) */}
-        <form
-          name="plan"
-          method="POST"
-          data-netlify="true"
-          data-netlify-honeypot="bot-field"
-          hidden
-        >
-          <input type="hidden" name="form-name" value="plan" />
-          <input type="text" name="bot-field" />
-          <input type="text" name="plan_version" />
-          <input type="text" name="city" />
-          <input type="text" name="status" />
-          <input type="text" name="wants_mowing" />
-          <input type="text" name="clipping_pref" />
-          <input type="text" name="lawn_health" />
-          <input type="text" name="bed_maintenance" />
-          <input type="text" name="spring_cleanup" />
-          <input type="text" name="mulch_service" />
-          <input type="text" name="trimming_plan" />
-          <input type="text" name="fall_leaf_plan" />
-          <input type="text" name="snow" />
-          <input type="text" name="hands_off_preference" />
-          <input type="text" name="care_profile_label" />
-          <input type="text" name="care_profile_desc" />
-          <input type="text" name="perennial_pruning" />
-          <input type="text" name="salt_treatment" />
-          <input type="text" name="name" />
-          <input type="text" name="address" />
-          <input type="tel" name="phone" />
-          <input type="email" name="email" />
-        </form>
-
         {/* Main Form Container */}
         <div className="w-full max-w-2xl mx-auto bg-card rounded-[2rem] shadow-2xl overflow-hidden border border-border/50 flex flex-col">
           {/* Progress Bar */}
@@ -433,15 +400,9 @@ const PlanQuiz = () => {
           </div>
 
           <form
-            name="plan"
-            method="POST"
-            data-netlify="true"
-            data-netlify-honeypot="bot-field"
             onSubmit={handleSubmit}
             className="px-6 py-6 md:px-10 md:py-8 flex-1 flex flex-col"
           >
-            <input type="hidden" name="form-name" value="plan" />
-            <input type="hidden" name="plan_version" value="v2" />
             <p className="hidden">
               <label>
                 Don't fill this out: <input name="bot-field" />
