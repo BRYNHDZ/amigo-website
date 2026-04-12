@@ -72,7 +72,7 @@ const Footer = () => {
               </li>
               <li>
                 <button
-                  onClick={() => scrollToSection('reviews')}
+                  onClick={() => scrollToSection('testimonials')}
                   className="font-body text-soft-white/70 hover:text-highlight transition-colors"
                 >
                   Testimonials
@@ -80,7 +80,7 @@ const Footer = () => {
               </li>
               <li>
                 <button
-                  onClick={() => scrollToSection('service-areas')}
+                  onClick={() => scrollToSection('areas')}
                   className="font-body text-soft-white/70 hover:text-highlight transition-colors"
                 >
                   Service Areas
@@ -88,7 +88,7 @@ const Footer = () => {
               </li>
               <li>
                 <button
-                  onClick={() => scrollToSection('quote')}
+                  onClick={() => scrollToSection('quote-form')}
                   className="font-body text-soft-white/70 hover:text-highlight transition-colors"
                 >
                   Get a Quote

@@ -196,7 +196,7 @@ const ReviewWall = () => {
             <div className="flex items-center gap-2 text-sm">
               <span className="text-paragraph">(20 reviews)</span>
               <a
-                href="https://www.google.com/maps/place/Amigos+Landscaping"
+                href="https://g.page/r/CWGwmvRMRfWpEAI/review"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-highlight font-bold hover:underline flex items-center gap-1"

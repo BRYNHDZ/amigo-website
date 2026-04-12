@@ -12,9 +12,21 @@ import BrandGuide from "./pages/BrandGuide";
 import Recommendations from "./pages/Recommendations";
 import ServiceCategoryDetail from "./pages/ServiceCategoryDetail";
 
-const ScrollToTop = () => {
-  const { pathname } = useLocation();
-  useEffect(() => { window.scrollTo(0, 0); }, [pathname]);
+const ScrollToHash = () => {
+  const { pathname, hash } = useLocation();
+  useEffect(() => {
+    if (hash) {
+      // Give the page a moment to render, then scroll to the target element
+      setTimeout(() => {
+        const el = document.getElementById(hash.slice(1));
+        if (el) {
+          el.scrollIntoView({ behavior: "smooth" });
+        }
+      }, 100);
+    } else {
+      window.scrollTo(0, 0);
+    }
+  }, [pathname, hash]);
   return null;
 };
 
@@ -27,7 +39,7 @@ const App = () => (
         <Toaster />
         <Sonner />
         <BrowserRouter>
-          <ScrollToTop />
+          <ScrollToHash />
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/request-confirmation" element={<RequestConfirmation />} />
