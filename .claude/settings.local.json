@@ -5,7 +5,11 @@
       "mcp__claude_ai_Notion__notion-query-database-view",
       "Bash(npm run:*)",
       "Bash(bash /tmp/final_check.sh)",
-      "Bash(ls -lh dist/assets/mascot-professor*)"
+      "Bash(ls -lh dist/assets/mascot-professor*)",
+      "mcp__claude_ai_Notion__notion-search",
+      "mcp__claude_ai_Notion__notion-create-database",
+      "mcp__claude_ai_Notion__notion-create-pages",
+      "Bash(bun add *)"
     ]
   }
 }
