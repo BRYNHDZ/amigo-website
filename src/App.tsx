@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, Navigate, useLocation } from "react-router-dom";
 import { useEffect } from "react";
 import { HelmetProvider } from "react-helmet-async";
+import Availability from "./pages/Availability";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import RequestConfirmation from "./pages/RequestConfirmation";
@@ -47,6 +48,7 @@ const App = () => (
             <Route path="/plan" element={<Navigate to="/#plan" replace />} />
             <Route path="/recommendations" element={<Recommendations />} />
             <Route path="/services/:categorySlug" element={<ServiceCategoryDetail />} />
+            <Route path="/availability" element={<Availability />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
