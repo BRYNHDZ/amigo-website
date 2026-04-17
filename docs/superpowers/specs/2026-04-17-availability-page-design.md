@@ -79,7 +79,7 @@ Initial seed values: title = `Week one of May`, slots = `10`.
 Browser (/availability)
   └─ fetch /.netlify/functions/scheduling-status
        └─ Netlify Function
-            ├─ reads NOTION_TOKEN from env
+            ├─ reads NOTION_SCHEDULING_TOKEN from env
             ├─ reads NOTION_SCHEDULING_DB_ID from env
             ├─ 60-second in-memory cache check
             ├─ calls Notion API (query database, take first row)
@@ -91,7 +91,7 @@ Browser (/availability)
 New file: `netlify/functions/scheduling-status.ts`
 
 Responsibilities:
-- Read `NOTION_TOKEN` and `NOTION_SCHEDULING_DB_ID` from env.
+- Read `NOTION_SCHEDULING_TOKEN` and `NOTION_SCHEDULING_DB_ID` from env.
 - Query the Notion database via `https://api.notion.com/v1/databases/{id}/query` (POST).
 - Parse the first row and extract the two fields + `last_edited_time`.
 - Cache the parsed result in module-scope memory for 60 seconds.
@@ -127,7 +127,7 @@ Register the route in `src/App.tsx` above the catch-all:
 1. In Notion: create the "Scheduling Status" database with the schema above. Add the one row with initial values.
 2. Create a Notion internal integration, share the database with it, copy the secret token.
 3. In Netlify site settings, add two environment variables:
-   - `NOTION_TOKEN` — the integration secret
+   - `NOTION_SCHEDULING_TOKEN` — the integration secret
    - `NOTION_SCHEDULING_DB_ID` — the database ID from the Notion URL
 
 Documented explicitly in the implementation plan so nothing gets missed.

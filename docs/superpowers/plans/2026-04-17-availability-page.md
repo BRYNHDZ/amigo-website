@@ -85,7 +85,7 @@ In the Netlify dashboard for this site → **Site configuration → Environment 
 
 | Key | Value |
 |---|---|
-| `NOTION_TOKEN` | The integration secret from Step 3 |
+| `NOTION_SCHEDULING_TOKEN` | The integration secret from Step 3 |
 | `NOTION_SCHEDULING_DB_ID` | The database ID from Step 5 |
 
 Scope: **All scopes** (Production + Deploy Previews + Branch deploys). Values: Secret.
@@ -173,7 +173,7 @@ const NOTION_API_URL = "https://api.notion.com/v1";
 const NOTION_VERSION = "2022-06-28";
 
 export const handler: Handler = async () => {
-  const token = process.env.NOTION_TOKEN;
+  const token = process.env.NOTION_SCHEDULING_TOKEN;
   const dbId = process.env.NOTION_SCHEDULING_DB_ID;
 
   if (!token || !dbId) {
@@ -600,7 +600,7 @@ All code is merged on `main`. This task confirms the real thing works in Netlify
 Before pushing: confirm with Brayan that:
 - Notion database "Scheduling Status" exists with the one row.
 - The integration is created and shared with the database.
-- Both `NOTION_TOKEN` and `NOTION_SCHEDULING_DB_ID` are set in Netlify env vars.
+- Both `NOTION_SCHEDULING_TOKEN` and `NOTION_SCHEDULING_DB_ID` are set in Netlify env vars.
 
 If any of these is not done, **stop here** — pushing now would deploy an always-errored page. Complete Task 1, then resume.
 
@@ -625,7 +625,7 @@ curl -s https://<your-site>.netlify.app/.netlify/functions/scheduling-status
 
 If instead you see `{"error":"unavailable"}`:
 - Open Netlify dashboard → Functions → scheduling-status → Logs. Read the failure.
-- Most common cause: env var typo. Check exact spelling of `NOTION_TOKEN` and `NOTION_SCHEDULING_DB_ID`.
+- Most common cause: env var typo. Check exact spelling of `NOTION_SCHEDULING_TOKEN` and `NOTION_SCHEDULING_DB_ID`.
 - Second most common: integration was not shared with the database (Task 1 Step 4).
 
 - [ ] **Step 4: Visit the page in a browser**
