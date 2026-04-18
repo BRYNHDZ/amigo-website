@@ -30,7 +30,36 @@ import {
   getServicesByCategory,
   categories,
   type Service,
+  type ServiceCategorySlug,
 } from "@/data/services";
+
+const categorySeo: Record<ServiceCategorySlug, { title: string; description: string }> = {
+  "lawn-care": {
+    title: "Lawn Care in Wheaton, Glen Ellyn & Winfield | Amigos",
+    description:
+      "Weekly mowing, aeration, overseeding, and year-round lawn care for DuPage County homes. Family-run since 1995.",
+  },
+  "flower-beds": {
+    title: "Flower Bed Maintenance & Mulching | Amigos Landscaping",
+    description:
+      "Mulch installation, weeding, bed edging, and flower bed maintenance in Wheaton, Glen Ellyn, and Winfield.",
+  },
+  trimming: {
+    title: "Bush & Shrub Trimming | Amigos Landscaping DuPage County",
+    description:
+      "Professional bush shaping, shrub pruning, and perennial trimming in Wheaton, Glen Ellyn, and Winfield.",
+  },
+  cleanups: {
+    title: "Spring & Fall Yard Cleanup in DuPage County | Amigos",
+    description:
+      "One-time spring and fall yard cleanups plus weekly fall leaf care in Wheaton, Glen Ellyn, and Winfield.",
+  },
+  winter: {
+    title: "Snow Removal in Wheaton, Glen Ellyn & Winfield | Amigos",
+    description:
+      "Residential snow removal and salt treatment for driveways and walkways across Wheaton, Glen Ellyn, and Winfield.",
+  },
+};
 
 const iconMap = {
   Scissors,
@@ -283,8 +312,55 @@ const ServiceCategoryDetail = () => {
   return (
     <>
       <Helmet>
-        <title>{category.title} | Amigos Landscaping</title>
-        <meta name="description" content={category.tagline} />
+        <title>{categorySeo[category.slug].title}</title>
+        <meta
+          name="description"
+          content={categorySeo[category.slug].description}
+        />
+        <link
+          rel="canonical"
+          href={`https://amigolandscaping.com/services/${category.slug}`}
+        />
+
+        {/* Open Graph */}
+        <meta property="og:title" content={categorySeo[category.slug].title} />
+        <meta
+          property="og:description"
+          content={categorySeo[category.slug].description}
+        />
+        <meta property="og:type" content="website" />
+        <meta
+          property="og:url"
+          content={`https://amigolandscaping.com/services/${category.slug}`}
+        />
+
+        {/* Service schema */}
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Service",
+            serviceType: category.title,
+            provider: {
+              "@type": "LocalBusiness",
+              name: "Amigos Landscaping",
+              url: "https://amigolandscaping.com",
+            },
+            areaServed: ["Wheaton", "Glen Ellyn", "Winfield"],
+            description: categorySeo[category.slug].description,
+            hasOfferCatalog: {
+              "@type": "OfferCatalog",
+              name: `${category.title} services`,
+              itemListElement: services.map((service) => ({
+                "@type": "Offer",
+                itemOffered: {
+                  "@type": "Service",
+                  name: service.name,
+                  description: service.tagline,
+                },
+              })),
+            },
+          })}
+        </script>
       </Helmet>
 
       <Header />
