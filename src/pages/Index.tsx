@@ -13,26 +13,22 @@ const Index = () => {
   return (
     <>
       <Helmet>
-        <title>Amigos Landscaping | DuPage County Lawn Care & Landscaping Services</title>
+        <title>Amigos Landscaping | DuPage County Lawn Care & Maintenance</title>
         <meta
           name="description"
-          content="Amigos Landscaping provides professional lawn care and landscaping services in DuPage County, Illinois. Serving Glen Ellyn, Wheaton, Lombard & more since 1995. Get your free quote today!"
+          content="Year-round lawn care and landscape maintenance for Wheaton, Glen Ellyn, and Winfield. Weekly mowing, mulch, aeration, leaf care. Free quotes."
         />
-        <meta
-          name="keywords"
-          content="landscaping, lawn care, DuPage County, Illinois, Glen Ellyn, Wheaton, lawn maintenance, mulching, tree trimming"
-        />
-        <link rel="canonical" href="https://amigolandscaping.com" />
-        
+        <link rel="canonical" href="https://amigolandscaping.com/" />
+
         {/* Open Graph */}
-        <meta property="og:title" content="Amigos Landscaping | DuPage County Lawn Care" />
+        <meta property="og:title" content="Amigos Landscaping | DuPage County Lawn Care & Maintenance" />
         <meta
           property="og:description"
-          content="Professional lawn care and landscaping services in DuPage County, Illinois since 1995."
+          content="Year-round lawn care and landscape maintenance for Wheaton, Glen Ellyn, and Winfield. Weekly mowing, mulch, aeration, leaf care. Free quotes."
         />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://amigolandscaping.com" />
-        
+        <meta property="og:url" content="https://amigolandscaping.com/" />
+
         {/* Schema.org structured data */}
         <script type="application/ld+json">
           {JSON.stringify({
@@ -62,10 +58,10 @@ const Index = () => {
             aggregateRating: {
               "@type": "AggregateRating",
               ratingValue: "5.0",
-              reviewCount: "20",
+              reviewCount: "23",
             },
             priceRange: "$$",
-            openingHours: "Mo-Fr 07:00-18:00",
+            openingHours: "Mo-Fr 08:00-16:00",
             foundingDate: "1995",
           })}
         </script>
