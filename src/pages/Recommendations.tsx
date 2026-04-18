@@ -578,7 +578,7 @@ const Recommendations = () => {
                 <div className="flex-shrink-0 relative">
                   <img
                     src={mascotConstruction}
-                    alt="Amigos Mascot at a construction site"
+                    alt="Professor Amigo at a construction site"
                     className="w-48 h-48 md:w-60 md:h-60 object-contain"
                   />
                 </div>

@@ -16,7 +16,7 @@ const ProfessorCallout = ({
     <div className="bg-[#F9FBE7] border-2 border-brand/15 rounded-3xl p-5 md:p-6 flex items-center gap-4 md:gap-6">
       <img
         src={professorMascot}
-        alt="Amigos professor mascot"
+        alt="Professor Amigo, the Amigos Landscaping mascot"
         className="flex-shrink-0 w-24 h-24 md:w-32 md:h-32 object-contain"
       />
       <div className="flex-1 min-w-0">

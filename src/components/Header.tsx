@@ -95,7 +95,7 @@ const Header = () => {
               </div>
               <img
                 src={mascot}
-                alt="Amigos Mascot"
+                alt="Professor Amigo, the Amigos Landscaping mascot"
                 className="w-12 h-12 sm:w-16 sm:h-16 md:w-24 md:h-24"
               />
             </Link>
