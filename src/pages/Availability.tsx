@@ -45,7 +45,7 @@ const Availability = () => {
     <>
       <Helmet>
         <title>Current Availability | Amigos Landscaping</title>
-        <meta name="robots" content="noindex,nofollow" />
+        <meta name="robots" content="noindex, nofollow" />
       </Helmet>
 
       <Header />

@@ -45,6 +45,7 @@ const RequestConfirmation = () => {
       <Helmet>
         <title>Request Confirmed | Amigos Landscaping</title>
         <meta name="description" content="Your service request has been received. Learn what happens next with Amigos Landscaping." />
+        <meta name="robots" content="noindex, nofollow" />
       </Helmet>
 
       <Header />

@@ -172,11 +172,21 @@ const Recommendations = () => {
   return (
     <>
       <Helmet>
-        <title>Local Recommendations | Amigos Landscaping</title>
+        <title>Recommended Local Contractors | Amigos Landscaping</title>
         <meta
           name="description"
-          content="Trusted DuPage County home service companies we recommend for work outside of Amigos Landscaping's scope."
+          content="Trusted contractors we refer in DuPage County — plumbing, construction, and more."
         />
+        <link rel="canonical" href="https://amigolandscaping.com/recommendations" />
+
+        {/* Open Graph */}
+        <meta property="og:title" content="Recommended Local Contractors | Amigos Landscaping" />
+        <meta
+          property="og:description"
+          content="Trusted contractors we refer in DuPage County — plumbing, construction, and more."
+        />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://amigolandscaping.com/recommendations" />
       </Helmet>
 
       <Header />
