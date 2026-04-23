@@ -1,28 +1,106 @@
 import { useState, useEffect } from "react";
 import { Helmet } from "react-helmet-async";
-import { 
-  Flag, Palette, Layers, Type, Smile, Film, Shirt, Layout, Image, 
-  FlaskConical, ShieldAlert, Check, X, ArrowRight, Truck, Plus,
-  Download, Scale, CheckCircle, XCircle, Minus
+import {
+  Flag, Palette, Type, Smile, Film, Shirt, Layout, Camera,
+  ShieldAlert, Check, X, ArrowRight, Truck, Copy,
+  Download, Scale, CheckCircle, XCircle, Minus, GraduationCap,
+  DollarSign, Snowflake, Flame,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const navItems = [
   { id: "identity", label: "Identity & Tone", icon: Flag },
   { id: "visuals", label: "Visual System", icon: Palette },
-  { id: "layout", label: "Layout Physics", icon: Layers },
   { id: "logos", label: "The New Logo", icon: Type },
   { id: "mascot", label: "Pico the Mascot", icon: Smile },
+  { id: "photography", label: "Photography", icon: Camera },
+  { id: "ui", label: "UI Toolkit", icon: Layout },
   { id: "motion", label: "Motion & Physics", icon: Film },
   { id: "uniforms", label: "Fleet & Uniforms", icon: Shirt },
-  { id: "ui", label: "UI Toolkit", icon: Layout },
-  { id: "graphics", label: "Graphic Examples", icon: Image },
-  { id: "hero-lab", label: "Hero Lab", icon: FlaskConical },
   { id: "rules", label: "The Law", icon: ShieldAlert },
 ];
 
+const AI_PROMPT_JSON = `{
+  "brand": "Amigos Landscaping",
+  "purpose": "Transform basic phone or Street View images of residential properties into polished, realistic visuals for quotes — capturing the emotional and physical impact of a freshly serviced home.",
+  "visual_goal": "Images should reflect the kind of care Amigos Landscaping delivers. The result should feel lived-in, welcoming, and quietly elevated — as if the property has just been beautifully maintained.",
+  "core_changes": {
+    "lawn": {
+      "mowed": true,
+      "appearance": "evenly cut with a natural finish — no striping",
+      "edges": "clean and defined along sidewalks, driveways, and hardscape borders",
+      "color": "natural green with soft texture and slight variation"
+    },
+    "mulch": {
+      "installed": true,
+      "material": "dark brown double or triple-ground mulch",
+      "appearance": "freshly applied and evenly spread through all existing flower beds"
+    },
+    "bushes": {
+      "trimmed": true,
+      "appearance": "clean, rounded or softly shaped with natural balance"
+    },
+    "debris": {
+      "cleared": true,
+      "includes": ["twigs", "leaves", "clippings", "and other visible material"]
+    }
+  },
+  "landscape_features": {
+    "layout": "Keep the original layout of all landscaping elements exactly as they appear — no changes to bed shapes, borders, or planting zones",
+    "flower_beds": "Refresh mulch and cleanup within existing flower bed areas only",
+    "planting": "Enhance what's already present — no additions or rearrangements"
+  },
+  "environment": {
+    "weather": "bright, clear day with crisp midday sunlight",
+    "sky": "blue with soft, natural clouds — clean and vibrant",
+    "shadows": "soft-edged and natural to overhead sunlight",
+    "light_effects": {
+      "sunlight": "cool-white midday light with light glare on sun-facing surfaces",
+      "glow": "subtle rim glow around sunlit materials like mulch and grass edges",
+      "lens_flare": "light, realistic sunlight flare — thin streaks or soft arcs from the sun near the top or edge of frame"
+    }
+  },
+  "mood": {
+    "feel": "clean, familiar, and slightly dreamy — like a real neighborhood on its best day",
+    "emotional_reaction": "the client feels a moment of quiet pride — like this could be their yard right now",
+    "color_tone": "true-to-life with cool highlights and fresh warmth — no orange or tinted haze"
+  },
+  "camera_language": {
+    "lens_type": "35mm to 50mm equivalent — neutral, realistic framing",
+    "depth": "light — with clear detail in lawn, beds, and house face",
+    "focus": "sharpest on lawn and mulch areas, softly easing toward house and background",
+    "lighting_direction": "overhead to lightly front-side — simulating a real midday sun",
+    "texture": "retain natural lawn blades, mulch grain, and bush detail",
+    "special_effects": {
+      "light_streaks": "sunlight streaks from reflective edges like mulch or concrete",
+      "bloom": "gentle highlight bloom where light reflects off freshly serviced areas",
+      "lens_flare": "slight sun flare from the edge of the frame — adds realism and a lived-in outdoor light feel"
+    }
+  },
+  "scene_elements": {
+    "vehicles": "remove all visible vehicles or license plates to clean up the scene",
+    "personal_items": "preserve warm, intentional touches like planters or flags if they enhance the home's character",
+    "house_structure": "leave all home materials and structure untouched — represent the house as it actually appears"
+  },
+  "editing_notes": {
+    "visual_consistency": "Maintain uniform mulch tone, lawn finish, and cleanup standards across all homes to reflect brand quality",
+    "signature_style": "Fresh-cut realism under bright daylight with a slight lens shimmer — not stylized or filtered, just real and beautiful"
+  }
+}`;
+
 const BrandGuide = () => {
   const [activeSection, setActiveSection] = useState("identity");
+  const [promptCopied, setPromptCopied] = useState(false);
+
+  const copyPrompt = async () => {
+    try {
+      await navigator.clipboard.writeText(AI_PROMPT_JSON);
+      setPromptCopied(true);
+      setTimeout(() => setPromptCopied(false), 2000);
+    } catch {
+      // clipboard API unavailable; silent fail
+    }
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -166,6 +244,7 @@ const BrandGuide = () => {
                     <div className="h-2 bg-cloud rounded-full overflow-hidden">
                       <div className="h-full bg-mist border border-structure/20 rounded-full" style={{ width: "60%" }}></div>
                     </div>
+                    <p className="text-xs text-paragraph font-body mt-1.5"><strong className="text-ink">60%</strong> of surfaces — the "paper" cards sit on.</p>
                   </div>
                 </div>
 
@@ -180,6 +259,7 @@ const BrandGuide = () => {
                     <div className="h-2 bg-cloud rounded-full overflow-hidden">
                       <div className="h-full bg-brand rounded-full" style={{ width: "25%" }}></div>
                     </div>
+                    <p className="text-xs text-paragraph font-body mt-1.5"><strong className="text-ink">25%</strong> — logo, headers, filled emphasis, primary dark buttons.</p>
                   </div>
                 </div>
 
@@ -194,6 +274,7 @@ const BrandGuide = () => {
                     <div className="h-2 bg-cloud rounded-full overflow-hidden">
                       <div className="h-full bg-ink rounded-full" style={{ width: "10%" }}></div>
                     </div>
+                    <p className="text-xs text-paragraph font-body mt-1.5"><strong className="text-ink">10%</strong> — all headlines and dark text. Never pure black.</p>
                   </div>
                 </div>
 
@@ -208,6 +289,7 @@ const BrandGuide = () => {
                     <div className="h-2 bg-cloud rounded-full overflow-hidden">
                       <div className="h-full bg-highlight rounded-full" style={{ width: "5%" }}></div>
                     </div>
+                    <p className="text-xs text-paragraph font-body mt-1.5"><strong className="text-ink">5%</strong> — CTAs, accents, eyebrow labels, badges. Spotlight only, never a fill.</p>
                   </div>
                 </div>
               </div>
@@ -234,51 +316,57 @@ const BrandGuide = () => {
                 </div>
               </div>
             </div>
-          </section>
 
-          {/* Section 3: Layout Physics */}
-          <section id="layout" className="doc-section">
-            <div className="flex items-center gap-3 mb-8 border-b border-mist pb-4">
-              <Layers className="w-8 h-8 text-highlight" />
-              <h2 className="font-headline text-4xl text-ink">Layout Physics</h2>
-            </div>
+            {/* The Nuclear Option — formerly Hero Lab */}
+            <div className="mt-12 pt-10 border-t border-mist">
+              <p className="font-body text-xs font-extrabold text-highlight uppercase tracking-[0.22em] mb-3">when to go nuclear</p>
+              <h3 className="font-headline text-2xl text-ink mb-3">The Inter Override</h3>
+              <p className="text-paragraph font-body leading-relaxed max-w-3xl mb-6">
+                Our brand is friendly ("Amigos"), but sometimes business requires a serious tone — contracts, disclaimers, high-stakes billboards. For these rare <strong className="text-ink">"Nuclear"</strong> moments, we're authorized to break out <strong className="text-ink">Inter ExtraBold</strong>.
+              </p>
 
-            <p className="text-paragraph text-lg mb-8 max-w-3xl">
-              We use <strong>Cloud Grey</strong> as the floor, and <strong>Pure White</strong> as the paper. This creates depth without heavy shadows.
-            </p>
-
-            <div className="bg-cloud p-12 rounded-3xl border border-mist">
-              <h3 className="font-bold text-structure text-sm uppercase tracking-wider mb-8 text-center">The "Layering" Diagram</h3>
-              <div className="flex flex-col md:flex-row gap-8 justify-center items-start text-center">
-                <div className="flex-1">
-                  <div className="h-24 bg-cloud border-2 border-dashed border-structure/30 rounded-xl mb-3 flex items-center justify-center text-structure font-bold">Background</div>
-                  <h4 className="font-headline text-xl text-ink">Level 0: Cloud</h4>
-                  <p className="text-sm text-paragraph mt-2">Always #F3F4F6.</p>
-                </div>
-                <div className="hidden md:flex items-center justify-center h-24 pt-8 text-structure/30">
-                  <ArrowRight className="w-8 h-8" />
-                </div>
-                <div className="flex-1">
-                  <div className="h-24 bg-white border border-mist rounded-xl shadow-sm mb-3 flex items-center justify-center text-ink font-bold">Content Card</div>
-                  <h4 className="font-headline text-xl text-ink">Level 1: Card</h4>
-                  <p className="text-sm text-paragraph mt-2">Always #FFFFFF.</p>
-                </div>
-                <div className="hidden md:flex items-center justify-center h-24 pt-8 text-structure/30">
-                  <ArrowRight className="w-8 h-8" />
-                </div>
-                <div className="flex-1">
-                  <div className="h-24 bg-white border border-mist rounded-xl shadow-sm mb-3 flex items-center justify-center gap-2">
-                    <span className="bg-highlight w-8 h-8 rounded-full"></span>
-                    <span className="bg-ink w-20 h-4 rounded-full opacity-20"></span>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                {/* Fredoka */}
+                <div className="bg-white p-6 rounded-2xl border-2 border-red-100 flex flex-col h-full opacity-60 hover:opacity-100 transition-opacity">
+                  <span className="text-[10px] font-bold text-structure uppercase tracking-wider mb-4 block border-b border-mist pb-2">Attempt 1: Fredoka</span>
+                  <h4 className="font-headline text-2xl text-ink leading-tight mb-4">
+                    Proudly serving DuPage, Illinois.
+                  </h4>
+                  <div className="mt-auto p-3 bg-red-50 rounded-lg text-xs text-red-700 font-bold leading-relaxed">
+                    <X className="w-3 h-3 inline mr-1" /> TOO BOUNCY. <br />Trivializes the legacy.
                   </div>
-                  <h4 className="font-headline text-xl text-ink">Level 2: Action</h4>
-                  <p className="text-sm text-paragraph mt-2">Buttons & Text.</p>
+                </div>
+
+                {/* Nunito */}
+                <div className="bg-white p-6 rounded-2xl border-2 border-mist flex flex-col h-full">
+                  <span className="text-[10px] font-bold text-structure uppercase tracking-wider mb-4 block border-b border-mist pb-2">Attempt 2: Nunito</span>
+                  <h4 className="font-body text-2xl text-ink leading-tight mb-4" style={{ fontWeight: 800 }}>
+                    Proudly serving DuPage, Illinois.
+                  </h4>
+                  <div className="mt-auto p-3 bg-highlight/10 rounded-lg text-xs text-highlight font-bold leading-relaxed">
+                    <Minus className="w-3 h-3 inline mr-1" /> OKAY. <br />Clean, but still feels soft.
+                  </div>
+                </div>
+
+                {/* Inter */}
+                <div className="bg-white p-6 rounded-2xl border-4 border-ink shadow-lg flex flex-col h-full relative">
+                  <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-ink text-highlight px-4 py-1 rounded-full text-xs font-bold tracking-widest shadow-md whitespace-nowrap border-2 border-highlight">
+                    THE SOLUTION
+                  </div>
+                  <span className="text-[10px] font-bold text-structure uppercase tracking-wider mb-4 block border-b border-mist pb-2 mt-2">Attempt 3: Inter (Nuclear)</span>
+                  <h4 className="font-serious text-2xl text-ink leading-tight mb-4 uppercase" style={{ fontWeight: 900, letterSpacing: "-0.02em" }}>
+                    Proudly serving DuPage, Illinois.
+                  </h4>
+                  <div className="mt-auto p-3 bg-ink rounded-lg text-xs text-white font-bold leading-relaxed flex items-center gap-2">
+                    <CheckCircle className="w-4 h-4 text-highlight" />
+                    <span>AUTHORITY. <br />Use only when necessary.</span>
+                  </div>
                 </div>
               </div>
             </div>
           </section>
 
-          {/* Section 4: Logo System */}
+          {/* Section 3: Logo System */}
           <section id="logos" className="doc-section">
             <div className="flex items-center gap-3 mb-8 border-b border-mist pb-4">
               <Type className="w-8 h-8 text-highlight" />
@@ -368,6 +456,18 @@ const BrandGuide = () => {
             </div>
 
             <div className="space-y-12">
+              {/* SIGNATURE MOVE CALLOUT */}
+              <div className="p-6 bg-highlight/10 border-l-4 border-highlight rounded-xl">
+                <p className="font-body text-xs font-extrabold text-highlight uppercase tracking-[0.22em] mb-2">the signature move</p>
+                <h3 className="font-headline text-2xl text-ink mb-2">Pico Dresses For The Job</h3>
+                <p className="text-paragraph font-body">
+                  Same character, different wardrobe. Each context earns a Pico in costume — a visual signal of <em>what kind of content you're in.</em> No other lawn care brand does this.
+                </p>
+                <p className="text-sm text-paragraph font-body mt-3 italic">
+                  Rule: Pico is the storyteller, never the decoration. He does not belong inside buttons.
+                </p>
+              </div>
+
               {/* Bio & Do/Don't */}
               <div className="flex flex-col md:flex-row gap-8 items-start">
                 <div className="w-full md:w-1/3 text-center">
@@ -435,19 +535,46 @@ const BrandGuide = () => {
                 <p className="text-sm text-paragraph mt-4 text-center">If Pico appears next to a human, he must be scaled to exactly <strong>half their height</strong>.</p>
               </div>
 
-              {/* Pose Library */}
+              {/* Role Library (replaces Pose Library) */}
               <div>
-                <h3 className="font-headline text-xl text-ink mb-6 flex items-center gap-2">
+                <h3 className="font-headline text-xl text-ink mb-2 flex items-center gap-2">
                   <span className="bg-ink text-white w-8 h-8 rounded-full flex items-center justify-center text-sm">02</span>
-                  Pose Library
+                  Role Library
                 </h3>
-                <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
-                  {[1, 2, 3, 4, 5, 6].map((num) => (
-                    <div key={num} className="aspect-square bg-white rounded-xl border-2 border-dashed border-mist flex items-center justify-center">
-                      <div className="text-center text-structure">
-                        <Image className="w-8 h-8 mx-auto mb-2" />
-                        <span className="text-xs font-bold">Pose {num}</span>
+                <p className="text-sm text-paragraph font-body mb-6 max-w-2xl">
+                  Established Pico costumes. Every new content type earns its own role if it merits one — otherwise use the closest existing one (Professor for any explainer, Cozy for any "we handle it" moment).
+                </p>
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+                  {[
+                    { icon: GraduationCap, name: "Professor", purpose: "Teaching · service explainers", status: "built" },
+                    { icon: DollarSign, name: "Money", purpose: "Referrals · discounts", status: "built" },
+                    { icon: Snowflake, name: "Snow", purpose: "Snow removal content", status: "built" },
+                    { icon: Flame, name: "Cozy", purpose: '"Relax inside, we\'ve got this"', status: "built" },
+                  ].map((role) => {
+                    const Icon = role.icon;
+                    return (
+                      <div key={role.name} className="bg-white border border-mist rounded-2xl p-4 text-center">
+                        <div className="w-14 h-14 mx-auto mb-3 bg-brand/10 rounded-full flex items-center justify-center">
+                          <Icon className="w-7 h-7 text-brand" />
+                        </div>
+                        <h4 className="font-headline text-base text-ink">{role.name} Pico</h4>
+                        <p className="text-xs text-paragraph font-body mt-1">{role.purpose}</p>
                       </div>
+                    );
+                  })}
+                </div>
+
+                <p className="text-xs font-bold text-structure uppercase tracking-widest mb-4">candidate costumes — build as content demands</p>
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                  {[
+                    { name: "Crew-Vest", purpose: "General service" },
+                    { name: "Mulch-Bag", purpose: "Mulch installs" },
+                    { name: "Rake", purpose: "Leaf care · fall" },
+                    { name: "Spring", purpose: "Fresh flowers · lighter greens" },
+                  ].map((role) => (
+                    <div key={role.name} className="bg-cloud border border-mist rounded-xl p-3 text-center opacity-70">
+                      <h4 className="font-headline text-sm text-ink">{role.name}</h4>
+                      <p className="text-[10px] text-paragraph font-body mt-1">{role.purpose}</p>
                     </div>
                   ))}
                 </div>
@@ -455,7 +582,356 @@ const BrandGuide = () => {
             </div>
           </section>
 
-          {/* Section 6: Motion Physics */}
+          {/* Section 6: Photography */}
+          <section id="photography" className="doc-section">
+            <div className="flex items-center gap-3 mb-8 border-b border-mist pb-4">
+              <Camera className="w-8 h-8 text-highlight" />
+              <h2 className="font-headline text-4xl text-ink">Photography</h2>
+            </div>
+
+            <p className="text-paragraph font-body mb-8 max-w-2xl">
+              Real photos of real Amigos work. Natural light, suburban DuPage. Framed clean — no borders, no heavy shadows. Photos read as content inside cards, not competing with them.
+            </p>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+              <div className="bg-cloud p-6 rounded-2xl border border-mist">
+                <h3 className="font-headline text-xl text-ink mb-3">Display Rules</h3>
+                <ul className="space-y-2 font-body">
+                  <li className="text-sm text-paragraph"><strong className="text-ink">Radius:</strong> 1.5rem (24px)</li>
+                  <li className="text-sm text-paragraph"><strong className="text-ink">Shadow:</strong> none by default</li>
+                  <li className="text-sm text-paragraph"><strong className="text-ink">Border:</strong> none</li>
+                  <li className="text-sm text-paragraph"><strong className="text-ink">Aspect ratios:</strong> 16:9 heroes · 4:3 properties · 1:1 social · 3:2 editorial</li>
+                  <li className="text-sm text-paragraph"><strong className="text-ink">Text overlay:</strong> rgba(24,36,15,0.40)</li>
+                </ul>
+              </div>
+
+              <div className="bg-cloud p-6 rounded-2xl border border-mist">
+                <h3 className="font-headline text-xl text-ink mb-3">AI Image Rule</h3>
+                <p className="text-sm text-paragraph font-body mb-3">
+                  AI-generated imagery may be used for <strong className="text-ink">quote covers, social aspirationals, vision boards.</strong>
+                </p>
+                <p className="text-sm text-paragraph font-body">
+                  <strong className="text-ink">Never</strong> as before/after or proof of real work. Always frame as <em>"what your property could look like."</em>
+                </p>
+              </div>
+            </div>
+
+            <div className="mb-8">
+              <p className="text-xs font-bold text-structure uppercase tracking-widest mb-4">The Standard Treatment</p>
+              <div className="bg-cloud p-8 rounded-2xl flex items-center justify-center">
+                <img
+                  src="https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=1200&q=80"
+                  alt="Freshly maintained lawn and garden beds"
+                  className="w-full max-w-2xl block"
+                  style={{ aspectRatio: "16/9", objectFit: "cover", borderRadius: "1.5rem" }}
+                />
+              </div>
+              <p className="text-xs text-paragraph text-center italic mt-3">1.5rem radius · no shadow · no border · clean edges</p>
+            </div>
+
+            <div className="p-6 bg-highlight/10 border-l-4 border-highlight rounded-xl mb-8">
+              <p className="font-body text-xs font-extrabold text-highlight uppercase tracking-[0.22em] mb-2">signature aesthetic</p>
+              <p className="text-ink font-body text-lg italic">
+                Fresh-cut realism under bright daylight with a slight lens shimmer — not stylized or filtered, just real and beautiful.
+              </p>
+            </div>
+
+            <div>
+              <div className="flex items-center justify-between mb-3">
+                <div>
+                  <p className="font-body text-xs font-extrabold text-structure uppercase tracking-[0.22em]">AI Generation Prompt</p>
+                  <p className="text-sm text-paragraph font-body mt-1">Feed alongside a Street View or phone photo of a client property.</p>
+                </div>
+                <button
+                  onClick={copyPrompt}
+                  className="btn-primary px-4 py-2 rounded-xl inline-flex items-center gap-2 text-sm shadow-md hover:scale-105 transition flex-shrink-0"
+                >
+                  {promptCopied ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
+                  {promptCopied ? "Copied" : "Copy Prompt"}
+                </button>
+              </div>
+              <pre className="bg-ink text-white p-5 rounded-2xl text-xs font-mono overflow-auto max-h-96 border border-ink leading-relaxed">
+                <code>{AI_PROMPT_JSON}</code>
+              </pre>
+            </div>
+          </section>
+
+          {/* Section 6: UI Toolkit */}
+          <section id="ui" className="doc-section">
+            <div className="flex items-center gap-3 mb-8 border-b border-mist pb-4">
+              <Layout className="w-8 h-8 text-highlight" />
+              <h2 className="font-headline text-4xl text-ink">UI Toolkit</h2>
+            </div>
+
+            <div className="space-y-12">
+              {/* Depth Model (the old Layout Physics) */}
+              <div>
+                <h3 className="text-xs font-bold text-structure uppercase tracking-wider mb-4 pb-2 border-b border-mist">Depth Model</h3>
+                <p className="text-sm text-paragraph font-body mb-6 max-w-2xl">
+                  Three layers — no more, no less. <strong className="text-ink">Cloud Grey</strong> is the floor, <strong className="text-ink">Pure White</strong> is the paper, actions sit on top. Depth comes from layering, never from heavy shadows.
+                </p>
+                <div className="bg-cloud p-8 rounded-3xl border border-mist">
+                  <div className="flex flex-col md:flex-row gap-6 justify-center items-start text-center">
+                    <div className="flex-1">
+                      <div className="h-20 bg-cloud border-2 border-dashed border-structure/30 rounded-xl mb-3 flex items-center justify-center text-structure font-bold">Background</div>
+                      <h4 className="font-headline text-lg text-ink">Level 0: Cloud</h4>
+                      <p className="text-xs text-paragraph font-body mt-1">Always <code className="font-mono">#F3F4F6</code></p>
+                    </div>
+                    <div className="hidden md:flex items-center justify-center h-20 pt-6 text-structure/30">
+                      <ArrowRight className="w-6 h-6" />
+                    </div>
+                    <div className="flex-1">
+                      <div className="h-20 bg-white border border-mist rounded-xl shadow-sm mb-3 flex items-center justify-center text-ink font-bold">Content Card</div>
+                      <h4 className="font-headline text-lg text-ink">Level 1: Card</h4>
+                      <p className="text-xs text-paragraph font-body mt-1">Always <code className="font-mono">#FFFFFF</code></p>
+                    </div>
+                    <div className="hidden md:flex items-center justify-center h-20 pt-6 text-structure/30">
+                      <ArrowRight className="w-6 h-6" />
+                    </div>
+                    <div className="flex-1">
+                      <div className="h-20 bg-white border border-mist rounded-xl shadow-sm mb-3 flex items-center justify-center gap-2">
+                        <span className="bg-highlight w-7 h-7 rounded-full"></span>
+                        <span className="bg-ink w-16 h-3 rounded-full opacity-20"></span>
+                      </div>
+                      <h4 className="font-headline text-lg text-ink">Level 2: Action</h4>
+                      <p className="text-xs text-paragraph font-body mt-1">Buttons, text, icons</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Soft White Rule (preserved) */}
+              <div className="bg-highlight/10 border border-highlight/20 p-6 rounded-2xl flex flex-col md:flex-row items-center gap-8">
+                <div className="flex-shrink-0 text-center">
+                  <span className="text-xs font-bold text-highlight uppercase mb-2 block tracking-wider">The "Soft White" Physics</span>
+                  <button className="btn-primary text-xl px-8 py-3 shadow-lg transform hover:scale-105 transition">Soft White Text</button>
+                  <div className="mt-2 text-[10px] font-mono text-highlight">#F9FAFB on #FFB300</div>
+                </div>
+                <div className="flex-1 border-l border-highlight/20 pl-6">
+                  <h4 className="font-headline text-xl text-ink mb-2">Why not pure white?</h4>
+                  <p className="text-sm text-paragraph leading-relaxed font-body">
+                    On our active <strong>Golden Hour</strong> background, pure white (#FFFFFF) creates a "vibrating" effect. We use <strong>Soft White (#F9FAFB)</strong> to reduce glare.
+                  </p>
+                </div>
+              </div>
+
+              {/* 01. Buttons */}
+              <div>
+                <h3 className="text-xs font-bold text-structure uppercase tracking-wider mb-4 pb-2 border-b border-mist">Buttons</h3>
+                <p className="text-sm text-paragraph font-body mb-6 max-w-2xl">
+                  Two primary fills — <strong>no ghost button.</strong> Two-action layouts use gold + green side-by-side: gold wins the eye, green is the quieter alternate.
+                </p>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="p-6 border border-mist rounded-2xl bg-cloud">
+                    <div className="text-center mb-4">
+                      <button className="btn-primary px-8 py-3 rounded-xl shadow-lg inline-flex items-center gap-2">Get a Quote <ArrowRight className="w-4 h-4" /></button>
+                    </div>
+                    <h4 className="font-headline text-base text-ink mb-1">P1 — Primary Gold</h4>
+                    <p className="text-xs text-paragraph font-body mb-3">The main CTA everywhere.</p>
+                    <ul className="text-xs text-paragraph font-body space-y-1 list-disc list-inside">
+                      <li>Fill <code className="text-ink font-mono">#FFB300</code> · Text <code className="text-ink font-mono">#F9FAFB</code> (Soft White — <strong className="text-ink">never</strong> pure white)</li>
+                      <li>Radius 1rem · Nunito 800 uppercase, 0.05em tracking</li>
+                      <li>Always ends with <code className="text-ink font-mono">→</code></li>
+                      <li>Hover: <code className="text-ink font-mono">scale(1.02)</code>, no color change</li>
+                    </ul>
+                  </div>
+                  <div className="p-6 border border-mist rounded-2xl bg-cloud">
+                    <div className="text-center mb-4">
+                      <button className="bg-brand text-white font-body font-extrabold uppercase tracking-wide text-sm px-8 py-3 rounded-xl shadow-md inline-flex items-center gap-2">View Plans <ArrowRight className="w-4 h-4" /></button>
+                    </div>
+                    <h4 className="font-headline text-base text-ink mb-1">P2 — Primary Dark</h4>
+                    <p className="text-xs text-paragraph font-body mb-3">Quieter primary for gold-heavy contexts.</p>
+                    <ul className="text-xs text-paragraph font-body space-y-1 list-disc list-inside">
+                      <li>Fill <code className="text-ink font-mono">#30471F</code> (Brand Green) · Text white</li>
+                      <li>Same Nunito 800 uppercase, 1rem radius, <code className="text-ink font-mono">→</code> convention</li>
+                      <li>Use <strong className="text-ink">when gold is already used</strong> or feels too loud</li>
+                      <li>Hover: <code className="text-ink font-mono">scale(1.02)</code>, no color change</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              {/* 02. Cards */}
+              <div>
+                <h3 className="text-xs font-bold text-structure uppercase tracking-wider mb-4 pb-2 border-b border-mist">Cards</h3>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                  <div>
+                    <div className="bg-cloud p-4 rounded-xl mb-3">
+                      <div className="bg-white p-4 rounded-2xl border border-mist shadow-sm">
+                        <h4 className="font-headline text-base text-ink mb-1">Every week, same</h4>
+                        <p className="text-xs text-paragraph font-body">The universal content container.</p>
+                      </div>
+                    </div>
+                    <h4 className="font-headline text-base text-ink mb-1">C1 — Standard</h4>
+                    <p className="text-xs text-paragraph font-body mb-2">The default. Used everywhere.</p>
+                    <ul className="text-xs text-paragraph font-body space-y-1 list-disc list-inside">
+                      <li>Fill <code className="text-ink font-mono">#FFFFFF</code> on Cloud Grey floor</li>
+                      <li>Radius 2rem · Padding 1.5–2rem</li>
+                      <li>Border 1px Mist · Shadow <strong className="text-ink">ultra-subtle only</strong> (<code className="text-ink font-mono">0 4px 6px -1px rgba(0,0,0,0.02)</code>)</li>
+                      <li>Never heavy drop shadows. If it needs more lift, layer a second card — don't darken the shadow.</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <div className="bg-cloud p-4 rounded-xl mb-3">
+                      <div className="bg-brand p-4 rounded-2xl">
+                        <p className="font-body text-[10px] font-extrabold text-highlight uppercase tracking-widest mb-1">why amigos</p>
+                        <h4 className="font-headline text-base text-white mb-1">30 years</h4>
+                        <p className="text-xs text-white/80 font-body">DuPage since 1995.</p>
+                      </div>
+                    </div>
+                    <h4 className="font-headline text-base text-ink mb-1">C2 — Brand Dark</h4>
+                    <p className="text-xs text-paragraph font-body mb-2"><strong className="text-ink">Rare use only.</strong> Palate cleanser.</p>
+                    <ul className="text-xs text-paragraph font-body space-y-1 list-disc list-inside">
+                      <li>Fill <code className="text-ink font-mono">#30471F</code> · Text white · Eyebrow gold</li>
+                      <li>Radius 2rem · <strong className="text-ink">No shadow</strong> (color is the elevation)</li>
+                      <li>Drop in <strong className="text-ink">only when</strong> a run of white cards starts feeling monotonous</li>
+                      <li>Never as a default container. Never as a large background fill.</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <div className="bg-cloud p-4 rounded-xl mb-3">
+                      <div className="p-3 rounded-lg border-l-4 border-highlight bg-[#F9FBE7]">
+                        <p className="font-body text-[10px] font-extrabold text-brand uppercase tracking-widest mb-1">good to know</p>
+                        <p className="text-xs text-ink font-body">Spring windows are short — book by April 15.</p>
+                      </div>
+                    </div>
+                    <h4 className="font-headline text-base text-ink mb-1">C4 — Callout / Note</h4>
+                    <p className="text-xs text-paragraph font-body mb-2">Tips, seasonal nudges, "good to know" asides.</p>
+                    <ul className="text-xs text-paragraph font-body space-y-1 list-disc list-inside">
+                      <li>Fill <code className="text-ink font-mono">#F9FBE7</code> (soft yellow)</li>
+                      <li>Left border: <strong className="text-ink">4px</strong> <code className="text-ink font-mono">#FFB300</code></li>
+                      <li>Radius 0.75rem · Padding 1.1rem 1.4rem</li>
+                      <li>Eyebrow in green + body in ink</li>
+                    </ul>
+                  </div>
+                </div>
+                <p className="text-xs text-structure italic mt-4">No service card pattern — services get their own pages, not card grids.</p>
+              </div>
+
+              {/* 03. Section Header */}
+              <div>
+                <h3 className="text-xs font-bold text-structure uppercase tracking-wider mb-4 pb-2 border-b border-mist">Section Header</h3>
+                <div className="bg-cloud p-8 rounded-2xl mb-4">
+                  <p className="font-body text-xs font-extrabold text-highlight uppercase tracking-[0.22em] mb-3">how we work</p>
+                  <h3 className="font-headline text-3xl text-ink mb-3 leading-tight">Every week, same standard</h3>
+                  <p className="text-paragraph font-body max-w-lg">We show up. We stay consistent. Your property looks the same every Friday, no matter the weather.</p>
+                </div>
+                <p className="text-sm text-paragraph font-body mb-2">Every email, web section, quote, and flyer opens with this pattern. Always in this exact order:</p>
+                <ul className="text-xs text-paragraph font-body space-y-1 list-disc list-inside">
+                  <li><strong className="text-ink">Eyebrow:</strong> Nunito 800, 0.75rem, <code className="text-ink font-mono">#FFB300</code> gold, uppercase, 0.22em letter-spacing</li>
+                  <li><strong className="text-ink">Title:</strong> Fredoka 700, 2–2.5rem, <code className="text-ink font-mono">#18240F</code> ink, line-height 1.05</li>
+                  <li><strong className="text-ink">Paragraph:</strong> Nunito 400, 1rem, <code className="text-ink font-mono">#4B5563</code> body copy, max-width 42rem</li>
+                </ul>
+              </div>
+
+              {/* 04. Badges */}
+              <div>
+                <h3 className="text-xs font-bold text-structure uppercase tracking-wider mb-4 pb-2 border-b border-mist">Badges</h3>
+                <div className="flex flex-wrap gap-4 mb-4">
+                  <span className="bg-brand text-soft-white px-4 py-1 rounded-full font-headline text-sm tracking-wider">NEW</span>
+                  <span className="bg-highlight text-soft-white px-4 py-1 rounded-full font-headline text-sm tracking-wider">POPULAR</span>
+                  <span className="bg-mist text-ink px-4 py-1 rounded-full font-headline text-sm tracking-wider">MULCH</span>
+                </div>
+                <ul className="text-xs text-paragraph font-body space-y-1 list-disc list-inside mb-2">
+                  <li><strong className="text-ink">NEW</strong> → <code className="text-ink font-mono">#30471F</code> fill · <code className="text-ink font-mono">#F9FAFB</code> text — new services, features</li>
+                  <li><strong className="text-ink">POPULAR</strong> → <code className="text-ink font-mono">#FFB300</code> fill · <code className="text-ink font-mono">#F9FAFB</code> text — most-chosen plans</li>
+                  <li><strong className="text-ink">Category tag</strong> → <code className="text-ink font-mono">#E5E7EB</code> fill · <code className="text-ink font-mono">#18240F</code> text — classification, never promotional</li>
+                  <li>All pills: radius 9999px · Fredoka 700, 0.8rem uppercase, 0.08em tracking · padding 0.4rem 1rem</li>
+                </ul>
+                <p className="text-xs text-structure italic">No urgency/seasonal badge. Urgency lives in copy, not labels — the friendly-neighbor vibe doesn't do "ACT NOW" pressure.</p>
+              </div>
+
+              {/* 05. Stats / Social Proof */}
+              <div>
+                <h3 className="text-xs font-bold text-structure uppercase tracking-wider mb-4 pb-2 border-b border-mist">Stats / Social Proof</h3>
+                <div className="bg-white border border-mist rounded-2xl p-6 shadow-sm grid grid-cols-2 md:grid-cols-4 gap-4 text-center mb-4">
+                  <div>
+                    <div className="font-headline text-3xl text-brand leading-none">600+</div>
+                    <div className="font-body text-[10px] font-bold text-structure uppercase tracking-widest mt-2">happy clients</div>
+                  </div>
+                  <div>
+                    <div className="font-headline text-3xl text-brand leading-none">83K+</div>
+                    <div className="font-body text-[10px] font-bold text-structure uppercase tracking-widest mt-2">visits completed</div>
+                  </div>
+                  <div>
+                    <div className="font-headline text-3xl text-brand leading-none">5.0★</div>
+                    <div className="font-body text-[10px] font-bold text-structure uppercase tracking-widest mt-2">star rating</div>
+                  </div>
+                  <div>
+                    <div className="font-headline text-3xl text-brand leading-none">30</div>
+                    <div className="font-body text-[10px] font-bold text-structure uppercase tracking-widest mt-2">years in business</div>
+                  </div>
+                </div>
+                <ul className="text-xs text-paragraph font-body space-y-1 list-disc list-inside">
+                  <li><strong className="text-ink">Numbers:</strong> Fredoka 700 · <code className="text-ink font-mono">#30471F</code> Brand Green · 1.85–2.35rem · line-height 1</li>
+                  <li><strong className="text-ink">Labels:</strong> Nunito 700 · <code className="text-ink font-mono">#9CA3AF</code> · 0.65rem uppercase · 0.15em tracking</li>
+                  <li><strong className="text-ink">Container:</strong> Standard Card (C1) · 4 equal columns · 1rem gap · centered</li>
+                  <li>Canonical stats: <strong className="text-ink">600+ · 83K+ · 5.0★ · 30 years</strong></li>
+                </ul>
+              </div>
+
+              {/* 06. Lists */}
+              <div>
+                <h3 className="text-xs font-bold text-structure uppercase tracking-wider mb-4 pb-2 border-b border-mist">Lists</h3>
+                <p className="text-sm text-paragraph font-body mb-6 max-w-2xl">
+                  <strong className="text-ink">Amigos lists always have meaning.</strong> No neutral bulleted lists — either earned checkmarks or numbered steps.
+                </p>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div>
+                    <div className="bg-white border border-mist rounded-2xl p-5">
+                      <p className="font-body text-xs font-extrabold text-highlight uppercase tracking-[0.22em] mb-3">what you get</p>
+                      <ul className="space-y-2">
+                        {["Weekly mowing + edging + blowing", "Bagged clippings (no mulching)", "Seasonal leaf care included"].map((item, i) => (
+                          <li key={i} className="flex items-start gap-3">
+                            <Check className="w-[18px] h-[18px] text-brand flex-shrink-0 mt-0.5" strokeWidth={3.5} />
+                            <span className="text-sm text-ink font-body font-semibold">{item}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                    <h4 className="font-headline text-base text-ink mt-3 mb-1">L2a — Checklist</h4>
+                    <p className="text-xs text-paragraph font-body mb-2">For "what you get" — plan inclusions, benefits.</p>
+                    <ul className="text-xs text-paragraph font-body space-y-1 list-disc list-inside">
+                      <li>Icon: brand-green SVG checkmark · stroke-width 3.5 · 18px · <strong className="text-ink">no background circle</strong></li>
+                      <li>Item text: Nunito 600 · <code className="text-ink font-mono">#18240F</code> · 0.95rem</li>
+                      <li>Padding per item: 0.5rem top/bottom · 2rem left indent</li>
+                      <li>Optional gold eyebrow above the list (e.g., "WHAT YOU GET")</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <div className="bg-white border border-mist rounded-2xl p-5">
+                      <p className="font-body text-xs font-extrabold text-highlight uppercase tracking-[0.22em] mb-3">how it works</p>
+                      <ol className="space-y-3">
+                        {[
+                          { n: 1, t: "Tell us about your property", d: "Address, lot size, priorities." },
+                          { n: 2, t: "We build your plan", d: "Simple yearly roadmap." },
+                          { n: 3, t: "We handle it", d: "Same standard every visit." },
+                        ].map((step) => (
+                          <li key={step.n} className="flex items-start gap-3">
+                            <span className="bg-brand text-white rounded-full w-7 h-7 flex items-center justify-center font-headline text-xs flex-shrink-0">{step.n}</span>
+                            <div>
+                              <div className="text-sm font-bold text-ink font-body">{step.t}</div>
+                              <div className="text-xs text-paragraph font-body">{step.d}</div>
+                            </div>
+                          </li>
+                        ))}
+                      </ol>
+                    </div>
+                    <h4 className="font-headline text-base text-ink mt-3 mb-1">L3 — Numbered Steps</h4>
+                    <p className="text-xs text-paragraph font-body mb-2">For "how it works" — onboarding, process explainers.</p>
+                    <ul className="text-xs text-paragraph font-body space-y-1 list-disc list-inside">
+                      <li>Number circle: <code className="text-ink font-mono">#30471F</code> fill · 2.2rem square · white Fredoka 700</li>
+                      <li>Connector: 2px dashed <code className="text-ink font-mono">rgba(48,71,31,0.2)</code> between steps</li>
+                      <li>Step title: Nunito 700 bold · <code className="text-ink font-mono">#18240F</code></li>
+                      <li>Description: Nunito 400 · 0.9rem · <code className="text-ink font-mono">#4B5563</code></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* Section 8: Motion Physics */}
           <section id="motion" className="doc-section">
             <div className="flex items-center gap-3 mb-8 border-b border-mist pb-4">
               <Film className="w-8 h-8 text-highlight" />
@@ -480,13 +956,13 @@ const BrandGuide = () => {
                 </p>
                 <div className="flex gap-4">
                   <button className="btn-primary px-6 py-3 transition-transform hover:scale-105">Hover Me</button>
-                  <button className="px-6 py-3 rounded-xl border-2 border-mist font-headline text-ink hover:border-ink transition">Ghost Button</button>
+                  <button className="bg-brand text-white font-body font-extrabold uppercase tracking-wide text-sm px-6 py-3 rounded-xl shadow-md transition-transform hover:scale-105">Alt Primary</button>
                 </div>
               </div>
             </div>
           </section>
 
-          {/* Section 7: Fleet & Uniforms */}
+          {/* Section 9: Fleet & Uniforms */}
           <section id="uniforms" className="doc-section">
             <div className="flex items-center gap-3 mb-8 border-b border-mist pb-4">
               <Shirt className="w-8 h-8 text-highlight" />
@@ -523,129 +999,7 @@ const BrandGuide = () => {
             </div>
           </section>
 
-          {/* Section 8: UI Toolkit */}
-          <section id="ui" className="doc-section">
-            <div className="flex items-center gap-3 mb-8 border-b border-mist pb-4">
-              <Layout className="w-8 h-8 text-highlight" />
-              <h2 className="font-headline text-4xl text-ink">UI Toolkit</h2>
-            </div>
-
-            <div className="space-y-12">
-              {/* Soft White Rule */}
-              <div className="bg-highlight/10 border border-highlight/20 p-6 rounded-2xl flex flex-col md:flex-row items-center gap-8">
-                <div className="flex-shrink-0 text-center">
-                  <span className="text-xs font-bold text-highlight uppercase mb-2 block tracking-wider">The "Soft White" Physics</span>
-                  <button className="btn-primary text-xl px-8 py-3 shadow-lg transform hover:scale-105 transition">Soft White Text</button>
-                  <div className="mt-2 text-[10px] font-mono text-highlight">#F9FAFB on #FFB300</div>
-                </div>
-                <div className="flex-1 border-l border-highlight/20 pl-6">
-                  <h4 className="font-headline text-xl text-ink mb-2">Why not pure white?</h4>
-                  <p className="text-sm text-paragraph leading-relaxed">
-                    On our active <strong>Golden Hour</strong> background, pure white (#FFFFFF) creates a "vibrating" effect. We use <strong>Soft White (#F9FAFB)</strong> to reduce glare.
-                  </p>
-                </div>
-              </div>
-
-              {/* Buttons */}
-              <div>
-                <h3 className="text-xs font-bold text-structure uppercase tracking-wider mb-6 pb-2 border-b border-mist">01. Interactive Elements</h3>
-                <div className="flex flex-wrap gap-8 items-start">
-                  <div className="space-y-2">
-                    <button className="btn-primary px-8 py-3 rounded-xl shadow-lg">Primary Action</button>
-                    <p className="text-xs text-structure">Main Call-to-Action</p>
-                  </div>
-                  <div className="space-y-2">
-                    <button className="px-6 py-3 rounded-xl border-2 border-mist font-headline text-ink hover:border-ink transition">Secondary Ghost</button>
-                    <p className="text-xs text-structure">Alternative Options</p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Badges */}
-              <div>
-                <h3 className="text-xs font-bold text-structure uppercase tracking-wider mb-6 pb-2 border-b border-mist">02. Status Indicators</h3>
-                <div className="flex gap-4">
-                  <span className="bg-brand text-white px-4 py-1 rounded-full font-headline text-sm tracking-wide">NEW</span>
-                  <span className="bg-highlight text-soft-white px-4 py-1 rounded-full font-headline text-sm tracking-wide">POPULAR</span>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          {/* Section 9: Graphic Examples */}
-          <section id="graphics" className="doc-section p-0 overflow-hidden">
-            <div className="p-8">
-              <div className="flex items-center gap-3 mb-8 border-b border-mist pb-4">
-                <Image className="w-8 h-8 text-highlight" />
-                <h2 className="font-headline text-4xl text-ink">Graphic Examples</h2>
-              </div>
-              <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
-                {[1, 2, 3, 4, 5, 6].map((num) => (
-                  <div key={num} className="aspect-square bg-cloud rounded-xl border-2 border-dashed border-mist flex items-center justify-center">
-                    <div className="text-center text-structure">
-                      <Plus className="w-8 h-8 mx-auto mb-2" />
-                      <span className="text-xs font-bold">Graphic {num}</span>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </section>
-
-          {/* Section 10: Hero Lab */}
-          <section id="hero-lab" className="doc-section bg-cloud">
-            <div className="flex items-center gap-3 mb-8 border-b border-mist pb-4">
-              <FlaskConical className="w-8 h-8 text-highlight" />
-              <h2 className="font-headline text-4xl text-ink">The Hero Lab</h2>
-            </div>
-
-            <p className="text-paragraph mb-8 leading-relaxed max-w-3xl">
-              <strong>The Issue:</strong> Our brand is friendly ("Amigos"), but sometimes business requires a serious tone (contracts, disclaimers, or high-stakes billboards).
-              <br /><br />
-              When we try to be "Serious" with our standard friendly fonts, it can feel like a mismatch. For these rare <strong>"Nuclear"</strong> moments, we are authorized to use <strong>Inter ExtraBold</strong>.
-            </p>
-
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-4">
-              {/* Fredoka */}
-              <div className="bg-white p-6 rounded-2xl border-2 border-red-100 flex flex-col h-full opacity-60 hover:opacity-100 transition-opacity">
-                <span className="text-[10px] font-bold text-structure uppercase tracking-wider mb-4 block border-b border-mist pb-2">Attempt 1: Fredoka</span>
-                <h1 className="font-headline text-2xl text-ink leading-tight mb-4">
-                  Proudly serving DuPage, Illinois.
-                </h1>
-                <div className="mt-auto p-3 bg-red-50 rounded-lg text-xs text-red-700 font-bold leading-relaxed">
-                  <X className="w-3 h-3 inline mr-1" /> TOO BOUNCY. <br />Trivializes the legacy.
-                </div>
-              </div>
-
-              {/* Nunito */}
-              <div className="bg-white p-6 rounded-2xl border-2 border-mist flex flex-col h-full">
-                <span className="text-[10px] font-bold text-structure uppercase tracking-wider mb-4 block border-b border-mist pb-2">Attempt 2: Nunito</span>
-                <h1 className="font-body text-2xl text-ink leading-tight mb-4" style={{ fontWeight: 800 }}>
-                  Proudly serving DuPage, Illinois.
-                </h1>
-                <div className="mt-auto p-3 bg-highlight/10 rounded-lg text-xs text-highlight font-bold leading-relaxed">
-                  <Minus className="w-3 h-3 inline mr-1" /> OKAY. <br />Clean, but still feels soft.
-                </div>
-              </div>
-
-              {/* Inter */}
-              <div className="bg-white p-6 rounded-2xl border-4 border-ink shadow-2xl flex flex-col h-full transform md:scale-110 z-10 relative">
-                <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-ink text-highlight px-4 py-1 rounded-full text-xs font-bold tracking-widest shadow-md whitespace-nowrap border-2 border-highlight">
-                  THE SOLUTION
-                </div>
-                <span className="text-[10px] font-bold text-structure uppercase tracking-wider mb-4 block border-b border-mist pb-2 mt-2">Attempt 3: Inter (Nuclear)</span>
-                <h1 className="font-serious text-2xl text-ink leading-tight mb-4 uppercase" style={{ fontWeight: 900, letterSpacing: "-0.02em" }}>
-                  Proudly serving DuPage, Illinois.
-                </h1>
-                <div className="mt-auto p-3 bg-ink rounded-lg text-xs text-white font-bold leading-relaxed flex items-center gap-2">
-                  <CheckCircle className="w-4 h-4 text-highlight" />
-                  <span>AUTHORITY. <br />Use only when necessary.</span>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          {/* Section 11: The Law */}
+          {/* Section 10: The Law */}
           <section id="rules" className="doc-section">
             <div className="flex items-center gap-3 mb-8 border-b border-mist pb-4">
               <Scale className="w-8 h-8 text-highlight" />
@@ -754,6 +1108,45 @@ const BrandGuide = () => {
                       <p className="text-paragraph leading-relaxed text-sm">Cramped content feels rushed and unprofessional.</p>
                     </div>
                   </div>
+                </div>
+              </div>
+
+              {/* Rule 5: Pico Dresses For The Job */}
+              <div>
+                <h3 className="font-headline text-xl text-ink mb-4 flex items-center gap-2">
+                  <span className="bg-ink text-white w-8 h-8 rounded-full flex items-center justify-center text-sm">05</span>
+                  Pico Dresses For The Job
+                </h3>
+                <div className="p-6 border border-mist rounded-2xl bg-cloud">
+                  <p className="text-paragraph font-body leading-relaxed">
+                    Pico is the signature move. He takes on a costume for each context — Professor for teaching, Money for referrals, Snow for snow removal, Cozy for "we handle it" moments. <strong className="text-ink">Pico is the storyteller, never the decoration.</strong> He does not belong inside buttons.
+                  </p>
+                </div>
+              </div>
+
+              {/* Rule 6: Not TruGreen, Not the Cheap Local Guy */}
+              <div>
+                <h3 className="font-headline text-xl text-ink mb-4 flex items-center gap-2">
+                  <span className="bg-ink text-white w-8 h-8 rounded-full flex items-center justify-center text-sm">06</span>
+                  We Are Not TruGreen. We Are Not The Cheap Local Guy.
+                </h3>
+                <div className="p-6 border border-mist rounded-2xl bg-cloud">
+                  <p className="text-paragraph font-body leading-relaxed">
+                    Every output should feel confident, warm, distinctive. If it could belong to any other lawn company, it's not done. Make it more Amigos.
+                  </p>
+                </div>
+              </div>
+
+              {/* Rule 7: Amigos Lists Have Meaning */}
+              <div>
+                <h3 className="font-headline text-xl text-ink mb-4 flex items-center gap-2">
+                  <span className="bg-ink text-white w-8 h-8 rounded-full flex items-center justify-center text-sm">07</span>
+                  Amigos Lists Have Meaning
+                </h3>
+                <div className="p-6 border border-mist rounded-2xl bg-cloud">
+                  <p className="text-paragraph font-body leading-relaxed">
+                    No neutral bulleted lists. Every list in Amigos is either an <strong className="text-ink">earned checkmark</strong> (what you get) or a <strong className="text-ink">numbered step</strong> (how it works). Neutral bullets are for generic websites.
+                  </p>
                 </div>
               </div>
             </div>
