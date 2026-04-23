@@ -283,7 +283,7 @@ const Plan = () => {
       onClick={onClick}
       className={`w-full cursor-pointer transition-all duration-200 border-2 rounded-2xl bg-card p-4 md:p-5 flex items-start gap-3 md:gap-4 text-left ${
         selected
-          ? "border-brand bg-[#F9FBE7] shadow-md"
+          ? "border-brand bg-callout shadow-md"
           : "border-border hover:border-highlight hover:-translate-y-0.5"
       }`}
     >
@@ -415,7 +415,7 @@ const Plan = () => {
                   className="text-center space-y-6"
                 >
                   <div className="relative inline-block">
-                    <div className="w-16 h-16 bg-[#F9FBE7] rounded-2xl rotate-6 absolute inset-0" />
+                    <div className="w-16 h-16 bg-callout rounded-2xl rotate-6 absolute inset-0" />
                     <div className="w-16 h-16 bg-card border-2 border-brand rounded-2xl flex items-center justify-center relative z-10 -rotate-3">
                       <Map className="w-8 h-8 text-brand" />
                     </div>
@@ -588,7 +588,7 @@ const Plan = () => {
                   </div>
                   <p className="text-paragraph mb-3 text-sm md:text-base font-bold text-center">Seasonal cleanup performed in early spring to reset the property after winter.</p>
 
-                  <div className="p-4 bg-[#F9FBE7] border-2 border-brand/10 rounded-xl mb-4 text-sm text-brand font-bold text-center leading-snug">
+                  <div className="p-4 bg-callout border-2 border-brand/10 rounded-xl mb-4 text-sm text-brand font-bold text-center leading-snug">
                     Includes: Removal of leaves, sticks & debris from lawn and flower beds, clearing of dead plant material, and collection & staging of debris.
                   </div>
 
@@ -615,7 +615,7 @@ const Plan = () => {
                   </div>
                   <p className="text-paragraph mb-4 text-sm md:text-base font-bold leading-snug">Would you like Amigos to handle mulch installation and bed preparation?</p>
 
-                  <div className="p-4 bg-[#F9FBE7] border-2 border-brand/10 rounded-xl mb-4 text-sm text-brand font-bold text-center leading-snug">
+                  <div className="p-4 bg-callout border-2 border-brand/10 rounded-xl mb-4 text-sm text-brand font-bold text-center leading-snug">
                     Includes: Spade Edging + Mulch Installation + Weed Preventer
                   </div>
 
@@ -741,7 +741,7 @@ const Plan = () => {
                       <div className="font-headline text-xl text-brand uppercase tracking-[0.2em] mb-2">{profile.label}</div>
                     </div>
 
-                    <div className="bg-[#F9FBE7] border-2 border-brand/20 p-6 md:p-8 rounded-3xl">
+                    <div className="bg-callout border-2 border-brand/20 p-6 md:p-8 rounded-3xl">
                       <p className="text-base text-paragraph font-bold leading-relaxed">{profile.text}</p>
                     </div>
 

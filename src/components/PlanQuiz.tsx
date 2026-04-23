@@ -326,7 +326,7 @@ const PlanQuiz = () => {
       onClick={onClick}
       className={`relative w-full cursor-pointer transition-all duration-200 border-2 rounded-2xl bg-card p-4 md:p-5 flex items-start gap-3 md:gap-4 text-left ${
         selected
-          ? "border-brand bg-[#F9FBE7] shadow-md"
+          ? "border-brand bg-callout shadow-md"
           : "border-border hover:border-highlight hover:-translate-y-0.5"
       }`}
     >
@@ -357,7 +357,7 @@ const PlanQuiz = () => {
       <p className="text-paragraph mb-3 text-sm md:text-base leading-snug font-bold">
         Leaves pile up fast in DuPage. Pick how we handle them.
       </p>
-      <div className="p-4 bg-[#F9FBE7] border-2 border-brand/10 rounded-xl mb-4 text-sm text-brand font-bold text-center leading-snug">
+      <div className="p-4 bg-callout border-2 border-brand/10 rounded-xl mb-4 text-sm text-brand font-bold text-center leading-snug">
         Leaf care is included in every plan to keep your lawn and hardscapes clear through fall.
       </div>
       <div className="space-y-3.5 pt-2">
@@ -422,7 +422,7 @@ const PlanQuiz = () => {
                     className="text-center space-y-6"
                   >
                     <div className="relative inline-block">
-                      <div className="w-16 h-16 bg-[#F9FBE7] rounded-2xl rotate-6 absolute inset-0" />
+                      <div className="w-16 h-16 bg-callout rounded-2xl rotate-6 absolute inset-0" />
                       <div className="w-16 h-16 bg-card border-2 border-brand rounded-2xl flex items-center justify-center relative z-10 -rotate-3">
                         <Map className="w-8 h-8 text-brand" />
                       </div>
@@ -555,7 +555,7 @@ const PlanQuiz = () => {
                     <p className="text-paragraph mb-3 text-sm md:text-base">
                       We'll mow and string-trim your lawn every week. How should we finish it?
                     </p>
-                    <div className="p-4 bg-[#F9FBE7] border-2 border-brand/10 rounded-xl mb-4 text-sm text-brand font-bold text-center leading-snug">
+                    <div className="p-4 bg-callout border-2 border-brand/10 rounded-xl mb-4 text-sm text-brand font-bold text-center leading-snug">
                       Every visit includes professional mowing + string trimming.
                     </div>
                     <div className="space-y-3.5 pt-2">
@@ -670,7 +670,7 @@ const PlanQuiz = () => {
                     <p className="text-paragraph mb-3 text-sm md:text-base">
                       Would you like a fresh spring mulch install to reset your beds?
                     </p>
-                    <div className="p-4 bg-[#F9FBE7] border-2 border-brand/10 rounded-xl mb-4 text-sm text-brand font-bold text-center leading-snug">
+                    <div className="p-4 bg-callout border-2 border-brand/10 rounded-xl mb-4 text-sm text-brand font-bold text-center leading-snug">
                       Includes: Spade Edging + Fresh Mulch Install + Weed Preventer
                     </div>
                     <div className="space-y-3.5 pt-2">
@@ -810,7 +810,7 @@ const PlanQuiz = () => {
                     <p className="text-paragraph mb-3 text-sm md:text-base leading-snug">
                       A one-time early-spring reset that clears the winter mess off the lawn and beds before the season kicks in.
                     </p>
-                    <div className="p-4 bg-[#F9FBE7] border-2 border-brand/10 rounded-xl mb-4 text-sm text-brand font-bold text-center leading-snug">
+                    <div className="p-4 bg-callout border-2 border-brand/10 rounded-xl mb-4 text-sm text-brand font-bold text-center leading-snug">
                       Includes: Removal of leaves, sticks & debris from the lawn and flower beds, clearing of dead plant material, and collection & staging of debris.
                     </div>
                     <div className="space-y-3.5 pt-2">
@@ -1008,7 +1008,7 @@ const PlanQuiz = () => {
                         </div>
                       </div>
 
-                      <div className="bg-[#F9FBE7] border-2 border-brand/20 p-6 md:p-8 rounded-3xl">
+                      <div className="bg-callout border-2 border-brand/20 p-6 md:p-8 rounded-3xl">
                         <p className="text-base text-paragraph font-bold leading-relaxed">
                           {profile.text}
                         </p>

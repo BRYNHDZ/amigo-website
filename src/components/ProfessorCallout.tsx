@@ -13,7 +13,7 @@ const ProfessorCallout = ({
   subtitle?: string;
 }) => {
   return (
-    <div className="bg-[#F9FBE7] border-2 border-brand/15 rounded-3xl p-5 md:p-6 flex items-center gap-4 md:gap-6">
+    <div className="bg-callout border-2 border-brand/15 rounded-3xl p-5 md:p-6 flex items-center gap-4 md:gap-6">
       <img
         src={professorMascot}
         alt="Professor Amigo, the Amigos Landscaping mascot"

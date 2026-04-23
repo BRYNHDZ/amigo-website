@@ -15,6 +15,7 @@
     --color-paragraph: 220 9% 46%;      /* #4B5563 Body Copy */
     --color-structure: 218 11% 65%;     /* #9CA3AF UI Labels */
     --color-mist: 220 13% 91%;          /* #E5E7EB Watermarks */
+    --color-callout: 66 70% 95%;        /* #F9FBE7 Callout Yellow (C4 note cards) */
 
     /* SEMANTIC TOKENS */
     --background: var(--color-cloud);

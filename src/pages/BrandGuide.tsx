@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import {
   Flag, Palette, Type, Smile, Film, Shirt, Layout, Camera,
-  ShieldAlert, Check, X, ArrowRight, Truck, Copy,
+  ShieldAlert, Check, X, ArrowRight, Truck, Copy, Megaphone,
   Download, Scale, CheckCircle, XCircle, Minus, GraduationCap,
   DollarSign, Snowflake, Flame,
 } from "lucide-react";
@@ -15,6 +15,7 @@ const navItems = [
   { id: "mascot", label: "Pico the Mascot", icon: Smile },
   { id: "photography", label: "Photography", icon: Camera },
   { id: "ui", label: "UI Toolkit", icon: Layout },
+  { id: "campaigns", label: "Campaigns", icon: Megaphone },
   { id: "motion", label: "Motion & Physics", icon: Film },
   { id: "uniforms", label: "Fleet & Uniforms", icon: Shirt },
   { id: "rules", label: "The Law", icon: ShieldAlert },
@@ -88,15 +89,63 @@ const AI_PROMPT_JSON = `{
   }
 }`;
 
+const CAMPAIGN_TEMPLATE_MD = `AMIGOS CAMPAIGN BRIEF
+Topic: [mulch / aeration / snow / leaf care / etc]
+Season: [spring / summer / fall / winter]
+Pico costume: [Mulch-Bag / Professor / Snow / Cozy / Rake / Crew-Vest]
+
+1. HERO
+   Eyebrow: [CATEGORY OR SEASON, ALL CAPS, 1-3 WORDS]
+   H1: [single clear statement, 8 words max]
+   Image: [AI vision prompt output or real photo reference]
+   Lead: [2-3 short sentences framing the moment, not the product]
+
+2. PICO MOMENT
+   Costume: [from role library]
+   Speech bubble: [one sentence in character]
+
+3. SOLUTION (Checklist L2a)
+   Eyebrow: WHAT YOU GET
+   Title: [service name or plan]
+   Items:
+     - [action verb + benefit]
+     - [action verb + benefit]
+     - [action verb + benefit]
+     - [action verb + benefit]
+
+4. SOCIAL PROOF (Stats strip A)
+   600+ happy clients · 83K+ visits completed · 5.0★ star rating · 30 years in business
+
+5. SEASONAL CALLOUT
+   Eyebrow: GOOD TO KNOW
+   Message: [1-sentence urgency or constraint]
+
+6. CTA (Primary Gold button)
+   Button text: [UPPERCASE VERB PHRASE →]
+   Destination: [URL]
+
+FOOTER: standard Amigos footer (contact + unsubscribe)`;
+
 const BrandGuide = () => {
   const [activeSection, setActiveSection] = useState("identity");
   const [promptCopied, setPromptCopied] = useState(false);
+  const [campaignCopied, setCampaignCopied] = useState(false);
 
   const copyPrompt = async () => {
     try {
       await navigator.clipboard.writeText(AI_PROMPT_JSON);
       setPromptCopied(true);
       setTimeout(() => setPromptCopied(false), 2000);
+    } catch {
+      // clipboard API unavailable; silent fail
+    }
+  };
+
+  const copyCampaignTemplate = async () => {
+    try {
+      await navigator.clipboard.writeText(CAMPAIGN_TEMPLATE_MD);
+      setCampaignCopied(true);
+      setTimeout(() => setCampaignCopied(false), 2000);
     } catch {
       // clipboard API unavailable; silent fail
     }
@@ -167,7 +216,7 @@ const BrandGuide = () => {
           </nav>
 
           <div className="mt-8 px-2">
-            <button className="w-full bg-ink text-white py-2 rounded-lg text-sm font-bold flex items-center justify-center gap-2 hover:bg-black transition">
+            <button className="w-full bg-ink text-white py-2 rounded-lg text-sm font-bold flex items-center justify-center gap-2 hover:opacity-90 hover:scale-[1.02] transition">
               <Download className="w-4 h-4" /> Export PDF
             </button>
           </div>
@@ -790,7 +839,7 @@ const BrandGuide = () => {
                   </div>
                   <div>
                     <div className="bg-cloud p-4 rounded-xl mb-3">
-                      <div className="p-3 rounded-lg border-l-4 border-highlight bg-[#F9FBE7]">
+                      <div className="p-3 rounded-lg border-l-4 border-highlight bg-callout">
                         <p className="font-body text-[10px] font-extrabold text-brand uppercase tracking-widest mb-1">good to know</p>
                         <p className="text-xs text-ink font-body">Spring windows are short — book by April 15.</p>
                       </div>
@@ -928,6 +977,184 @@ const BrandGuide = () => {
                   </div>
                 </div>
               </div>
+            </div>
+          </section>
+
+          {/* Section 7: Campaigns */}
+          <section id="campaigns" className="doc-section">
+            <div className="flex items-center gap-3 mb-8 border-b border-mist pb-4">
+              <Megaphone className="w-8 h-8 text-highlight" />
+              <h2 className="font-headline text-4xl text-ink">Campaigns</h2>
+            </div>
+
+            <p className="text-paragraph font-body mb-6 max-w-2xl">
+              The marketing automation machine. The <strong className="text-ink">6-block spine</strong> below is the <strong className="text-ink">foundation, not the law</strong> — it guarantees on-brand output in 30 minutes when you don't have a stronger idea. When a campaign earns a different structure, deviate. Just know what you're deviating from.
+            </p>
+
+            <div className="mb-10 p-5 bg-callout border-l-4 border-highlight rounded-lg max-w-2xl">
+              <p className="font-body text-xs font-extrabold text-brand uppercase tracking-[0.22em] mb-2">foundation, not law</p>
+              <p className="text-sm text-ink font-body mb-2">
+                Use the spine as your default when you need something solid fast. Go experimental when the idea calls for it.
+              </p>
+              <p className="text-sm text-ink font-body">
+                <strong className="text-ink">Stays rigid across every deviation:</strong> colors, typography (and fallbacks), Pico costume rules, voice, photo display rules. <strong className="text-ink">Flexible:</strong> block order, block count, layout choices inside each block.
+              </p>
+            </div>
+
+            {/* Spine diagram */}
+            <div className="mb-12">
+              <p className="text-xs font-bold text-structure uppercase tracking-widest mb-4">The Spine (default)</p>
+              <div className="bg-cloud p-6 rounded-2xl">
+                <div className="grid grid-cols-2 md:grid-cols-6 gap-3">
+                  {[
+                    { n: 1, name: "Hero", detail: "Eyebrow + H1 + Vision Image + Lead" },
+                    { n: 2, name: "Pico Moment", detail: "Costume + Speech Bubble" },
+                    { n: 3, name: "Solution", detail: "Checklist (L2a) — what's included" },
+                    { n: 4, name: "Social Proof", detail: "Stats Strip (A)" },
+                    { n: 5, name: "Seasonal Callout", detail: "Callout (C4) — urgency" },
+                    { n: 6, name: "CTA", detail: "Primary Gold button (P1)" },
+                  ].map((block) => (
+                    <div key={block.n} className="bg-white p-4 rounded-xl border border-mist text-center">
+                      <div className="w-8 h-8 mx-auto mb-2 bg-brand text-white rounded-full flex items-center justify-center font-headline text-sm">{block.n}</div>
+                      <h4 className="font-headline text-sm text-ink mb-1">{block.name}</h4>
+                      <p className="text-[10px] text-paragraph font-body leading-snug">{block.detail}</p>
+                    </div>
+                  ))}
+                </div>
+                <p className="text-xs text-structure italic text-center mt-4">+ standard footer (always)</p>
+              </div>
+            </div>
+
+            {/* 90% Done Workflow */}
+            <div className="mb-12">
+              <p className="text-xs font-bold text-structure uppercase tracking-widest mb-4">The 90% Done Workflow</p>
+              <div className="bg-white rounded-2xl border border-mist p-6">
+                <ol className="space-y-3">
+                  {[
+                    { t: "Pick the topic", d: "\"Mulch campaign.\" \"Snow service.\" \"Spring aeration.\"" },
+                    { t: "Pick the Pico costume", d: "Mulch-Bag, Professor, Snow, Cozy — from the Role Library" },
+                    { t: "Generate the vision image", d: "Feed a Street View photo to the AI prompt in the Photography section" },
+                    { t: "Fill the 6-block spine", d: "3 lines of copy per block, max" },
+                    { t: "Run the Amigos checklist", d: "Colors exact, Fredoka only on headlines, Pico dressed right" },
+                    { t: "Export and send", d: "Days of work → 30 minutes" },
+                  ].map((step, i) => (
+                    <li key={i} className="flex items-start gap-3">
+                      <span className="bg-brand text-white rounded-full w-7 h-7 flex items-center justify-center font-headline text-xs flex-shrink-0">{i + 1}</span>
+                      <div>
+                        <div className="text-sm font-bold text-ink font-body">{step.t}</div>
+                        <div className="text-xs text-paragraph font-body italic">{step.d}</div>
+                      </div>
+                    </li>
+                  ))}
+                </ol>
+              </div>
+            </div>
+
+            {/* Worked Example */}
+            <div className="mb-12">
+              <p className="text-xs font-bold text-structure uppercase tracking-widest mb-4">Worked Example — Mulch Campaign (Spring)</p>
+
+              <div className="bg-cloud p-6 md:p-8 rounded-2xl">
+                <div className="max-w-xl mx-auto">
+                  <p className="font-body text-xs font-extrabold text-highlight uppercase tracking-[0.22em] mb-2">spring 2026</p>
+                  <h3 className="font-headline text-3xl text-ink mb-3 leading-tight">It's mulch season again.</h3>
+                  <p className="text-paragraph font-body text-sm mb-5">Your beds have been through a Chicago winter. Time for a refresh — the kind that makes the whole property look like it just got a haircut.</p>
+
+                  <img
+                    src="https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=900&q=80"
+                    alt="Freshly mulched beds"
+                    className="w-full mb-6 block"
+                    style={{ aspectRatio: "16/9", objectFit: "cover", borderRadius: "1.5rem" }}
+                  />
+
+                  {/* Pico moment */}
+                  <div className="flex items-start gap-3 mb-6 p-4 bg-white rounded-2xl border border-mist">
+                    <div className="w-14 h-14 bg-brand/10 rounded-full flex items-center justify-center flex-shrink-0">
+                      <svg width="32" height="32" viewBox="0 0 32 32">
+                        <circle cx="16" cy="18" r="11" fill="#30471F"/>
+                        <circle cx="12" cy="15" r="2" fill="white"/>
+                        <circle cx="20" cy="15" r="2" fill="white"/>
+                        <path d="M 11 20 Q 16 23 21 20" stroke="white" strokeWidth="1.5" fill="none" strokeLinecap="round"/>
+                      </svg>
+                    </div>
+                    <p className="font-accent text-lg text-ink italic leading-tight self-center">"Dark, clean, done. That's the mulch standard."</p>
+                  </div>
+
+                  {/* Checklist */}
+                  <div className="bg-white rounded-2xl p-5 border border-mist mb-5">
+                    <p className="font-body text-xs font-extrabold text-highlight uppercase tracking-[0.22em] mb-3">what you get</p>
+                    <ul className="space-y-2">
+                      {[
+                        "Full bed cleanup — twigs, leaves, debris cleared",
+                        "Crisp bed edging",
+                        "Dark brown triple-ground mulch, evenly spread",
+                        "Preen weed preventer, applied first",
+                      ].map((item, i) => (
+                        <li key={i} className="flex items-start gap-3">
+                          <Check className="w-[18px] h-[18px] text-brand flex-shrink-0 mt-0.5" strokeWidth={3.5} />
+                          <span className="text-sm text-ink font-body font-semibold">{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  {/* Stats */}
+                  <div className="bg-white border border-mist rounded-2xl p-4 shadow-sm grid grid-cols-4 gap-2 text-center mb-5">
+                    <div>
+                      <div className="font-headline text-xl text-brand leading-none">600+</div>
+                      <div className="font-body text-[9px] font-bold text-structure uppercase tracking-widest mt-1.5">clients</div>
+                    </div>
+                    <div>
+                      <div className="font-headline text-xl text-brand leading-none">83K+</div>
+                      <div className="font-body text-[9px] font-bold text-structure uppercase tracking-widest mt-1.5">visits</div>
+                    </div>
+                    <div>
+                      <div className="font-headline text-xl text-brand leading-none">5.0★</div>
+                      <div className="font-body text-[9px] font-bold text-structure uppercase tracking-widest mt-1.5">rating</div>
+                    </div>
+                    <div>
+                      <div className="font-headline text-xl text-brand leading-none">30</div>
+                      <div className="font-body text-[9px] font-bold text-structure uppercase tracking-widest mt-1.5">years</div>
+                    </div>
+                  </div>
+
+                  {/* Callout */}
+                  <div className="bg-callout border-l-4 border-highlight rounded-lg p-4 mb-6">
+                    <p className="font-body text-[10px] font-extrabold text-brand uppercase tracking-widest mb-1">good to know</p>
+                    <p className="text-sm text-ink font-body">Spring mulch windows close April 15 — book now so we can fit you in before the beds dry out.</p>
+                  </div>
+
+                  {/* CTA */}
+                  <div className="text-center">
+                    <button className="btn-primary px-8 py-3 rounded-xl shadow-lg inline-flex items-center gap-2">
+                      Get My Mulch Quote <ArrowRight className="w-4 h-4" />
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Copy Template */}
+            <div>
+              <div className="flex items-center justify-between mb-3 gap-4">
+                <div>
+                  <p className="font-body text-xs font-extrabold text-structure uppercase tracking-[0.22em]">Campaign Brief Template</p>
+                  <p className="text-sm text-paragraph font-body mt-1">Markdown skeleton to fill in. Paste into ChatGPT, Notion, or your drafting tool of choice.</p>
+                </div>
+                <button
+                  onClick={copyCampaignTemplate}
+                  className="btn-primary px-4 py-2 rounded-xl inline-flex items-center gap-2 text-sm shadow-md hover:scale-105 transition flex-shrink-0"
+                >
+                  {campaignCopied ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
+                  {campaignCopied ? "Copied" : "Copy Template"}
+                </button>
+              </div>
+              <pre className="bg-ink text-white p-5 rounded-2xl text-xs font-mono overflow-auto max-h-96 border border-ink leading-relaxed">
+                <code>{CAMPAIGN_TEMPLATE_MD}</code>
+              </pre>
+              <p className="text-xs text-paragraph font-body mt-3 italic">
+                Two more worked examples (Aeration & Overseed, Snow Service) live in the <code className="bg-white px-1.5 py-0.5 rounded text-xs border border-mist">amigos-brand</code> skill.
+              </p>
             </div>
           </section>
 

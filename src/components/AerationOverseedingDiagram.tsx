@@ -274,7 +274,7 @@ const AerationOverseedingDiagram = () => {
   if (shouldReduceMotion) {
     return (
       <figure
-        className="bg-[#F9FBE7] border-2 border-brand/15 rounded-3xl p-5 md:p-8"
+        className="bg-callout border-2 border-brand/15 rounded-3xl p-5 md:p-8"
         aria-label="Diagram showing how Amigos overseeds with two full back-and-forth passes — one vertical, one horizontal — for even coverage with no gaps"
       >
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 md:gap-8">
@@ -358,7 +358,7 @@ const AerationOverseedingDiagram = () => {
   // ───────────────────────────────────────────────────────
   return (
     <figure
-      className="bg-[#F9FBE7] border-2 border-brand/15 rounded-3xl p-5 md:p-8"
+      className="bg-callout border-2 border-brand/15 rounded-3xl p-5 md:p-8"
       aria-label="Animated diagram showing how Amigos overseeds with two full back-and-forth passes — one vertical, one horizontal — for even coverage with no gaps"
     >
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 md:gap-8">

@@ -393,7 +393,7 @@ const Recommendations = () => {
                           }
                           className={`text-left p-4 rounded-xl border-2 transition-all ${
                             formData.submitter_type === opt.value
-                              ? "border-brand bg-[#F9FBE7] shadow-sm"
+                              ? "border-brand bg-callout shadow-sm"
                               : "border-border hover:border-highlight"
                           }`}
                         >

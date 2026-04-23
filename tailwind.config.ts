@@ -33,6 +33,7 @@ export default {
         paragraph: "hsl(var(--color-paragraph))",
         structure: "hsl(var(--color-structure))",
         mist: "hsl(var(--color-mist))",
+        callout: "hsl(var(--color-callout))",
         primary: {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",
